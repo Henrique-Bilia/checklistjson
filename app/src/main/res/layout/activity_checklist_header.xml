@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvHeaderTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dados do equipamento"
+            android:textSize="20sp"
+            android:paddingBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cliente / Obra" />
+
+        <EditText
+            android:id="@+id/etClienteObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cliente / Obra" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Modelo" />
+
+        <EditText
+            android:id="@+id/etModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Modelo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="S/N" />
+
+        <EditText
+            android:id="@+id/etSn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de série" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fluído" />
+
+        <EditText
+            android:id="@+id/etFluido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fluído / Refrigerante" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tensão" />
+
+        <EditText
+            android:id="@+id/etTensao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tensão" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="OP" />
+
+        <EditText
+            android:id="@+id/etOp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="OP" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TAG" />
+
+        <EditText
+            android:id="@+id/etTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="TAG" />
+
+        <Button
+            android:id="@+id/btnContinuarChecklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continuar para checklist"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>
+

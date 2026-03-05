@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvChecklistTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Checklist"
+        android:textSize="20sp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvResponsavelLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Responsável:"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etResponsavel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do responsável" />
+
+    <TextView
+        android:id="@+id/tvDataLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data:"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/aaaa"
+        android:focusable="false"
+        android:clickable="true" />
+
+    <Button
+        android:id="@+id/btnSalvarCabecalho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar cabeçalho"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnAdicionarItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adicionar item"
+        android:layout_marginTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChecklist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvObservacaoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observação:"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/etObservacao"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:hint="Digite uma observação geral sobre este checklist" />
+
+    <Button
+        android:id="@+id/btnSalvarObservacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar observação"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
+
