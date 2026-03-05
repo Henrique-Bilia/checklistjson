@@ -4,12 +4,13 @@ public class ChecklistItem {
 
     private String id;
     private String titulo;
-    private boolean checked;
+    // "SIM", "NA" ou "" (nenhum marcado)
+    private String status;
 
-    public ChecklistItem(String id, String titulo, boolean checked) {
+    public ChecklistItem(String id, String titulo, String status) {
         this.id = id;
         this.titulo = titulo;
-        this.checked = checked;
+        this.status = status;
     }
 
     public String getId() {
@@ -20,12 +21,20 @@ public class ChecklistItem {
         return titulo;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public String getStatus() {
+        return status;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isSim() {
+        return "SIM".equals(status);
+    }
+
+    public boolean isNa() {
+        return "NA".equals(status);
     }
 }
 

@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,13 +43,35 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ChecklistItem item = itens.get(position);
 
-        holder.checkBox.setOnCheckedChangeListener(null);
-        holder.checkBox.setText(item.getTitulo());
-        holder.checkBox.setChecked(item.isChecked());
+        holder.tvTitulo.setText(item.getTitulo());
 
-        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            item.setChecked(isChecked);
-            salvarEstadoNoSharedPreferences(item.getId(), isChecked);
+        // Evita loops de evento
+        holder.rbSim.setOnCheckedChangeListener(null);
+        holder.rbNa.setOnCheckedChangeListener(null);
+
+        holder.rbSim.setChecked(item.isSim());
+        holder.rbNa.setChecked(item.isNa());
+
+        holder.rbSim.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                item.setStatus("SIM");
+                holder.rbNa.setChecked(false);
+                salvarStatusNoSharedPreferences(item.getId(), "SIM");
+            } else if (!holder.rbNa.isChecked()) {
+                item.setStatus("");
+                salvarStatusNoSharedPreferences(item.getId(), "");
+            }
+        });
+
+        holder.rbNa.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                item.setStatus("NA");
+                holder.rbSim.setChecked(false);
+                salvarStatusNoSharedPreferences(item.getId(), "NA");
+            } else if (!holder.rbSim.isChecked()) {
+                item.setStatus("");
+                salvarStatusNoSharedPreferences(item.getId(), "");
+            }
         });
 
         holder.itemView.setOnLongClickListener(v -> {
@@ -64,20 +87,24 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
         return itens.size();
     }
 
-    private void salvarEstadoNoSharedPreferences(String itemId, boolean checked) {
+    private void salvarStatusNoSharedPreferences(String itemId, String status) {
         SharedPreferences prefs = context.getSharedPreferences("checklists_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        String chave = ChecklistActivity.gerarChavePref(checklistId, itemId);
-        editor.putBoolean(chave, checked);
+        String chave = ChecklistActivity.gerarChaveStatus(checklistId, itemId);
+        editor.putString(chave, status);
         editor.apply();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        CheckBox checkBox;
+        TextView tvTitulo;
+        RadioButton rbSim;
+        RadioButton rbNa;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            checkBox = itemView.findViewById(R.id.checkBoxItem);
+            tvTitulo = itemView.findViewById(R.id.tvItemTitulo);
+            rbSim = itemView.findViewById(R.id.rbSim);
+            rbNa = itemView.findViewById(R.id.rbNa);
         }
     }
 }
