@@ -16,7 +16,14 @@
             android:text="Dados do equipamento"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnSelecionarMaquina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecionar máquina"
+            android:layout_marginBottom="12dp" />
 
         <!-- Linha 1: Elaborado / Data elaboração / Aprovado / Data aprovação -->
         <LinearLayout

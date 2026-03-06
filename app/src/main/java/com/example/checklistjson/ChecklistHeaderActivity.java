@@ -10,11 +10,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ChecklistHeaderActivity extends AppCompatActivity {
 
-    private String headerKey;
+    private String headerKey;   // chave atual (modelo ou modelo_op_tag)
+    private String modelKey;    // apenas o modelo base (irbr, ucabr, ...)
     private String headerTitulo;
     private String destinoTipo; // "single_checklist", "irbr_menu", "ucabr_menu"
     private String destinoChecklistId;
@@ -50,8 +52,10 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         etOp = findViewById(R.id.etOp);
         etTag = findViewById(R.id.etTag);
         Button btnContinuar = findViewById(R.id.btnContinuarChecklist);
+        Button btnSelecionarMaquina = findViewById(R.id.btnSelecionarMaquina);
 
         headerKey = getIntent().getStringExtra("header_key");
+        modelKey = headerKey; // por compatibilidade, headerKey original é o modelo
         headerTitulo = getIntent().getStringExtra("header_titulo");
         destinoTipo = getIntent().getStringExtra("destino_tipo");
         destinoChecklistId = getIntent().getStringExtra("destino_checklist_id");
@@ -59,6 +63,13 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
 
         if (headerTitulo != null) {
             tvTitulo.setText("Dados do equipamento - " + headerTitulo);
+        }
+
+        // Descobre máquina atual (se existir) para este modelo
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String currentEquipKey = getCurrentEquipKey(prefs, modelKey);
+        if (currentEquipKey != null) {
+            headerKey = currentEquipKey;
         }
 
         carregarCabecalhoEquipamento();
@@ -75,6 +86,13 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mostrarDatePickerParaCampo(etDataAprovacao);
+            }
+        });
+
+        btnSelecionarMaquina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDialogSelecionarMaquina();
             }
         });
 
@@ -123,6 +141,15 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
+        // calcula uma chave única por máquina usando modelo + OP + TAG
+        String op = etOp.getText().toString().trim();
+        String tag = etTag.getText().toString().trim();
+        String novoHeaderKey = modelKey;
+        if (!op.isEmpty() || !tag.isEmpty()) {
+            novoHeaderKey = gerarEquipKey(modelKey, op, tag);
+        }
+        headerKey = novoHeaderKey;
+
         editor.putString(gerarChaveEquip(headerKey, "cliente_obra"), etClienteObra.getText().toString());
         editor.putString(gerarChaveEquip(headerKey, "modelo"), etModelo.getText().toString());
         editor.putString(gerarChaveEquip(headerKey, "sn"), etSn.getText().toString());
@@ -132,8 +159,12 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         editor.putString(gerarChaveEquip(headerKey, "data_elaboracao"), etDataElaboracao.getText().toString());
         editor.putString(gerarChaveEquip(headerKey, "aprovado_por"), etAprovadoPor.getText().toString());
         editor.putString(gerarChaveEquip(headerKey, "data_aprovacao"), etDataAprovacao.getText().toString());
-        editor.putString(gerarChaveEquip(headerKey, "op"), etOp.getText().toString());
-        editor.putString(gerarChaveEquip(headerKey, "tag"), etTag.getText().toString());
+        editor.putString(gerarChaveEquip(headerKey, "op"), op);
+        editor.putString(gerarChaveEquip(headerKey, "tag"), tag);
+
+        // registra esta máquina na lista e como máquina atual do modelo
+        addEquipToList(prefs, editor, modelKey, headerKey);
+        setCurrentEquipKey(editor, modelKey, headerKey);
 
         editor.apply();
     }
@@ -162,6 +193,92 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
 
     public static String gerarChaveEquip(String headerKey, String campo) {
         return "modelo_" + headerKey + "_equip_" + campo;
+    }
+
+    private static String gerarEquipKey(String modelKey, String op, String tag) {
+        return modelKey + "_op_" + op + "_tag_" + tag;
+    }
+
+    private static String getEquipListKey(String modelKey) {
+        return "modelo_" + modelKey + "_equip_list";
+    }
+
+    private static String getCurrentEquipPrefKey(String modelKey) {
+        return "modelo_" + modelKey + "_equip_current_key";
+    }
+
+    private static void addEquipToList(SharedPreferences prefs,
+                                       SharedPreferences.Editor editor,
+                                       String modelKey,
+                                       String equipKey) {
+        String list = prefs.getString(getEquipListKey(modelKey), "");
+        if (list == null || list.isEmpty()) {
+            editor.putString(getEquipListKey(modelKey), equipKey);
+        } else if (!list.contains(equipKey)) {
+            editor.putString(getEquipListKey(modelKey), list + ";" + equipKey);
+        }
+    }
+
+    private static void setCurrentEquipKey(SharedPreferences.Editor editor,
+                                           String modelKey,
+                                           String equipKey) {
+        editor.putString(getCurrentEquipPrefKey(modelKey), equipKey);
+    }
+
+    public static String getCurrentEquipKey(SharedPreferences prefs, String modelKey) {
+        return prefs.getString(getCurrentEquipPrefKey(modelKey), null);
+    }
+
+    private void mostrarDialogSelecionarMaquina() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String list = prefs.getString(getEquipListKey(modelKey), "");
+        if (list == null || list.isEmpty()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Máquinas")
+                    .setMessage("Nenhuma máquina salva para este modelo.\nPreencha os dados e salve para criar uma.")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return;
+        }
+
+        String[] keys = list.split(";");
+        String[] labels = new String[keys.length];
+        for (int i = 0; i < keys.length; i++) {
+            String equipKey = keys[i];
+            String[] opTag = extrairOpTag(equipKey);
+            String op = opTag[0];
+            String tag = opTag[1];
+            labels[i] = "OP " + (op.isEmpty() ? "-" : op) + " / TAG " + (tag.isEmpty() ? "-" : tag);
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Selecionar máquina")
+                .setItems(labels, (dialog, which) -> {
+                    String selecionada = keys[which];
+                    headerKey = selecionada;
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    setCurrentEquipKey(editor, modelKey, selecionada);
+                    editor.apply();
+
+                    carregarCabecalhoEquipamento();
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private static String[] extrairOpTag(String equipKey) {
+        String op = "";
+        String tag = "";
+        if (equipKey != null) {
+            int idxOp = equipKey.indexOf("_op_");
+            int idxTag = equipKey.indexOf("_tag_");
+            if (idxOp >= 0 && idxTag > idxOp) {
+                op = equipKey.substring(idxOp + 4, idxTag);
+                tag = equipKey.substring(idxTag + 5);
+            }
+        }
+        return new String[]{op, tag};
     }
 }
 

@@ -584,18 +584,24 @@ public class ChecklistActivity extends AppCompatActivity {
     }
 
     private String getHeaderKeyForChecklist(String checklistId) {
+        String modelKey;
         if (checklistId.startsWith("checklist_irbr_")) {
-            return "irbr";
+            modelKey = "irbr";
         } else if (checklistId.startsWith("checklist_ucabr_")) {
-            return "ucabr";
+            modelKey = "ucabr";
         } else if (checklistId.startsWith("checklist_edbrse_")) {
-            return "edbrse";
+            modelKey = "edbrse";
         } else if (checklistId.startsWith("checklist_esbrag_")) {
-            return "esbrag";
+            modelKey = "esbrag";
         } else if ("checklist_manutencao".equals(checklistId)) {
-            return "manutencao";
+            modelKey = "manutencao";
+        } else {
+            modelKey = "generico";
         }
-        return "generico";
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String equipKey = ChecklistHeaderActivity.getCurrentEquipKey(prefs, modelKey);
+        return equipKey != null ? equipKey : modelKey;
     }
 
     private void exportarChecklistParaPdf() {

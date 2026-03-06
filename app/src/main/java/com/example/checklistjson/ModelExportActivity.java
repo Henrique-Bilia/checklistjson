@@ -46,17 +46,23 @@ public class ModelExportActivity extends AppCompatActivity {
         try {
             SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
 
-            String clienteObra = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "cliente_obra"), "");
-            String modelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "modelo"), "");
-            String sn = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "sn"), "");
-            String fluido = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "fluido"), "");
-            String tensao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "tensao"), "");
-            String op = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "op"), "");
-            String tag = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "tag"), "");
-            String elaboradoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "elaborado_por"), "");
-            String dataElaboracao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "data_elaboracao"), "");
-            String aprovadoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "aprovado_por"), "");
-            String dataAprovacao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "data_aprovacao"), "");
+            // usa, se existir, a máquina atual selecionada para este modelo
+            String headerKeyForModel = ChecklistHeaderActivity.getCurrentEquipKey(prefs, modelKey);
+            if (headerKeyForModel == null) {
+                headerKeyForModel = modelKey;
+            }
+
+            String clienteObra = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "cliente_obra"), "");
+            String modelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "modelo"), "");
+            String sn = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "sn"), "");
+            String fluido = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "fluido"), "");
+            String tensao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "tensao"), "");
+            String op = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "op"), "");
+            String tag = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "tag"), "");
+            String elaboradoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "elaborado_por"), "");
+            String dataElaboracao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "data_elaboracao"), "");
+            String aprovadoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "aprovado_por"), "");
+            String dataAprovacao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "data_aprovacao"), "");
 
             List<ChecklistDefinition> checklists = carregarChecklistsDoModelo(modelKey);
             if (checklists.isEmpty()) {
@@ -107,7 +113,7 @@ public class ModelExportActivity extends AppCompatActivity {
 
                 // IT específico do checklist (prioritário) ou, se vazio, IT do modelo
                 String itChecklist = prefs.getString(ChecklistActivity.gerarChaveIt(def.id), "");
-                String itModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(modelKey, "it"), "");
+                String itModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyForModel, "it"), "");
                 String it = !itChecklist.isEmpty() ? itChecklist : itModelo;
 
                 canvas.drawText("Responsável: " + responsavel, x, y, textPaint); y += lineHeight;
