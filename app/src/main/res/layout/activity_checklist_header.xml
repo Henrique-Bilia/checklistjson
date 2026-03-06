@@ -15,142 +15,287 @@
             android:layout_height="wrap_content"
             android:text="Dados do equipamento"
             android:textSize="20sp"
-            android:paddingBottom="12dp" />
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
 
-        <TextView
+        <!-- Linha 1: Elaborado / Data elaboração / Aprovado / Data aprovação -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cliente / Obra" />
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:baselineAligned="false">
 
-        <EditText
-            android:id="@+id/etClienteObra"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Elaborado por"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etElaboradoPor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome de quem elaborou"
+                    android:singleLine="true"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data da elaboração"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etDataElaboracao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aprovado por"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etAprovadoPor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome de quem aprovou"
+                    android:singleLine="true"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data da aprovação"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etDataAprovacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Linha 2: Cliente/Obra / Modelo / S/N -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cliente / Obra" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
             android:layout_marginTop="8dp"
-            android:text="Elaborado por" />
+            android:baselineAligned="false">
 
-        <EditText
-            android:id="@+id/etElaboradoPor"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cliente / Obra"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etClienteObra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cliente / Obra" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modelo"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etModelo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Modelo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="S/N"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etSn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Número de série" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Linha 3: Fluído / Tensão / OP / TAG -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome de quem elaborou" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
             android:layout_marginTop="8dp"
-            android:text="Data da elaboração" />
+            android:baselineAligned="false">
 
-        <EditText
-            android:id="@+id/etDataElaboracao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="dd/mm/aaaa"
-            android:focusable="false"
-            android:clickable="true" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Modelo" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fluído"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etModelo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Modelo" />
+                <EditText
+                    android:id="@+id/etFluido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fluído / Refrigerante" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="S/N" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
 
-        <EditText
-            android:id="@+id/etSn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Número de série" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tensão"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Fluído" />
+                <EditText
+                    android:id="@+id/etTensao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tensão" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/etFluido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Fluído / Refrigerante" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Tensão" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="OP"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etTensao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tensão" />
+                <EditText
+                    android:id="@+id/etOp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="OP" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Aprovado por" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/bg_header_cell">
 
-        <EditText
-            android:id="@+id/etAprovadoPor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome de quem aprovou" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TAG"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Data da aprovação" />
-
-        <EditText
-            android:id="@+id/etDataAprovacao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="dd/mm/aaaa"
-            android:focusable="false"
-            android:clickable="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="OP" />
-
-        <EditText
-            android:id="@+id/etOp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="OP" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="TAG" />
-
-        <EditText
-            android:id="@+id/etTag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="TAG" />
+                <EditText
+                    android:id="@+id/etTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="TAG" />
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnContinuarChecklist"
