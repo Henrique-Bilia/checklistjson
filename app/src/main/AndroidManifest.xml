@@ -38,6 +38,11 @@
             android:theme="@style/Theme.Checklistjson" />
 
         <activity
+            android:name=".ModelExportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Checklistjson" />
+
+        <activity
             android:name=".IrbrMenuActivity"
             android:exported="false"
             android:theme="@style/Theme.Checklistjson" />

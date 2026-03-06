@@ -32,6 +32,7 @@ public class UcabrMenuActivity extends AppCompatActivity {
 
         TextView tvTitulo = findViewById(R.id.tvUcabrTitulo);
         listViewUcabr = findViewById(R.id.listViewUcabr);
+        android.widget.Button btnExportarModeloUcabr = findViewById(R.id.btnExportarModeloUcabr);
 
         tvTitulo.setText("Checklists UCABR");
 
@@ -53,8 +54,18 @@ public class UcabrMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(UcabrMenuActivity.this, ChecklistActivity.class);
                 intent.putExtra("checklist_id", checklistId);
                 intent.putExtra("checklist_nome", checklistNome);
+                intent.putStringArrayListExtra("lista_ids", new ArrayList<>(ucabrIds));
+                intent.putStringArrayListExtra("lista_nomes", new ArrayList<>(ucabrNomes));
+                intent.putExtra("indice_atual", position);
                 startActivity(intent);
             }
+        });
+
+        btnExportarModeloUcabr.setOnClickListener(v -> {
+            Intent intent = new Intent(UcabrMenuActivity.this, ModelExportActivity.class);
+            intent.putExtra("model_key", "ucabr");
+            intent.putExtra("model_name", "Modelo UCABR");
+            startActivity(intent);
         });
     }
 

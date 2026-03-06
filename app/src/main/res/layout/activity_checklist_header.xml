@@ -32,6 +32,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="Elaborado por" />
+
+        <EditText
+            android:id="@+id/etElaboradoPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome de quem elaborou" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Data da elaboração" />
+
+        <EditText
+            android:id="@+id/etDataElaboracao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Modelo" />
 
         <EditText
@@ -75,6 +101,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tensão" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Aprovado por" />
+
+        <EditText
+            android:id="@+id/etAprovadoPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome de quem aprovou" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Data da aprovação" />
+
+        <EditText
+            android:id="@+id/etDataAprovacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
 
         <TextView
             android:layout_width="match_parent"

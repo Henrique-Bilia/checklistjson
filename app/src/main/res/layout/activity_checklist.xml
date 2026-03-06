@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
         android:id="@+id/tvChecklistTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,20 +23,20 @@
         android:textSize="20sp"
         android:paddingBottom="8dp" />
 
-    <TextView
+            <TextView
         android:id="@+id/tvResponsavelLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Responsável:"
         android:textSize="14sp" />
 
-    <EditText
+            <EditText
         android:id="@+id/etResponsavel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome do responsável" />
 
-    <TextView
+            <TextView
         android:id="@+id/tvDataLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:textSize="14sp" />
 
-    <EditText
+            <EditText
         android:id="@+id/etData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,27 +52,73 @@
         android:focusable="false"
         android:clickable="true" />
 
-    <Button
-        android:id="@+id/btnSalvarCabecalho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salvar cabeçalho"
-        android:layout_marginTop="8dp" />
-
-    <Button
-        android:id="@+id/btnAdicionarItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adicionar item"
-        android:layout_marginTop="8dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewChecklist"
+            <TextView
+        android:id="@+id/tvItChecklistLabel"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:text="IT (Instrução de Trabalho) deste checklist:"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp" />
 
-    <TextView
+            <EditText
+        android:id="@+id/etItChecklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ex.: IT.001, IT.010..." />
+
+        <TextView
+        android:id="@+id/tvOpChecklistLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Operação"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp" />
+
+        <EditText
+        android:id="@+id/etOpChecklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Somente números"
+        android:inputType="number" />
+
+            <LinearLayout
+        android:id="@+id/layoutBotoesCabecalho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+                <Button
+            android:id="@+id/btnSalvarCabecalho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Salvar cabeçalho" />
+
+                <Button
+            android:id="@+id/btnAdicionarItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Adicionar item" />
+
+                <Button
+            android:id="@+id/btnRestaurarItensPadrao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Restaurar itens padrão" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChecklist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+            <TextView
         android:id="@+id/tvObservacaoLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +126,7 @@
         android:layout_marginTop="8dp"
         android:textSize="14sp" />
 
-    <EditText
+            <EditText
         android:id="@+id/etObservacao"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -78,19 +134,50 @@
         android:inputType="textMultiLine"
         android:hint="Digite uma observação geral sobre este checklist" />
 
-    <Button
+            <Button
         android:id="@+id/btnSalvarObservacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Salvar observação"
         android:layout_marginTop="4dp" />
 
-    <Button
-        android:id="@+id/btnExportarPdf"
+            <!-- Botão opcional para exportar o modelo inteiro em PDF
+                 (visível apenas em alguns casos, controlado via código) -->
+            <Button
+        android:id="@+id/btnExportarModeloChecklist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exportar PDF"
-        android:layout_marginTop="8dp" />
+        android:text="Exportar modelo em PDF"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Navegação fixa no rodapé -->
+    <LinearLayout
+        android:id="@+id/layoutNavegacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnAnteriorChecklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anterior" />
+
+        <Button
+            android:id="@+id/btnProximoChecklist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Próximo"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
 
 </LinearLayout>
 

@@ -32,6 +32,7 @@ public class EdbrseMenuActivity extends AppCompatActivity {
 
         TextView tvTitulo = findViewById(R.id.tvEdbrseTitulo);
         listViewEdbrse = findViewById(R.id.listViewEdbrse);
+        android.widget.Button btnExportarModeloEdbrse = findViewById(R.id.btnExportarModeloEdbrse);
 
         tvTitulo.setText("Checklists EDBRSE/EUBRSE");
 
@@ -53,8 +54,18 @@ public class EdbrseMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(EdbrseMenuActivity.this, ChecklistActivity.class);
                 intent.putExtra("checklist_id", checklistId);
                 intent.putExtra("checklist_nome", checklistNome);
+                intent.putStringArrayListExtra("lista_ids", new ArrayList<>(edbrseIds));
+                intent.putStringArrayListExtra("lista_nomes", new ArrayList<>(edbrseNomes));
+                intent.putExtra("indice_atual", position);
                 startActivity(intent);
             }
+        });
+
+        btnExportarModeloEdbrse.setOnClickListener(v -> {
+            Intent intent = new Intent(EdbrseMenuActivity.this, ModelExportActivity.class);
+            intent.putExtra("model_key", "edbrse");
+            intent.putExtra("model_name", "Modelo EDBRSE/EUBRSE");
+            startActivity(intent);
         });
     }
 

@@ -32,6 +32,7 @@ public class IrbrMenuActivity extends AppCompatActivity {
 
         TextView tvTitulo = findViewById(R.id.tvIrbrTitulo);
         listViewIrbr = findViewById(R.id.listViewIrbr);
+        android.widget.Button btnExportarModeloIrbr = findViewById(R.id.btnExportarModeloIrbr);
 
         tvTitulo.setText("Checklists IRBR");
 
@@ -53,8 +54,18 @@ public class IrbrMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(IrbrMenuActivity.this, ChecklistActivity.class);
                 intent.putExtra("checklist_id", checklistId);
                 intent.putExtra("checklist_nome", checklistNome);
+                intent.putStringArrayListExtra("lista_ids", new ArrayList<>(irbrIds));
+                intent.putStringArrayListExtra("lista_nomes", new ArrayList<>(irbrNomes));
+                intent.putExtra("indice_atual", position);
                 startActivity(intent);
             }
+        });
+
+        btnExportarModeloIrbr.setOnClickListener(v -> {
+            Intent intent = new Intent(IrbrMenuActivity.this, ModelExportActivity.class);
+            intent.putExtra("model_key", "irbr");
+            intent.putExtra("model_name", "Modelo IRBR");
+            startActivity(intent);
         });
     }
 

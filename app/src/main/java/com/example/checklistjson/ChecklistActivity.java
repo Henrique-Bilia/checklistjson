@@ -42,8 +42,13 @@ public class ChecklistActivity extends AppCompatActivity {
     private ChecklistAdapter adapter;
     private final List<ChecklistItem> itens = new ArrayList<>();
     private String checklistId;
+    private ArrayList<String> listaIds;
+    private ArrayList<String> listaNomes;
+    private int indiceAtual = -1;
     private EditText etResponsavel;
     private EditText etData;
+    private EditText etItChecklist;
+    private EditText etOpChecklist;
     private EditText etObservacao;
 
     @Override
@@ -55,25 +60,54 @@ public class ChecklistActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewChecklist);
         etResponsavel = findViewById(R.id.etResponsavel);
         etData = findViewById(R.id.etData);
+        etItChecklist = findViewById(R.id.etItChecklist);
+        etOpChecklist = findViewById(R.id.etOpChecklist);
         etObservacao = findViewById(R.id.etObservacao);
         Button btnSalvarCabecalho = findViewById(R.id.btnSalvarCabecalho);
         Button btnAdicionarItem = findViewById(R.id.btnAdicionarItem);
         Button btnSalvarObservacao = findViewById(R.id.btnSalvarObservacao);
-        Button btnExportarPdf = findViewById(R.id.btnExportarPdf);
+        Button btnAnterior = findViewById(R.id.btnAnteriorChecklist);
+        Button btnProximo = findViewById(R.id.btnProximoChecklist);
+        Button btnExportarModeloChecklist = findViewById(R.id.btnExportarModeloChecklist);
 
         checklistId = getIntent().getStringExtra("checklist_id");
         String checklistNome = getIntent().getStringExtra("checklist_nome");
+
+        listaIds = getIntent().getStringArrayListExtra("lista_ids");
+        listaNomes = getIntent().getStringArrayListExtra("lista_nomes");
+        indiceAtual = getIntent().getIntExtra("indice_atual", -1);
 
         if (checklistNome != null) {
             tvTitulo.setText(checklistNome);
         }
 
-        // Carrega itens e cabeçalho (responsável/data)
+        // Configura navegação apenas quando viemos de um menu com lista (ex.: IRBR)
+        if (listaIds == null || listaIds.isEmpty()) {
+            btnAnterior.setVisibility(View.GONE);
+            btnProximo.setVisibility(View.GONE);
+        } else {
+            // Se índice não veio, tenta descobrir pelo ID atual
+            if (indiceAtual < 0) {
+                indiceAtual = listaIds.indexOf(checklistId);
+            }
+
+            if (indiceAtual <= 0) {
+                btnAnterior.setEnabled(false);
+            }
+            if (indiceAtual >= listaIds.size() - 1) {
+                btnProximo.setEnabled(false);
+            }
+        }
+
+        // Carrega itens e cabeçalho (responsável/data/IT/OP)
         carregarItensDoChecklist();
         carregarCabecalho();
+        carregarItChecklist();
+        carregarOpChecklist();
         carregarObservacao();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setNestedScrollingEnabled(false);
         adapter = new ChecklistAdapter(itens, checklistId, this, new ChecklistAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(int position, ChecklistItem item) {
@@ -103,10 +137,16 @@ public class ChecklistActivity extends AppCompatActivity {
             }
         });
 
-        btnExportarPdf.setOnClickListener(new View.OnClickListener() {
+        Button btnRestaurar = findViewById(R.id.btnRestaurarItensPadrao);
+        btnRestaurar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                exportarChecklistParaPdf();
+                new AlertDialog.Builder(ChecklistActivity.this)
+                        .setTitle("Restaurar itens padrão")
+                        .setMessage("Isso vai restaurar todos os itens originais deste checklist e remover itens personalizados. Deseja continuar?")
+                        .setPositiveButton("Sim", (dialog, which) -> restaurarChecklistPadrao())
+                        .setNegativeButton("Cancelar", null)
+                        .show();
             }
         });
 
@@ -116,6 +156,51 @@ public class ChecklistActivity extends AppCompatActivity {
                 mostrarDatePicker();
             }
         });
+
+        btnAnterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navegarParaChecklist(-1);
+            }
+        });
+
+        btnProximo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navegarParaChecklist(1);
+            }
+        });
+
+        // Botão de exportar modelo inteiro (visível apenas em alguns casos)
+        String modelKey = getHeaderKeyForChecklist(checklistId);
+        String modelName = null;
+        if ("irbr".equals(modelKey) && "checklist_irbr_liberacao_final".equals(checklistId)) {
+            modelName = "Modelo IRBR";
+        } else if ("ucabr".equals(modelKey) && "checklist_ucabr_embalagem_liberacao".equals(checklistId)) {
+            modelName = "Modelo UCABR";
+        } else if ("edbrse".equals(modelKey) && "checklist_edbrse_embalagem_liberacao".equals(checklistId)) {
+            modelName = "Modelo EDBRSE/EUBRSE";
+        } else if ("esbrag".equals(modelKey) && "checklist_esbrag_embalagem_liberacao".equals(checklistId)) {
+            modelName = "Modelo ESBRAG/ESBRHAG";
+        } else if ("manutencao".equals(modelKey) && "checklist_manutencao".equals(checklistId)) {
+            modelName = "Modelo Manutenção (Exemplo)";
+        }
+
+        if (modelName != null) {
+            btnExportarModeloChecklist.setVisibility(View.VISIBLE);
+            String finalModelName = modelName;
+            btnExportarModeloChecklist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ChecklistActivity.this, ModelExportActivity.class);
+                    intent.putExtra("model_key", modelKey);
+                    intent.putExtra("model_name", finalModelName);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            btnExportarModeloChecklist.setVisibility(View.GONE);
+        }
     }
 
     private void carregarItensDoChecklist() {
@@ -203,6 +288,42 @@ public class ChecklistActivity extends AppCompatActivity {
 
         editor.putString(chaveResp, responsavel);
         editor.putString(chaveData, data);
+        editor.apply();
+
+        // também salva IT e OP específicos deste checklist
+        salvarItChecklist();
+        salvarOpChecklist();
+    }
+
+    private void carregarItChecklist() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String chaveIt = gerarChaveIt(checklistId);
+        String itChecklist = prefs.getString(chaveIt, "");
+        etItChecklist.setText(itChecklist);
+    }
+
+    private void salvarItChecklist() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String chaveIt = gerarChaveIt(checklistId);
+        String itChecklist = etItChecklist.getText().toString();
+        editor.putString(chaveIt, itChecklist);
+        editor.apply();
+    }
+
+    private void carregarOpChecklist() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String chaveOp = gerarChaveOp(checklistId);
+        String opChecklist = prefs.getString(chaveOp, "");
+        etOpChecklist.setText(opChecklist);
+    }
+
+    private void salvarOpChecklist() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String chaveOp = gerarChaveOp(checklistId);
+        String opChecklist = etOpChecklist.getText().toString();
+        editor.putString(chaveOp, opChecklist);
         editor.apply();
     }
 
@@ -385,6 +506,83 @@ public class ChecklistActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    private void restaurarChecklistPadrao() {
+        try {
+            SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            // Limpa lista de itens removidos e itens customizados
+            String chaveRemoved = "checklist_" + checklistId + "_removed_ids";
+            String chaveCustom = "checklist_" + checklistId + "_custom_items";
+            editor.remove(chaveRemoved);
+            editor.remove(chaveCustom);
+
+            // Remove status/flags de todos os itens definidos no JSON para este checklist
+            String json = lerArquivoAssets("checklist.json");
+            JSONObject root = new JSONObject(json);
+            JSONArray checklistsArray = root.getJSONArray("checklists");
+
+            JSONObject checklistSelecionado = null;
+            for (int i = 0; i < checklistsArray.length(); i++) {
+                JSONObject obj = checklistsArray.getJSONObject(i);
+                if (obj.getString("id").equals(checklistId)) {
+                    checklistSelecionado = obj;
+                    break;
+                }
+            }
+
+            if (checklistSelecionado != null) {
+                JSONArray itensArray = checklistSelecionado.getJSONArray("itens");
+                for (int i = 0; i < itensArray.length(); i++) {
+                    JSONObject itemObj = itensArray.getJSONObject(i);
+                    String idItem = itemObj.getString("id");
+                    editor.remove(gerarChaveStatus(checklistId, idItem));
+                    // compatibilidade com chave antiga booleana
+                    editor.remove(gerarChavePref(checklistId, idItem));
+                }
+            }
+
+            editor.apply();
+
+            // Recarrega itens na tela
+            itens.clear();
+            carregarItensDoChecklist();
+            adapter.notifyDataSetChanged();
+
+            Toast.makeText(this, "Itens padrão restaurados para este checklist", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao restaurar itens padrão", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void navegarParaChecklist(int delta) {
+        if (listaIds == null || listaIds.isEmpty() || indiceAtual < 0) return;
+
+        // Salva cabeçalho e observação antes de sair
+        salvarCabecalho();
+        salvarObservacao();
+
+        int novoIndice = indiceAtual + delta;
+        if (novoIndice < 0 || novoIndice >= listaIds.size()) return;
+
+        String novoId = listaIds.get(novoIndice);
+        String novoNome = listaNomes != null && listaNomes.size() == listaIds.size()
+                ? listaNomes.get(novoIndice)
+                : novoId;
+
+        Intent intent = new Intent(this, ChecklistActivity.class);
+        intent.putExtra("checklist_id", novoId);
+        intent.putExtra("checklist_nome", novoNome);
+        intent.putStringArrayListExtra("lista_ids", listaIds);
+        if (listaNomes != null) {
+            intent.putStringArrayListExtra("lista_nomes", listaNomes);
+        }
+        intent.putExtra("indice_atual", novoIndice);
+        startActivity(intent);
+        finish();
+    }
+
     private String getHeaderKeyForChecklist(String checklistId) {
         if (checklistId.startsWith("checklist_irbr_")) {
             return "irbr";
@@ -411,8 +609,18 @@ public class ChecklistActivity extends AppCompatActivity {
             String sn = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "sn"), "");
             String fluido = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "fluido"), "");
             String tensao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "tensao"), "");
-            String op = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "op"), "");
+            String opChecklist = prefs.getString(gerarChaveOp(checklistId), "");
+            String opModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "op"), "");
+            String op = !opChecklist.isEmpty() ? opChecklist : opModelo;
             String tag = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "tag"), "");
+            String elaboradoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "elaborado_por"), "");
+            String dataElaboracao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "data_elaboracao"), "");
+            String aprovadoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "aprovado_por"), "");
+            String dataAprovacao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "data_aprovacao"), "");
+            // IT específico do checklist tem prioridade; se vazio, usa IT do modelo
+            String itChecklist = prefs.getString(gerarChaveIt(checklistId), "");
+            String itModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "it"), "");
+            String it = !itChecklist.isEmpty() ? itChecklist : itModelo;
 
             String responsavel = etResponsavel.getText().toString();
             String data = etData.getText().toString();
@@ -445,7 +653,12 @@ public class ChecklistActivity extends AppCompatActivity {
             canvas.drawText("Fluído: " + fluido, x, y, textPaint); y += lineHeight;
             canvas.drawText("Tensão: " + tensao, x, y, textPaint); y += lineHeight;
             canvas.drawText("OP: " + op, x, y, textPaint); y += lineHeight;
-            canvas.drawText("TAG: " + tag, x, y, textPaint); y += lineHeight * 2;
+            canvas.drawText("TAG: " + tag, x, y, textPaint); y += lineHeight;
+            canvas.drawText("Elaborado por: " + elaboradoPor, x, y, textPaint); y += lineHeight;
+            canvas.drawText("Data da elaboração: " + dataElaboracao, x, y, textPaint); y += lineHeight;
+            canvas.drawText("Aprovado por: " + aprovadoPor, x, y, textPaint); y += lineHeight;
+            canvas.drawText("Data da aprovação: " + dataAprovacao, x, y, textPaint); y += lineHeight;
+            canvas.drawText("IT: " + it, x, y, textPaint); y += lineHeight * 2;
 
             canvas.drawText("Responsável: " + responsavel, x, y, textPaint); y += lineHeight;
             canvas.drawText("Data: " + data, x, y, textPaint); y += lineHeight * 2;
@@ -548,6 +761,14 @@ public class ChecklistActivity extends AppCompatActivity {
 
     public static String gerarChaveStatus(String checklistId, String itemId) {
         return "checklist_" + checklistId + "_item_" + itemId + "_status";
+    }
+
+    public static String gerarChaveIt(String checklistId) {
+        return "checklist_" + checklistId + "_it";
+    }
+
+    public static String gerarChaveOp(String checklistId) {
+        return "checklist_" + checklistId + "_op";
     }
 
     public static String gerarChaveResp(String checklistId) {

@@ -32,6 +32,7 @@ public class EsbragMenuActivity extends AppCompatActivity {
 
         TextView tvTitulo = findViewById(R.id.tvEsbragTitulo);
         listViewEsbrag = findViewById(R.id.listViewEsbrag);
+        android.widget.Button btnExportarModeloEsbrag = findViewById(R.id.btnExportarModeloEsbrag);
 
         tvTitulo.setText("Checklists ESBRAG/ESBRHAG");
 
@@ -53,8 +54,18 @@ public class EsbragMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(EsbragMenuActivity.this, ChecklistActivity.class);
                 intent.putExtra("checklist_id", checklistId);
                 intent.putExtra("checklist_nome", checklistNome);
+                intent.putStringArrayListExtra("lista_ids", new ArrayList<>(esbragIds));
+                intent.putStringArrayListExtra("lista_nomes", new ArrayList<>(esbragNomes));
+                intent.putExtra("indice_atual", position);
                 startActivity(intent);
             }
+        });
+
+        btnExportarModeloEsbrag.setOnClickListener(v -> {
+            Intent intent = new Intent(EsbragMenuActivity.this, ModelExportActivity.class);
+            intent.putExtra("model_key", "esbrag");
+            intent.putExtra("model_name", "Modelo ESBRAG/ESBRHAG");
+            startActivity(intent);
         });
     }
 
