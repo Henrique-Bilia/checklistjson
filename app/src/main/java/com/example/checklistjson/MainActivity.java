@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listViewChecklists;
     private final String[] opcoesMenu = new String[]{
-            "Modelo Manutenção (Exemplo)",
+            
             "Modelo IRBR",
             "Modelo UCABR",
             "Modelo EDBRSE/EUBRSE",

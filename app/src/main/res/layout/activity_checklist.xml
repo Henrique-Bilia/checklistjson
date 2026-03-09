@@ -141,6 +141,28 @@
         android:text="Salvar observação"
         android:layout_marginTop="4dp" />
 
+            <TextView
+        android:id="@+id/tvFotosTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fotos deste checklist"
+        android:layout_marginTop="12dp"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+            <Button
+        android:id="@+id/btnAdicionarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adicionar foto" />
+
+            <LinearLayout
+        android:id="@+id/layoutFotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp" />
+
             <!-- Botão opcional para exportar o modelo inteiro em PDF
                  (visível apenas em alguns casos, controlado via código) -->
             <Button

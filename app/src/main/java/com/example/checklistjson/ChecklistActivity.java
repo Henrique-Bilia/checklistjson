@@ -10,10 +10,12 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,9 @@ import java.util.List;
 
 public class ChecklistActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_PICK_PHOTO = 1001;
+    private static final int REQUEST_CODE_TAKE_PHOTO = 1002;
+
     private RecyclerView recyclerView;
     private ChecklistAdapter adapter;
     private final List<ChecklistItem> itens = new ArrayList<>();
@@ -50,6 +55,9 @@ public class ChecklistActivity extends AppCompatActivity {
     private EditText etItChecklist;
     private EditText etOpChecklist;
     private EditText etObservacao;
+    private LinearLayout layoutFotos;
+    private final List<String> listaFotos = new ArrayList<>();
+    private Uri fotoTempUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +71,14 @@ public class ChecklistActivity extends AppCompatActivity {
         etItChecklist = findViewById(R.id.etItChecklist);
         etOpChecklist = findViewById(R.id.etOpChecklist);
         etObservacao = findViewById(R.id.etObservacao);
+        layoutFotos = findViewById(R.id.layoutFotos);
         Button btnSalvarCabecalho = findViewById(R.id.btnSalvarCabecalho);
         Button btnAdicionarItem = findViewById(R.id.btnAdicionarItem);
         Button btnSalvarObservacao = findViewById(R.id.btnSalvarObservacao);
         Button btnAnterior = findViewById(R.id.btnAnteriorChecklist);
         Button btnProximo = findViewById(R.id.btnProximoChecklist);
         Button btnExportarModeloChecklist = findViewById(R.id.btnExportarModeloChecklist);
+        Button btnAdicionarFoto = findViewById(R.id.btnAdicionarFoto);
 
         checklistId = getIntent().getStringExtra("checklist_id");
         String checklistNome = getIntent().getStringExtra("checklist_nome");
@@ -78,7 +88,17 @@ public class ChecklistActivity extends AppCompatActivity {
         indiceAtual = getIntent().getIntExtra("indice_atual", -1);
 
         if (checklistNome != null) {
-            tvTitulo.setText(checklistNome);
+            // adiciona OP atual no título, se existir
+            String titulo = checklistNome;
+            SharedPreferences prefsTitulo = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+            String headerKeyTitulo = getHeaderKeyForChecklist(checklistId);
+            String opChecklistTitulo = prefsTitulo.getString(gerarChaveOpEquip(this, checklistId), "");
+            String opModeloTitulo = prefsTitulo.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKeyTitulo, "op"), "");
+            String opAtual = !opChecklistTitulo.isEmpty() ? opChecklistTitulo : opModeloTitulo;
+            if (opAtual != null && !opAtual.isEmpty()) {
+                titulo = checklistNome + " - OP " + opAtual;
+            }
+            tvTitulo.setText(titulo);
         }
 
         // Configura navegação apenas quando viemos de um menu com lista (ex.: IRBR)
@@ -105,6 +125,7 @@ public class ChecklistActivity extends AppCompatActivity {
         carregarItChecklist();
         carregarOpChecklist();
         carregarObservacao();
+        carregarFotos();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
@@ -168,6 +189,13 @@ public class ChecklistActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 navegarParaChecklist(1);
+            }
+        });
+
+        btnAdicionarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escolherFoto();
             }
         });
 
@@ -343,6 +371,85 @@ public class ChecklistActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    private void carregarFotos() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String chaveFotos = gerarChaveFotosEquip(this, checklistId);
+        String valor = prefs.getString(chaveFotos, "");
+        listaFotos.clear();
+        layoutFotos.removeAllViews();
+        if (valor != null && !valor.isEmpty()) {
+            String[] partes = valor.split(";");
+            for (String s : partes) {
+                if (!s.isEmpty()) {
+                    listaFotos.add(s);
+                }
+            }
+        }
+        atualizarListaFotos();
+    }
+
+    private void salvarFotos() {
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String chaveFotos = gerarChaveFotosEquip(this, checklistId);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < listaFotos.size(); i++) {
+            if (i > 0) sb.append(";");
+            sb.append(listaFotos.get(i));
+        }
+        editor.putString(chaveFotos, sb.toString());
+        editor.apply();
+    }
+
+    private void atualizarListaFotos() {
+        layoutFotos.removeAllViews();
+        for (int i = 0; i < listaFotos.size(); i++) {
+            String uriString = listaFotos.get(i);
+            TextView tv = new TextView(this);
+            tv.setText("Foto " + (i + 1));
+            tv.setPadding(0, 4, 0, 4);
+            layoutFotos.addView(tv);
+        }
+    }
+
+    private void escolherFoto() {
+        String[] opcoes = new String[]{"Tirar foto", "Escolher da galeria"};
+        new AlertDialog.Builder(this)
+                .setTitle("Adicionar foto")
+                .setItems(opcoes, (dialog, which) -> {
+                    if (which == 0) {
+                        tirarFoto();
+                    } else if (which == 1) {
+                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, REQUEST_CODE_PICK_PHOTO);
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void tirarFoto() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) == null) {
+            Toast.makeText(this, "Nenhum app de câmera disponível", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        if (dir == null) {
+            dir = getFilesDir();
+        }
+        String fileName = "foto_" + checklistId + "_" + System.currentTimeMillis() + ".jpg";
+        File fotoFile = new File(dir, fileName);
+        fotoTempUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", fotoFile);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fotoTempUri);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(intent, REQUEST_CODE_TAKE_PHOTO);
+    }
+
     private void mostrarDatePicker() {
         final Calendar calendario = Calendar.getInstance();
 
@@ -384,6 +491,30 @@ public class ChecklistActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancelar", null)
                 .show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PICK_PHOTO && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                int takeFlags = data.getFlags()
+                        & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                try {
+                    getContentResolver().takePersistableUriPermission(uri, takeFlags);
+                } catch (SecurityException ignored) {
+                }
+
+                listaFotos.add(uri.toString());
+                salvarFotos();
+                atualizarListaFotos();
+            }
+        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO && resultCode == RESULT_OK && fotoTempUri != null) {
+            listaFotos.add(fotoTempUri.toString());
+            salvarFotos();
+            atualizarListaFotos();
+        }
     }
 
     private void confirmarRemocaoItem(int position, ChecklistItem item) {
@@ -839,6 +970,10 @@ public class ChecklistActivity extends AppCompatActivity {
 
     public static String gerarChaveObsEquip(android.content.Context context, String checklistId) {
         return getEquipPrefix(context, checklistId) + "obs";
+    }
+
+    public static String gerarChaveFotosEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "fotos";
     }
 }
 
