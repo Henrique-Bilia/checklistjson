@@ -235,7 +235,7 @@ public class ChecklistActivity extends AppCompatActivity {
                     continue;
                 }
 
-                String chaveStatus = gerarChaveStatus(checklistId, idItem);
+                String chaveStatus = gerarChaveStatusEquip(this, checklistId, idItem);
                 String status = prefs.getString(chaveStatus, "");
 
                 // Compatibilidade com estado antigo (boolean SIM)
@@ -253,7 +253,7 @@ public class ChecklistActivity extends AppCompatActivity {
             // Itens customizados adicionados pelo usuário
             List<ChecklistItem> itensCustom = carregarItensCustomizados();
             for (ChecklistItem customItem : itensCustom) {
-                String chaveStatus = gerarChaveStatus(checklistId, customItem.getId());
+                String chaveStatus = gerarChaveStatusEquip(this, checklistId, customItem.getId());
                 String status = prefs.getString(chaveStatus, "");
                 customItem.setStatus(status);
                 itens.add(customItem);
@@ -266,8 +266,8 @@ public class ChecklistActivity extends AppCompatActivity {
 
     private void carregarCabecalho() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
-        String chaveResp = gerarChaveResp(checklistId);
-        String chaveData = gerarChaveData(checklistId);
+        String chaveResp = gerarChaveRespEquip(this, checklistId);
+        String chaveData = gerarChaveDataEquip(this, checklistId);
 
         String responsavel = prefs.getString(chaveResp, "");
         String data = prefs.getString(chaveData, "");
@@ -280,8 +280,8 @@ public class ChecklistActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        String chaveResp = gerarChaveResp(checklistId);
-        String chaveData = gerarChaveData(checklistId);
+        String chaveResp = gerarChaveRespEquip(this, checklistId);
+        String chaveData = gerarChaveDataEquip(this, checklistId);
 
         String responsavel = etResponsavel.getText().toString();
         String data = etData.getText().toString();
@@ -297,7 +297,7 @@ public class ChecklistActivity extends AppCompatActivity {
 
     private void carregarItChecklist() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
-        String chaveIt = gerarChaveIt(checklistId);
+        String chaveIt = gerarChaveItEquip(this, checklistId);
         String itChecklist = prefs.getString(chaveIt, "");
         etItChecklist.setText(itChecklist);
     }
@@ -305,7 +305,7 @@ public class ChecklistActivity extends AppCompatActivity {
     private void salvarItChecklist() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        String chaveIt = gerarChaveIt(checklistId);
+        String chaveIt = gerarChaveItEquip(this, checklistId);
         String itChecklist = etItChecklist.getText().toString();
         editor.putString(chaveIt, itChecklist);
         editor.apply();
@@ -329,7 +329,7 @@ public class ChecklistActivity extends AppCompatActivity {
 
     private void carregarObservacao() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
-        String chaveObs = gerarChaveObs(checklistId);
+        String chaveObs = gerarChaveObsEquip(this, checklistId);
         String obs = prefs.getString(chaveObs, "");
         etObservacao.setText(obs);
     }
@@ -337,7 +337,7 @@ public class ChecklistActivity extends AppCompatActivity {
     private void salvarObservacao() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        String chaveObs = gerarChaveObs(checklistId);
+        String chaveObs = gerarChaveObsEquip(this, checklistId);
         String obs = etObservacao.getText().toString();
         editor.putString(chaveObs, obs);
         editor.apply();
@@ -615,7 +615,7 @@ public class ChecklistActivity extends AppCompatActivity {
             String sn = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "sn"), "");
             String fluido = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "fluido"), "");
             String tensao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "tensao"), "");
-            String opChecklist = prefs.getString(gerarChaveOp(checklistId), "");
+            String opChecklist = prefs.getString(gerarChaveOpEquip(this, checklistId), "");
             String opModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "op"), "");
             String op = !opChecklist.isEmpty() ? opChecklist : opModelo;
             String tag = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "tag"), "");
@@ -624,7 +624,7 @@ public class ChecklistActivity extends AppCompatActivity {
             String aprovadoPor = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "aprovado_por"), "");
             String dataAprovacao = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "data_aprovacao"), "");
             // IT específico do checklist tem prioridade; se vazio, usa IT do modelo
-            String itChecklist = prefs.getString(gerarChaveIt(checklistId), "");
+            String itChecklist = prefs.getString(gerarChaveItEquip(this, checklistId), "");
             String itModelo = prefs.getString(ChecklistHeaderActivity.gerarChaveEquip(headerKey, "it"), "");
             String it = !itChecklist.isEmpty() ? itChecklist : itModelo;
 
@@ -761,6 +761,7 @@ public class ChecklistActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    // chaves antigas (compatibilidade)
     public static String gerarChavePref(String checklistId, String itemId) {
         return "checklist_" + checklistId + "_item_" + itemId;
     }
@@ -787,6 +788,57 @@ public class ChecklistActivity extends AppCompatActivity {
 
     public static String gerarChaveObs(String checklistId) {
         return "checklist_" + checklistId + "_obs";
+    }
+
+    // novas chaves por máquina (equipamento)
+    private static String getModelKeyForChecklist(String checklistId) {
+        if (checklistId.startsWith("checklist_irbr_")) {
+            return "irbr";
+        } else if (checklistId.startsWith("checklist_ucabr_")) {
+            return "ucabr";
+        } else if (checklistId.startsWith("checklist_edbrse_")) {
+            return "edbrse";
+        } else if (checklistId.startsWith("checklist_esbrag_")) {
+            return "esbrag";
+        } else if ("checklist_manutencao".equals(checklistId)) {
+            return "manutencao";
+        }
+        return "generico";
+    }
+
+    private static String getEquipPrefix(android.content.Context context, String checklistId) {
+        String modelKey = getModelKeyForChecklist(checklistId);
+        SharedPreferences prefs = context.getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        String equipKey = ChecklistHeaderActivity.getCurrentEquipKey(prefs, modelKey);
+        if (equipKey != null) {
+            return "equip_" + equipKey + "_checklist_" + checklistId + "_";
+        } else {
+            return "checklist_" + checklistId + "_";
+        }
+    }
+
+    public static String gerarChaveStatusEquip(android.content.Context context, String checklistId, String itemId) {
+        return getEquipPrefix(context, checklistId) + "item_" + itemId + "_status";
+    }
+
+    public static String gerarChaveItEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "it";
+    }
+
+    public static String gerarChaveOpEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "op";
+    }
+
+    public static String gerarChaveRespEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "responsavel";
+    }
+
+    public static String gerarChaveDataEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "data";
+    }
+
+    public static String gerarChaveObsEquip(android.content.Context context, String checklistId) {
+        return getEquipPrefix(context, checklistId) + "obs";
     }
 }
 

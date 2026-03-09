@@ -90,7 +90,7 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.View
     private void salvarStatusNoSharedPreferences(String itemId, String status) {
         SharedPreferences prefs = context.getSharedPreferences("checklists_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        String chave = ChecklistActivity.gerarChaveStatus(checklistId, itemId);
+        String chave = ChecklistActivity.gerarChaveStatusEquip(context, checklistId, itemId);
         editor.putString(chave, status);
         editor.apply();
     }

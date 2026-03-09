@@ -238,7 +238,7 @@ public class ModelExportActivity extends AppCompatActivity {
                 String itemId = itemObj.getString("id");
                 String titulo = itemObj.getString("titulo");
 
-                String status = prefs.getString(ChecklistActivity.gerarChaveStatus(id, itemId), "");
+                String status = prefs.getString(ChecklistActivity.gerarChaveStatusEquip(this, id, itemId), "");
 
                 // compatibilidade com chave antiga booleana
                 if (status.isEmpty()) {
