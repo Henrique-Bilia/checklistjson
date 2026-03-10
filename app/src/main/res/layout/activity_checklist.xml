@@ -7,11 +7,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:padding="16dp"
+            android:paddingBottom="80dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -118,28 +120,1003 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-            <TextView
-        android:id="@+id/tvObservacaoLabel"
+            <!-- Seção específica para UCABR - Montagem frigorífica: pressões válvulas de alívio -->
+            <LinearLayout
+        android:id="@+id/layoutPressaoValvulasUcabr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Observação:"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp" />
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
 
-            <EditText
-        android:id="@+id/etObservacao"
+                <TextView
+            android:id="@+id/tvPressaoValvulasTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pressão válvulas de alívio (UCABR)"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+                <TextView
+            android:id="@+id/tvPressaoAlivio1Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pressão válvula alívio 1:"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etPressaoAlivio1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor dia 1 (kgf/cm²)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etPressaoAlivio1Dia2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor dia 2 (kgf/cm²)"
+            android:inputType="numberDecimal" />
+
+                <TextView
+            android:id="@+id/tvPressaoAlivio2Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pressão válvula alívio 2:"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etPressaoAlivio2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor dia 1 (kgf/cm²)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etPressaoAlivio2Dia2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor dia 2 (kgf/cm²)"
+            android:inputType="numberDecimal" />
+
+                <Button
+            android:id="@+id/btnSalvarPressaoValvulas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar pressões das válvulas"
+            android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Seção específica para UCABR - Compressores (valores numéricos) -->
+            <LinearLayout
+        android:id="@+id/layoutCompressoresUcabr"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="top|start"
-        android:inputType="textMultiLine"
-        android:hint="Digite uma observação geral sobre este checklist" />
-
-            <Button
-        android:id="@+id/btnSalvarObservacao"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar observação"
-        android:layout_marginTop="4dp" />
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
+
+                <TextView
+            android:id="@+id/tvCompressoresTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dados dos compressores (UCABR)"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+                <TextView
+            android:id="@+id/tvCompressorC1Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compressor C1"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold" />
+
+                <!-- Linha com Data e Responsável do Compressor C1 -->
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvC1DataLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etC1Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvC1ResponsavelLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Responsável"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etC1Responsavel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etC1Tensao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tensão (Hz) conforme projeto"
+            android:inputType="number" />
+
+                <EditText
+            android:id="@+id/etC1Fluido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fluido refrigerante conforme projeto"
+            android:inputType="textCapCharacters" />
+
+                <EditText
+            android:id="@+id/etC1Oleo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de óleo conforme projeto"
+            android:inputType="textCapWords" />
+
+                <TextView
+            android:id="@+id/tvCompressorC2Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compressor C2"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold" />
+
+                <!-- Linha com Data e Responsável do Compressor C2 -->
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvC2DataLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etC2Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvC2ResponsavelLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Responsável"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etC2Responsavel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etC2Tensao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tensão (Hz) conforme projeto"
+            android:inputType="number" />
+
+                <EditText
+            android:id="@+id/etC2Fluido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fluido refrigerante conforme projeto"
+            android:inputType="textCapCharacters" />
+
+                <EditText
+            android:id="@+id/etC2Oleo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de óleo conforme projeto"
+            android:inputType="textCapWords" />
+
+                <Button
+            android:id="@+id/btnSalvarCompressores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar dados dos compressores"
+            android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Seção específica para UCABR - Teste de estanqueidade (C1 e C2) -->
+            <LinearLayout
+        android:id="@+id/layoutEstanqueidadeUcabr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
+
+                <TextView
+            android:id="@+id/tvEstanqueidadeTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Teste de estanqueidade (UCABR)"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+                <!-- Bloco C1 -->
+                <TextView
+            android:id="@+id/tvEstC1Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Circuito / Tanque C1"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold" />
+
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvEstC1DataLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etEstC1Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvEstC1RespLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resp."
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etEstC1Resp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etEstC1HoraInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora início (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etEstC1HoraFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora fim (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etEstC1PsiInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PSI início"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etEstC1PsiFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PSI fim"
+            android:inputType="numberDecimal" />
+
+                <!-- Bloco C2 -->
+                <TextView
+            android:id="@+id/tvEstC2Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Circuito / Tanque C2"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold" />
+
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvEstC2DataLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etEstC2Data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvEstC2RespLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resp."
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etEstC2Resp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etEstC2HoraInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora início (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etEstC2HoraFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora fim (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etEstC2PsiInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PSI início"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etEstC2PsiFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PSI fim"
+            android:inputType="numberDecimal" />
+
+                <!-- Campos gerais do teste -->
+                <TextView
+            android:id="@+id/tvEstObsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Observação do teste:"
+            android:layout_marginTop="12dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etEstObs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Observações específicas deste teste"
+            android:inputType="textMultiLine" />
+
+                <TextView
+            android:id="@+id/tvEstNumManometroC1Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº instr. Manômetro C1"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etEstNumManometroC1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do instrumento de medição C1" />
+
+                <TextView
+            android:id="@+id/tvEstNumManometroC2Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº instr. Manômetro C2"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etEstNumManometroC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do instrumento de medição C2" />
+
+                <TextView
+            android:id="@+id/tvEstDataCalibracaoC1Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração C1"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etEstDataCalibracaoC1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <TextView
+            android:id="@+id/tvEstDataCalibracaoC2Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração C2"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etEstDataCalibracaoC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <Button
+            android:id="@+id/btnSalvarEstanqueidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar dados do teste de estanqueidade"
+            android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Seção específica para UCABR - Vácuo e quebra do vácuo (C1) -->
+            <LinearLayout
+        android:id="@+id/layoutVacuoQuebraUcabr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
+
+                <!-- Bloco Vácuo C1 -->
+                <TextView
+            android:id="@+id/tvVacuoC1Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vácuo C1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+                <!-- Linha com Data início / Data fim e Responsável -->
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC1DataInicioLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data início"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC1DataInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC1DataFimLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data fim"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC1DataFim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC1RespLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resp."
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC1Resp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etVacuoC1HoraInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora início (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etVacuoC1HoraFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora fim (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etVacuoC1Valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vácuo (ex.: 450 μHg)"
+            android:inputType="text" />
+
+                <EditText
+            android:id="@+id/etVacuoNumBomba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nº Bomba vácuo" />
+
+                <EditText
+            android:id="@+id/etVacuoNumVacuometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nº Vacuômetro / Manifold" />
+
+                <TextView
+            android:id="@+id/tvVacuoDataCalibracaoVacuometroLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração vacuômetro / manifold"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etVacuoDataCalibracaoVacuometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <!-- Bloco Vácuo C2 (segundo teste) -->
+                <TextView
+            android:id="@+id/tvVacuoC2Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vácuo C2"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+                <!-- Linha com Data início / Data fim e Responsável (C2) -->
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC2DataInicioLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data início"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC2DataInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC2DataFimLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data fim"
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC2DataFim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
+
+                        <TextView
+                    android:id="@+id/tvVacuoC2RespLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resp."
+                    android:textSize="12sp" />
+
+                        <EditText
+                    android:id="@+id/etVacuoC2Resp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Responsável" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+            android:id="@+id/etVacuoC2HoraInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora início (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etVacuoC2HoraFim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora fim (ex.: 08:00)"
+            android:inputType="time" />
+
+                <EditText
+            android:id="@+id/etVacuoC2Valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vácuo (ex.: 450 μHg)"
+            android:inputType="text" />
+
+                <EditText
+            android:id="@+id/etVacuoNumBombaC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nº Bomba vácuo C2" />
+
+                <EditText
+            android:id="@+id/etVacuoNumVacuometroC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nº Vacuômetro / Manifold C2" />
+
+                <TextView
+            android:id="@+id/tvVacuoDataCalibracaoVacuometroC2Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração vacuômetro / manifold C2"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etVacuoDataCalibracaoVacuometroC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <!-- Bloco Quebra do vácuo C1 -->
+                <TextView
+            android:id="@+id/tvQuebraVacuoC1Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quebra do vácuo C1"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+                <!-- Sistema com válvula de serviço -->
+                <TextView
+            android:id="@+id/tvQuebraComValvulaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Com válvula de serviço"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebraComValvulaData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebraQtdRefrigerante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantidade de refrigerante (g)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etQuebraComValvulaResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Sistema sem válvula de serviço -->
+                <TextView
+            android:id="@+id/tvQuebraSemValvulaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sem válvula de serviço"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebraSemValvulaData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebraCargaNitrogenio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Carga de nitrogênio (psi)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etQuebraSemValvulaResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Detector de vazamento -->
+                <TextView
+            android:id="@+id/tvQuebraDetectorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detector de vazamento"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebraDetectorData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebraDetectorResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Instrumentos para quebra do vácuo -->
+                <TextView
+            android:id="@+id/tvQuebraNumBalancaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº Balança"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebraNumBalanca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número da balança" />
+
+                <TextView
+            android:id="@+id/tvQuebraDataCalibracaoBalancaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração balança"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebraDataCalibracaoBalanca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <TextView
+            android:id="@+id/tvQuebraNumManometroLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº Manômetro"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebraNumManometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do manômetro" />
+
+                <TextView
+            android:id="@+id/tvQuebraDataCalibracaoManometroLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração manômetro"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebraDataCalibracaoManometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <Button
+            android:id="@+id/btnSalvarVacuoQuebra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar dados de vácuo e quebra"
+            android:layout_marginTop="8dp" />
+
+            </LinearLayout>
 
             <TextView
         android:id="@+id/tvFotosTitulo"
@@ -172,6 +1149,30 @@
         android:text="Exportar modelo em PDF"
         android:layout_marginTop="8dp"
         android:visibility="gone" />
+
+            <!-- Observação geral no final da página -->
+            <TextView
+        android:id="@+id/tvObservacaoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observação:"
+        android:layout_marginTop="12dp"
+        android:textSize="14sp" />
+
+            <EditText
+        android:id="@+id/etObservacao"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:hint="Digite uma observação geral sobre este checklist" />
+
+            <Button
+        android:id="@+id/btnSalvarObservacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar observação"
+        android:layout_marginTop="4dp" />
 
         </LinearLayout>
 

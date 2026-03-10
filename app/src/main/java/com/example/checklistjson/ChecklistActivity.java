@@ -56,6 +56,41 @@ public class ChecklistActivity extends AppCompatActivity {
     private EditText etOpChecklist;
     private EditText etObservacao;
     private LinearLayout layoutFotos;
+    // Campos específicos para UCABR - Compressores (valores numéricos e responsáveis/data)
+    private LinearLayout layoutCompressoresUcabr;
+    private EditText etC1Tensao;
+    private EditText etC1Fluido;
+    private EditText etC1Oleo;
+    private EditText etC2Tensao;
+    private EditText etC2Fluido;
+    private EditText etC2Oleo;
+    private EditText etC1Data;
+    private EditText etC1Responsavel;
+    private EditText etC2Data;
+    private EditText etC2Responsavel;
+    // Campos específicos para UCABR - Montagem frigorífica (pressões válvulas de alívio)
+    private LinearLayout layoutPressaoValvulasUcabr;
+    private EditText etPressaoAlivio1;
+    private EditText etPressaoAlivio1Dia2;
+    private EditText etPressaoAlivio2;
+    private EditText etPressaoAlivio2Dia2;
+    // Campos específicos para UCABR - Teste de estanqueidade (C1 e C2)
+    private LinearLayout layoutEstanqueidadeUcabr;
+    private EditText etEstC1Data, etEstC1Resp, etEstC1HoraInicio, etEstC1HoraFim, etEstC1PsiInicio, etEstC1PsiFim;
+    private EditText etEstC2Data, etEstC2Resp, etEstC2HoraInicio, etEstC2HoraFim, etEstC2PsiInicio, etEstC2PsiFim;
+    private EditText etEstObs, etEstNumManometroC1, etEstNumManometroC2, etEstDataCalibracaoC1, etEstDataCalibracaoC2;
+    // Campos específicos para UCABR - Vácuo e quebra do vácuo (C1 e C2)
+    private LinearLayout layoutVacuoQuebraUcabr;
+    private EditText etVacuoC1DataInicio, etVacuoC1DataFim, etVacuoC1Resp, etVacuoC1HoraInicio, etVacuoC1HoraFim, etVacuoC1Valor;
+    private EditText etVacuoNumBomba, etVacuoNumVacuometro, etVacuoDataCalibracaoVacuometro;
+    private EditText etQuebraComValvulaData, etQuebraQtdRefrigerante, etQuebraComValvulaResp;
+    private EditText etQuebraSemValvulaData, etQuebraCargaNitrogenio, etQuebraSemValvulaResp;
+    private EditText etQuebraDetectorData, etQuebraDetectorResp;
+    private EditText etQuebraNumBalanca, etQuebraDataCalibracaoBalanca;
+    private EditText etQuebraNumManometro, etQuebraDataCalibracaoManometro;
+    // Segundo teste de vácuo (C2)
+    private EditText etVacuoC2DataInicio, etVacuoC2DataFim, etVacuoC2Resp, etVacuoC2HoraInicio, etVacuoC2HoraFim, etVacuoC2Valor;
+    private EditText etVacuoNumBombaC2, etVacuoNumVacuometroC2, etVacuoDataCalibracaoVacuometroC2;
     private final List<String> listaFotos = new ArrayList<>();
     private Uri fotoTempUri;
 
@@ -65,6 +100,8 @@ public class ChecklistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checklist);
 
         TextView tvTitulo = findViewById(R.id.tvChecklistTitulo);
+        TextView tvResponsavelLabel = findViewById(R.id.tvResponsavelLabel);
+        TextView tvDataLabel = findViewById(R.id.tvDataLabel);
         recyclerView = findViewById(R.id.recyclerViewChecklist);
         etResponsavel = findViewById(R.id.etResponsavel);
         etData = findViewById(R.id.etData);
@@ -79,6 +116,79 @@ public class ChecklistActivity extends AppCompatActivity {
         Button btnProximo = findViewById(R.id.btnProximoChecklist);
         Button btnExportarModeloChecklist = findViewById(R.id.btnExportarModeloChecklist);
         Button btnAdicionarFoto = findViewById(R.id.btnAdicionarFoto);
+        // Inicializa campos de compressores (UCABR)
+        layoutCompressoresUcabr = findViewById(R.id.layoutCompressoresUcabr);
+        etC1Tensao = findViewById(R.id.etC1Tensao);
+        etC1Fluido = findViewById(R.id.etC1Fluido);
+        etC1Oleo = findViewById(R.id.etC1Oleo);
+        etC1Data = findViewById(R.id.etC1Data);
+        etC1Responsavel = findViewById(R.id.etC1Responsavel);
+        etC2Tensao = findViewById(R.id.etC2Tensao);
+        etC2Fluido = findViewById(R.id.etC2Fluido);
+        etC2Oleo = findViewById(R.id.etC2Oleo);
+        etC2Data = findViewById(R.id.etC2Data);
+        etC2Responsavel = findViewById(R.id.etC2Responsavel);
+        Button btnSalvarCompressores = findViewById(R.id.btnSalvarCompressores);
+        // Inicializa campos de pressão das válvulas de alívio (UCABR - Montagem frigorífica)
+        layoutPressaoValvulasUcabr = findViewById(R.id.layoutPressaoValvulasUcabr);
+        etPressaoAlivio1 = findViewById(R.id.etPressaoAlivio1);
+        etPressaoAlivio1Dia2 = findViewById(R.id.etPressaoAlivio1Dia2);
+        etPressaoAlivio2 = findViewById(R.id.etPressaoAlivio2);
+        etPressaoAlivio2Dia2 = findViewById(R.id.etPressaoAlivio2Dia2);
+        Button btnSalvarPressaoValvulas = findViewById(R.id.btnSalvarPressaoValvulas);
+        // Inicializa campos do teste de estanqueidade (UCABR)
+        layoutEstanqueidadeUcabr = findViewById(R.id.layoutEstanqueidadeUcabr);
+        etEstC1Data = findViewById(R.id.etEstC1Data);
+        etEstC1Resp = findViewById(R.id.etEstC1Resp);
+        etEstC1HoraInicio = findViewById(R.id.etEstC1HoraInicio);
+        etEstC1HoraFim = findViewById(R.id.etEstC1HoraFim);
+        etEstC1PsiInicio = findViewById(R.id.etEstC1PsiInicio);
+        etEstC1PsiFim = findViewById(R.id.etEstC1PsiFim);
+        etEstC2Data = findViewById(R.id.etEstC2Data);
+        etEstC2Resp = findViewById(R.id.etEstC2Resp);
+        etEstC2HoraInicio = findViewById(R.id.etEstC2HoraInicio);
+        etEstC2HoraFim = findViewById(R.id.etEstC2HoraFim);
+        etEstC2PsiInicio = findViewById(R.id.etEstC2PsiInicio);
+        etEstC2PsiFim = findViewById(R.id.etEstC2PsiFim);
+        etEstObs = findViewById(R.id.etEstObs);
+        etEstNumManometroC1 = findViewById(R.id.etEstNumManometroC1);
+        etEstNumManometroC2 = findViewById(R.id.etEstNumManometroC2);
+        etEstDataCalibracaoC1 = findViewById(R.id.etEstDataCalibracaoC1);
+        etEstDataCalibracaoC2 = findViewById(R.id.etEstDataCalibracaoC2);
+        Button btnSalvarEstanqueidade = findViewById(R.id.btnSalvarEstanqueidade);
+        // Inicializa campos de vácuo e quebra de vácuo (UCABR)
+        layoutVacuoQuebraUcabr = findViewById(R.id.layoutVacuoQuebraUcabr);
+        etVacuoC1DataInicio = findViewById(R.id.etVacuoC1DataInicio);
+        etVacuoC1DataFim = findViewById(R.id.etVacuoC1DataFim);
+        etVacuoC1Resp = findViewById(R.id.etVacuoC1Resp);
+        etVacuoC1HoraInicio = findViewById(R.id.etVacuoC1HoraInicio);
+        etVacuoC1HoraFim = findViewById(R.id.etVacuoC1HoraFim);
+        etVacuoC1Valor = findViewById(R.id.etVacuoC1Valor);
+        etVacuoNumBomba = findViewById(R.id.etVacuoNumBomba);
+        etVacuoNumVacuometro = findViewById(R.id.etVacuoNumVacuometro);
+        etVacuoDataCalibracaoVacuometro = findViewById(R.id.etVacuoDataCalibracaoVacuometro);
+        etQuebraComValvulaData = findViewById(R.id.etQuebraComValvulaData);
+        etQuebraQtdRefrigerante = findViewById(R.id.etQuebraQtdRefrigerante);
+        etQuebraComValvulaResp = findViewById(R.id.etQuebraComValvulaResp);
+        etQuebraSemValvulaData = findViewById(R.id.etQuebraSemValvulaData);
+        etQuebraCargaNitrogenio = findViewById(R.id.etQuebraCargaNitrogenio);
+        etQuebraSemValvulaResp = findViewById(R.id.etQuebraSemValvulaResp);
+        etQuebraDetectorData = findViewById(R.id.etQuebraDetectorData);
+        etQuebraDetectorResp = findViewById(R.id.etQuebraDetectorResp);
+        etQuebraNumBalanca = findViewById(R.id.etQuebraNumBalanca);
+        etQuebraDataCalibracaoBalanca = findViewById(R.id.etQuebraDataCalibracaoBalanca);
+        etQuebraNumManometro = findViewById(R.id.etQuebraNumManometro);
+        etQuebraDataCalibracaoManometro = findViewById(R.id.etQuebraDataCalibracaoManometro);
+        Button btnSalvarVacuoQuebra = findViewById(R.id.btnSalvarVacuoQuebra);
+        etVacuoC2DataInicio = findViewById(R.id.etVacuoC2DataInicio);
+        etVacuoC2DataFim = findViewById(R.id.etVacuoC2DataFim);
+        etVacuoC2Resp = findViewById(R.id.etVacuoC2Resp);
+        etVacuoC2HoraInicio = findViewById(R.id.etVacuoC2HoraInicio);
+        etVacuoC2HoraFim = findViewById(R.id.etVacuoC2HoraFim);
+        etVacuoC2Valor = findViewById(R.id.etVacuoC2Valor);
+        etVacuoNumBombaC2 = findViewById(R.id.etVacuoNumBombaC2);
+        etVacuoNumVacuometroC2 = findViewById(R.id.etVacuoNumVacuometroC2);
+        etVacuoDataCalibracaoVacuometroC2 = findViewById(R.id.etVacuoDataCalibracaoVacuometroC2);
 
         checklistId = getIntent().getStringExtra("checklist_id");
         String checklistNome = getIntent().getStringExtra("checklist_nome");
@@ -99,6 +209,73 @@ public class ChecklistActivity extends AppCompatActivity {
                 titulo = checklistNome + " - OP " + opAtual;
             }
             tvTitulo.setText(titulo);
+        }
+
+        // Esconde campos de Responsável e Data do topo (já existem em outras telas/partes do fluxo)
+        if (tvResponsavelLabel != null) tvResponsavelLabel.setVisibility(View.GONE);
+        if (etResponsavel != null) etResponsavel.setVisibility(View.GONE);
+        if (tvDataLabel != null) tvDataLabel.setVisibility(View.GONE);
+        if (etData != null) etData.setVisibility(View.GONE);
+
+        // Se for o checklist específico de compressores UCABR, exibe seção própria e esconde IT/OP/cabeçalho geral
+        if ("checklist_ucabr_compressores".equals(checklistId)) {
+            if (layoutCompressoresUcabr != null) {
+                layoutCompressoresUcabr.setVisibility(View.VISIBLE);
+                carregarCompressoresUcabr();
+            }
+            // esconder IT e OP deste checklist e responsável/data gerais e botão de salvar cabeçalho
+            TextView tvItChecklistLabel = findViewById(R.id.tvItChecklistLabel);
+            TextView tvOpChecklistLabel = findViewById(R.id.tvOpChecklistLabel);
+            Button btnSalvarCabecalhoLocal = findViewById(R.id.btnSalvarCabecalho);
+            if (tvItChecklistLabel != null) tvItChecklistLabel.setVisibility(View.GONE);
+            if (etItChecklist != null) etItChecklist.setVisibility(View.GONE);
+            if (tvOpChecklistLabel != null) tvOpChecklistLabel.setVisibility(View.GONE);
+            if (etOpChecklist != null) etOpChecklist.setVisibility(View.GONE);
+            if (btnSalvarCabecalhoLocal != null) btnSalvarCabecalhoLocal.setVisibility(View.GONE);
+        } else {
+            if (layoutCompressoresUcabr != null) {
+                layoutCompressoresUcabr.setVisibility(View.GONE);
+            }
+        }
+
+        // Se for o checklist de teste de estanqueidade UCABR, esconder apenas IT e OP
+        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId)) {
+            TextView tvItChecklistLabel2 = findViewById(R.id.tvItChecklistLabel);
+            TextView tvOpChecklistLabel2 = findViewById(R.id.tvOpChecklistLabel);
+            if (tvItChecklistLabel2 != null) tvItChecklistLabel2.setVisibility(View.GONE);
+            if (etItChecklist != null) etItChecklist.setVisibility(View.GONE);
+            if (tvOpChecklistLabel2 != null) tvOpChecklistLabel2.setVisibility(View.GONE);
+            if (etOpChecklist != null) etOpChecklist.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist UCABR - Montagem frigorífica, exibe seção de pressão das válvulas de alívio
+        if ("checklist_ucabr_montagem_frigorifica".equals(checklistId)) {
+            if (layoutPressaoValvulasUcabr != null) {
+                layoutPressaoValvulasUcabr.setVisibility(View.VISIBLE);
+                carregarPressaoValvulasUcabr();
+            }
+        } else if (layoutPressaoValvulasUcabr != null) {
+            layoutPressaoValvulasUcabr.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist UCABR - Teste de estanqueidade, exibe seção específica
+        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId)) {
+            if (layoutEstanqueidadeUcabr != null) {
+                layoutEstanqueidadeUcabr.setVisibility(View.VISIBLE);
+                carregarEstanqueidadeUcabr();
+            }
+        } else if (layoutEstanqueidadeUcabr != null) {
+            layoutEstanqueidadeUcabr.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist UCABR - Vácuo e quebra do vácuo, exibe seção específica
+        if ("checklist_ucabr_vacuo_quebra".equals(checklistId)) {
+            if (layoutVacuoQuebraUcabr != null) {
+                layoutVacuoQuebraUcabr.setVisibility(View.VISIBLE);
+                carregarVacuoQuebraUcabr();
+            }
+        } else if (layoutVacuoQuebraUcabr != null) {
+            layoutVacuoQuebraUcabr.setVisibility(View.GONE);
         }
 
         // Configura navegação apenas quando viemos de um menu com lista (ex.: IRBR)
@@ -128,7 +305,9 @@ public class ChecklistActivity extends AppCompatActivity {
         carregarFotos();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setNestedScrollingEnabled(false);
+        // Permite que o RecyclerView role independentemente dentro do ScrollView,
+        // garantindo visualização de todos os itens mesmo em listas longas.
+        recyclerView.setNestedScrollingEnabled(true);
         adapter = new ChecklistAdapter(itens, checklistId, this, new ChecklistAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(int position, ChecklistItem item) {
@@ -137,12 +316,11 @@ public class ChecklistActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        btnSalvarCabecalho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                salvarCabecalho();
-            }
-        });
+        // Como o cabeçalho principal (Responsável/Data) não é mais usado nesta tela,
+        // o botão de salvar cabeçalho fica oculto para evitar confusão.
+        if (btnSalvarCabecalho != null) {
+            btnSalvarCabecalho.setVisibility(View.GONE);
+        }
 
         btnAdicionarItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,12 +349,14 @@ public class ChecklistActivity extends AppCompatActivity {
             }
         });
 
-        etData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarDatePicker();
-            }
-        });
+        if (!"checklist_ucabr_compressores".equals(checklistId)) {
+            etData.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostrarDatePicker(etData);
+                }
+            });
+        }
 
         btnAnterior.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +378,42 @@ public class ChecklistActivity extends AppCompatActivity {
                 escolherFoto();
             }
         });
+
+        if (btnSalvarCompressores != null) {
+            btnSalvarCompressores.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    salvarCompressoresUcabr();
+                }
+            });
+        }
+
+        if (btnSalvarPressaoValvulas != null) {
+            btnSalvarPressaoValvulas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    salvarPressaoValvulasUcabr();
+                }
+            });
+        }
+
+        if (btnSalvarEstanqueidade != null) {
+            btnSalvarEstanqueidade.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    salvarEstanqueidadeUcabr();
+                }
+            });
+        }
+
+        if (btnSalvarVacuoQuebra != null) {
+            btnSalvarVacuoQuebra.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    salvarVacuoQuebraUcabr();
+                }
+            });
+        }
 
         // Botão de exportar modelo inteiro (visível apenas em alguns casos)
         String modelKey = getHeaderKeyForChecklist(checklistId);
@@ -253,6 +469,11 @@ public class ChecklistActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
 
             List<String> idsRemovidos = carregarIdsRemovidos();
+            // Garantia: para o checklist UCABR - Montagem frigorífica, sempre mostrar todos os itens
+            // ignorando qualquer remoção antiga salva em SharedPreferences.
+            if ("checklist_ucabr_montagem_frigorifica".equals(checklistId)) {
+                idsRemovidos.clear();
+            }
 
             for (int i = 0; i < itensArray.length(); i++) {
                 JSONObject itemObj = itensArray.getJSONObject(i);
@@ -371,6 +592,283 @@ public class ChecklistActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    // -----------------------------
+    // Campos numéricos UCABR - Compressores
+    // -----------------------------
+
+    private void carregarCompressoresUcabr() {
+        if (layoutCompressoresUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+
+        String c1Tensao = prefs.getString(gerarChaveComp(this, checklistId, "c1_tensao"), "");
+        String c1Fluido = prefs.getString(gerarChaveComp(this, checklistId, "c1_fluido"), "");
+        String c1Oleo = prefs.getString(gerarChaveComp(this, checklistId, "c1_oleo"), "");
+        String c1Data = prefs.getString(gerarChaveComp(this, checklistId, "c1_data"), "");
+        String c1Resp = prefs.getString(gerarChaveComp(this, checklistId, "c1_resp"), "");
+        String c2Tensao = prefs.getString(gerarChaveComp(this, checklistId, "c2_tensao"), "");
+        String c2Fluido = prefs.getString(gerarChaveComp(this, checklistId, "c2_fluido"), "");
+        String c2Oleo = prefs.getString(gerarChaveComp(this, checklistId, "c2_oleo"), "");
+        String c2Data = prefs.getString(gerarChaveComp(this, checklistId, "c2_data"), "");
+        String c2Resp = prefs.getString(gerarChaveComp(this, checklistId, "c2_resp"), "");
+
+        etC1Tensao.setText(c1Tensao);
+        etC1Fluido.setText(c1Fluido);
+        etC1Oleo.setText(c1Oleo);
+        etC1Data.setText(c1Data);
+        etC1Responsavel.setText(c1Resp);
+        etC2Tensao.setText(c2Tensao);
+        etC2Fluido.setText(c2Fluido);
+        etC2Oleo.setText(c2Oleo);
+        etC2Data.setText(c2Data);
+        etC2Responsavel.setText(c2Resp);
+
+        // DatePicker para datas específicas dos compressores
+        if (etC1Data != null) {
+            etC1Data.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostrarDatePicker(etC1Data);
+                }
+            });
+        }
+        if (etC2Data != null) {
+            etC2Data.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mostrarDatePicker(etC2Data);
+                }
+            });
+        }
+    }
+
+    private void salvarCompressoresUcabr() {
+        if (layoutCompressoresUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(gerarChaveComp(this, checklistId, "c1_tensao"), etC1Tensao.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c1_fluido"), etC1Fluido.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c1_oleo"), etC1Oleo.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c1_data"), etC1Data.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c1_resp"), etC1Responsavel.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c2_tensao"), etC2Tensao.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c2_fluido"), etC2Fluido.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c2_oleo"), etC2Oleo.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c2_data"), etC2Data.getText().toString());
+        editor.putString(gerarChaveComp(this, checklistId, "c2_resp"), etC2Responsavel.getText().toString());
+
+        editor.apply();
+        Toast.makeText(this, "Dados dos compressores salvos", Toast.LENGTH_SHORT).show();
+    }
+
+    // -----------------------------
+    // Campos numéricos UCABR - Montagem frigorífica (pressões válvulas de alívio)
+    // -----------------------------
+
+    private void carregarPressaoValvulasUcabr() {
+        if (layoutPressaoValvulasUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+
+        String p1Dia1 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia1"), "");
+        String p1Dia2 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia2"), "");
+        String p2Dia1 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia1"), "");
+        String p2Dia2 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia2"), "");
+
+        etPressaoAlivio1.setText(p1Dia1);
+        etPressaoAlivio1Dia2.setText(p1Dia2);
+        etPressaoAlivio2.setText(p2Dia1);
+        etPressaoAlivio2Dia2.setText(p2Dia2);
+    }
+
+    private void salvarPressaoValvulasUcabr() {
+        if (layoutPressaoValvulasUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia1"), etPressaoAlivio1.getText().toString());
+        editor.putString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia2"), etPressaoAlivio1Dia2.getText().toString());
+        editor.putString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia1"), etPressaoAlivio2.getText().toString());
+        editor.putString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia2"), etPressaoAlivio2Dia2.getText().toString());
+
+        editor.apply();
+        Toast.makeText(this, "Pressões das válvulas salvas", Toast.LENGTH_SHORT).show();
+    }
+
+    // -----------------------------
+    // Campos UCABR - Teste de estanqueidade (C1 e C2)
+    // -----------------------------
+
+    private void carregarEstanqueidadeUcabr() {
+        if (layoutEstanqueidadeUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+
+        etEstC1Data.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_data"), ""));
+        etEstC1Resp.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_resp"), ""));
+        etEstC1HoraInicio.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_hora_inicio"), ""));
+        etEstC1HoraFim.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_hora_fim"), ""));
+        etEstC1PsiInicio.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_psi_inicio"), ""));
+        etEstC1PsiFim.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c1_psi_fim"), ""));
+
+        etEstC2Data.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_data"), ""));
+        etEstC2Resp.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_resp"), ""));
+        etEstC2HoraInicio.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_hora_inicio"), ""));
+        etEstC2HoraFim.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_hora_fim"), ""));
+        etEstC2PsiInicio.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_psi_inicio"), ""));
+        etEstC2PsiFim.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "c2_psi_fim"), ""));
+
+        etEstObs.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "obs"), ""));
+        etEstNumManometroC1.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "num_manometro_c1"), ""));
+        etEstNumManometroC2.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "num_manometro_c2"), ""));
+        etEstDataCalibracaoC1.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "data_calibracao_c1"), ""));
+        etEstDataCalibracaoC2.setText(prefs.getString(gerarChaveEstanq(this, checklistId, "data_calibracao_c2"), ""));
+
+        // DatePicker para datas específicas do teste
+        etEstC1Data.setOnClickListener(v -> mostrarDatePicker(etEstC1Data));
+        etEstC2Data.setOnClickListener(v -> mostrarDatePicker(etEstC2Data));
+        etEstDataCalibracaoC1.setOnClickListener(v -> mostrarDatePicker(etEstDataCalibracaoC1));
+        etEstDataCalibracaoC2.setOnClickListener(v -> mostrarDatePicker(etEstDataCalibracaoC2));
+    }
+
+    private void salvarEstanqueidadeUcabr() {
+        if (layoutEstanqueidadeUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_data"), etEstC1Data.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_resp"), etEstC1Resp.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_hora_inicio"), etEstC1HoraInicio.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_hora_fim"), etEstC1HoraFim.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_psi_inicio"), etEstC1PsiInicio.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c1_psi_fim"), etEstC1PsiFim.getText().toString());
+
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_data"), etEstC2Data.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_resp"), etEstC2Resp.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_hora_inicio"), etEstC2HoraInicio.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_hora_fim"), etEstC2HoraFim.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_psi_inicio"), etEstC2PsiInicio.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "c2_psi_fim"), etEstC2PsiFim.getText().toString());
+
+        editor.putString(gerarChaveEstanq(this, checklistId, "obs"), etEstObs.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "num_manometro_c1"), etEstNumManometroC1.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "num_manometro_c2"), etEstNumManometroC2.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "data_calibracao_c1"), etEstDataCalibracaoC1.getText().toString());
+        editor.putString(gerarChaveEstanq(this, checklistId, "data_calibracao_c2"), etEstDataCalibracaoC2.getText().toString());
+
+        editor.apply();
+        Toast.makeText(this, "Dados do teste de estanqueidade salvos", Toast.LENGTH_SHORT).show();
+    }
+
+    // -----------------------------
+    // Campos UCABR - Vácuo e quebra do vácuo (C1)
+    // -----------------------------
+
+    private void carregarVacuoQuebraUcabr() {
+        if (layoutVacuoQuebraUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+
+        etVacuoC1DataInicio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_data_inicio"), ""));
+        etVacuoC1DataFim.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_data_fim"), ""));
+        etVacuoC1Resp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_resp"), ""));
+        etVacuoC1HoraInicio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_hora_inicio"), ""));
+        etVacuoC1HoraFim.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_hora_fim"), ""));
+        etVacuoC1Valor.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_valor"), ""));
+        etVacuoNumBomba.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_num_bomba"), ""));
+        etVacuoNumVacuometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_num_vacuometro"), ""));
+        etVacuoDataCalibracaoVacuometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac1_data_cal_vacuometro"), ""));
+
+        etVacuoC2DataInicio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_data_inicio"), ""));
+        etVacuoC2DataFim.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_data_fim"), ""));
+        etVacuoC2Resp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_resp"), ""));
+        etVacuoC2HoraInicio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_hora_inicio"), ""));
+        etVacuoC2HoraFim.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_hora_fim"), ""));
+        etVacuoC2Valor.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_valor"), ""));
+        etVacuoNumBombaC2.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_num_bomba"), ""));
+        etVacuoNumVacuometroC2.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_num_vacuometro"), ""));
+        etVacuoDataCalibracaoVacuometroC2.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "vac2_data_cal_vacuometro"), ""));
+
+        etQuebraComValvulaData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_com_data"), ""));
+        etQuebraQtdRefrigerante.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_qtd_refri"), ""));
+        etQuebraComValvulaResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_com_resp"), ""));
+
+        etQuebraSemValvulaData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_sem_data"), ""));
+        etQuebraCargaNitrogenio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_carga_n2"), ""));
+        etQuebraSemValvulaResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_sem_resp"), ""));
+
+        etQuebraDetectorData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_det_data"), ""));
+        etQuebraDetectorResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_det_resp"), ""));
+
+        etQuebraNumBalanca.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_num_balanca"), ""));
+        etQuebraDataCalibracaoBalanca.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_balanca"), ""));
+        etQuebraNumManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_num_manometro"), ""));
+        etQuebraDataCalibracaoManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_manometro"), ""));
+
+        // DatePicker para datas
+        etVacuoC1DataInicio.setOnClickListener(v -> mostrarDatePicker(etVacuoC1DataInicio));
+        etVacuoC1DataFim.setOnClickListener(v -> mostrarDatePicker(etVacuoC1DataFim));
+        etVacuoDataCalibracaoVacuometro.setOnClickListener(v -> mostrarDatePicker(etVacuoDataCalibracaoVacuometro));
+        etVacuoC2DataInicio.setOnClickListener(v -> mostrarDatePicker(etVacuoC2DataInicio));
+        etVacuoC2DataFim.setOnClickListener(v -> mostrarDatePicker(etVacuoC2DataFim));
+        etVacuoDataCalibracaoVacuometroC2.setOnClickListener(v -> mostrarDatePicker(etVacuoDataCalibracaoVacuometroC2));
+        etQuebraComValvulaData.setOnClickListener(v -> mostrarDatePicker(etQuebraComValvulaData));
+        etQuebraSemValvulaData.setOnClickListener(v -> mostrarDatePicker(etQuebraSemValvulaData));
+        etQuebraDetectorData.setOnClickListener(v -> mostrarDatePicker(etQuebraDetectorData));
+        etQuebraDataCalibracaoBalanca.setOnClickListener(v -> mostrarDatePicker(etQuebraDataCalibracaoBalanca));
+        etQuebraDataCalibracaoManometro.setOnClickListener(v -> mostrarDatePicker(etQuebraDataCalibracaoManometro));
+    }
+
+    private void salvarVacuoQuebraUcabr() {
+        if (layoutVacuoQuebraUcabr == null) return;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_data_inicio"), etVacuoC1DataInicio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_data_fim"), etVacuoC1DataFim.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_resp"), etVacuoC1Resp.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_hora_inicio"), etVacuoC1HoraInicio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_hora_fim"), etVacuoC1HoraFim.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_valor"), etVacuoC1Valor.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_num_bomba"), etVacuoNumBomba.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_num_vacuometro"), etVacuoNumVacuometro.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac1_data_cal_vacuometro"), etVacuoDataCalibracaoVacuometro.getText().toString());
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_data_inicio"), etVacuoC2DataInicio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_data_fim"), etVacuoC2DataFim.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_resp"), etVacuoC2Resp.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_hora_inicio"), etVacuoC2HoraInicio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_hora_fim"), etVacuoC2HoraFim.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_valor"), etVacuoC2Valor.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_num_bomba"), etVacuoNumBombaC2.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_num_vacuometro"), etVacuoNumVacuometroC2.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "vac2_data_cal_vacuometro"), etVacuoDataCalibracaoVacuometroC2.getText().toString());
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_com_data"), etQuebraComValvulaData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_qtd_refri"), etQuebraQtdRefrigerante.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_com_resp"), etQuebraComValvulaResp.getText().toString());
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_sem_data"), etQuebraSemValvulaData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_carga_n2"), etQuebraCargaNitrogenio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_sem_resp"), etQuebraSemValvulaResp.getText().toString());
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_det_data"), etQuebraDetectorData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_det_resp"), etQuebraDetectorResp.getText().toString());
+
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_num_balanca"), etQuebraNumBalanca.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_balanca"), etQuebraDataCalibracaoBalanca.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_num_manometro"), etQuebraNumManometro.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_manometro"), etQuebraDataCalibracaoManometro.getText().toString());
+
+        editor.apply();
+        Toast.makeText(this, "Dados de vácuo e quebra salvos", Toast.LENGTH_SHORT).show();
+    }
+
     private void carregarFotos() {
         SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
         String chaveFotos = gerarChaveFotosEquip(this, checklistId);
@@ -450,7 +948,7 @@ public class ChecklistActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CODE_TAKE_PHOTO);
     }
 
-    private void mostrarDatePicker() {
+    private void mostrarDatePicker(final EditText campo) {
         final Calendar calendario = Calendar.getInstance();
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -461,7 +959,7 @@ public class ChecklistActivity extends AppCompatActivity {
                         String dia = String.format("%02d", dayOfMonth);
                         String mes = String.format("%02d", month + 1);
                         String dataFormatada = dia + "/" + mes + "/" + year;
-                        etData.setText(dataFormatada);
+                        campo.setText(dataFormatada);
                     }
                 },
                 calendario.get(Calendar.YEAR),
@@ -974,6 +1472,26 @@ public class ChecklistActivity extends AppCompatActivity {
 
     public static String gerarChaveFotosEquip(android.content.Context context, String checklistId) {
         return getEquipPrefix(context, checklistId) + "fotos";
+    }
+
+    // Chaves específicas para campos dos compressores (UCABR), também por equipamento
+    private static String gerarChaveComp(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "comp_" + campo;
+    }
+
+    // Chaves específicas para pressões das válvulas de alívio (UCABR - Montagem frigorífica), por equipamento
+    private static String gerarChavePressaoValvula(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "pressao_" + campo;
+    }
+
+    // Chaves específicas para teste de estanqueidade (UCABR), por equipamento
+    private static String gerarChaveEstanq(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "estanq_" + campo;
+    }
+
+    // Chaves específicas para vácuo e quebra do vácuo (UCABR), por equipamento
+    private static String gerarChaveVacuo(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "vacuo_" + campo;
     }
 }
 

@@ -372,7 +372,71 @@
         },
         {
           "id": "ucabr_frig_18",
-          "titulo": "Verificar sentido das válvulas solenoides, válvulas de retenção, filtro secador e válvula digital"
+          "titulo": "Verificar sentido da válvula solenoide 1"
+        },
+        {
+          "id": "ucabr_frig_19",
+          "titulo": "Verificar sentido da válvula solenoide 2"
+        },
+        {
+          "id": "ucabr_frig_20",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 1 (fluido)"
+        },
+        {
+          "id": "ucabr_frig_21",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 2 (fluido)"
+        },
+        {
+          "id": "ucabr_frig_22",
+          "titulo": "Verificar sentido do filtro secador 1"
+        },
+        {
+          "id": "ucabr_frig_23",
+          "titulo": "Verificar sentido do filtro secador 2"
+        },
+        {
+          "id": "ucabr_frig_24",
+          "titulo": "Verificar sentido da válvula digital"
+        },
+        {
+          "id": "ucabr_frig_25",
+          "titulo": "Verificar instalação do separador de óleo"
+        },
+        {
+          "id": "ucabr_frig_26",
+          "titulo": "Verificar nível de óleo no separador"
+        },
+        {
+          "id": "ucabr_frig_27",
+          "titulo": "Pressão válvula alívio 1 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        },
+        {
+          "id": "ucabr_frig_28",
+          "titulo": "Pressão válvula alívio 2 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_compressores",
+      "nome": "Checklist UCABR - Compressores",
+      "itens": [
+        {
+          "id": "ucabr_comp_valores",
+          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores C1 e C2 conforme projeto"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_teste_estanqueidade",
+      "nome": "Checklist UCABR - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "ucabr_estanq_c1",
+          "titulo": "O teste de estanqueidade foi realizado por 24 horas no circuito C1"
+        },
+        {
+          "id": "ucabr_estanq_c2",
+          "titulo": "O teste de estanqueidade foi realizado por 24 horas no circuito C2"
         }
       ]
     },
