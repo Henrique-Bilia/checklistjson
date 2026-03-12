@@ -71,7 +71,7 @@ public class EdbrseMenuActivity extends AppCompatActivity {
 
     private void carregarChecklistsEdbrseDoJson() {
         try {
-            String json = lerArquivoAssets("checklist.json");
+            String json = lerArquivoAssets("checklist_edbrse.json");
             JSONObject root = new JSONObject(json);
             JSONArray checklistsArray = root.getJSONArray("checklists");
 

@@ -71,7 +71,7 @@ public class UcabrMenuActivity extends AppCompatActivity {
 
     private void carregarChecklistsUcabrDoJson() {
         try {
-            String json = lerArquivoAssets("checklist.json");
+            String json = lerArquivoAssets("checklist_ucabr.json");
             JSONObject root = new JSONObject(json);
             JSONArray checklistsArray = root.getJSONArray("checklists");
 

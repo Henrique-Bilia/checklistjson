@@ -71,7 +71,7 @@ public class CabrMenuActivity extends AppCompatActivity {
 
     private void carregarChecklistsCabrDoJson() {
         try {
-            String json = lerArquivoAssets("checklist.json");
+            String json = lerArquivoAssets("checklist_cabr.json");
             JSONObject root = new JSONObject(json);
             JSONArray checklistsArray = root.getJSONArray("checklists");
 

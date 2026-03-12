@@ -88,6 +88,12 @@ public class ChecklistActivity extends AppCompatActivity {
     private EditText etQuebraDetectorData, etQuebraDetectorResp;
     private EditText etQuebraNumBalanca, etQuebraDataCalibracaoBalanca;
     private EditText etQuebraNumManometro, etQuebraDataCalibracaoManometro;
+    // Quebra do vácuo C2
+    private EditText etQuebra2ComValvulaData, etQuebra2QtdRefrigerante, etQuebra2ComValvulaResp;
+    private EditText etQuebra2SemValvulaData, etQuebra2CargaNitrogenio, etQuebra2SemValvulaResp;
+    private EditText etQuebra2DetectorData, etQuebra2DetectorResp;
+    private EditText etQuebra2NumBalanca, etQuebra2DataCalibracaoBalanca;
+    private EditText etQuebra2NumManometro, etQuebra2DataCalibracaoManometro;
     // Segundo teste de vácuo (C2)
     private EditText etVacuoC2DataInicio, etVacuoC2DataFim, etVacuoC2Resp, etVacuoC2HoraInicio, etVacuoC2HoraFim, etVacuoC2Valor;
     private EditText etVacuoNumBombaC2, etVacuoNumVacuometroC2, etVacuoDataCalibracaoVacuometroC2;
@@ -179,6 +185,19 @@ public class ChecklistActivity extends AppCompatActivity {
         etQuebraDataCalibracaoBalanca = findViewById(R.id.etQuebraDataCalibracaoBalanca);
         etQuebraNumManometro = findViewById(R.id.etQuebraNumManometro);
         etQuebraDataCalibracaoManometro = findViewById(R.id.etQuebraDataCalibracaoManometro);
+        // Quebra do vácuo C2
+        etQuebra2ComValvulaData = findViewById(R.id.etQuebra2ComValvulaData);
+        etQuebra2QtdRefrigerante = findViewById(R.id.etQuebra2QtdRefrigerante);
+        etQuebra2ComValvulaResp = findViewById(R.id.etQuebra2ComValvulaResp);
+        etQuebra2SemValvulaData = findViewById(R.id.etQuebra2SemValvulaData);
+        etQuebra2CargaNitrogenio = findViewById(R.id.etQuebra2CargaNitrogenio);
+        etQuebra2SemValvulaResp = findViewById(R.id.etQuebra2SemValvulaResp);
+        etQuebra2DetectorData = findViewById(R.id.etQuebra2DetectorData);
+        etQuebra2DetectorResp = findViewById(R.id.etQuebra2DetectorResp);
+        etQuebra2NumBalanca = findViewById(R.id.etQuebra2NumBalanca);
+        etQuebra2DataCalibracaoBalanca = findViewById(R.id.etQuebra2DataCalibracaoBalanca);
+        etQuebra2NumManometro = findViewById(R.id.etQuebra2NumManometro);
+        etQuebra2DataCalibracaoManometro = findViewById(R.id.etQuebra2DataCalibracaoManometro);
         Button btnSalvarVacuoQuebra = findViewById(R.id.btnSalvarVacuoQuebra);
         etVacuoC2DataInicio = findViewById(R.id.etVacuoC2DataInicio);
         etVacuoC2DataFim = findViewById(R.id.etVacuoC2DataFim);
@@ -513,20 +532,7 @@ public class ChecklistActivity extends AppCompatActivity {
 
     private void carregarItensDoChecklist() {
         try {
-            String json = lerArquivoAssets("checklist.json");
-            JSONObject root = new JSONObject(json);
-            JSONArray checklistsArray = root.getJSONArray("checklists");
-
-            JSONObject checklistSelecionado = null;
-
-            for (int i = 0; i < checklistsArray.length(); i++) {
-                JSONObject obj = checklistsArray.getJSONObject(i);
-                if (obj.getString("id").equals(checklistId)) {
-                    checklistSelecionado = obj;
-                    break;
-                }
-            }
-
+            JSONObject checklistSelecionado = ChecklistRepository.getChecklistById(this, checklistId);
             if (checklistSelecionado == null) return;
 
             // Nas liberações finais (UCABR, IRBR, EDBRSE/EUBRSE, ESBRAG/ESBRHAG e CABR), não exibimos itens SIM/NÃO, apenas cabeçalho e observação.
@@ -883,6 +889,23 @@ public class ChecklistActivity extends AppCompatActivity {
         etQuebraNumManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_num_manometro"), ""));
         etQuebraDataCalibracaoManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_manometro"), ""));
 
+        // Quebra do vácuo C2
+        etQuebra2ComValvulaData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_com_data"), ""));
+        etQuebra2QtdRefrigerante.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_qtd_refri"), ""));
+        etQuebra2ComValvulaResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_com_resp"), ""));
+
+        etQuebra2SemValvulaData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_sem_data"), ""));
+        etQuebra2CargaNitrogenio.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_carga_n2"), ""));
+        etQuebra2SemValvulaResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_sem_resp"), ""));
+
+        etQuebra2DetectorData.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_det_data"), ""));
+        etQuebra2DetectorResp.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_det_resp"), ""));
+
+        etQuebra2NumBalanca.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_num_balanca"), ""));
+        etQuebra2DataCalibracaoBalanca.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_data_cal_balanca"), ""));
+        etQuebra2NumManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_num_manometro"), ""));
+        etQuebra2DataCalibracaoManometro.setText(prefs.getString(gerarChaveVacuo(this, checklistId, "quebra2_data_cal_manometro"), ""));
+
         // DatePicker para datas
         etVacuoC1DataInicio.setOnClickListener(v -> mostrarDatePicker(etVacuoC1DataInicio));
         etVacuoC1DataFim.setOnClickListener(v -> mostrarDatePicker(etVacuoC1DataFim));
@@ -895,6 +918,11 @@ public class ChecklistActivity extends AppCompatActivity {
         etQuebraDetectorData.setOnClickListener(v -> mostrarDatePicker(etQuebraDetectorData));
         etQuebraDataCalibracaoBalanca.setOnClickListener(v -> mostrarDatePicker(etQuebraDataCalibracaoBalanca));
         etQuebraDataCalibracaoManometro.setOnClickListener(v -> mostrarDatePicker(etQuebraDataCalibracaoManometro));
+        etQuebra2ComValvulaData.setOnClickListener(v -> mostrarDatePicker(etQuebra2ComValvulaData));
+        etQuebra2SemValvulaData.setOnClickListener(v -> mostrarDatePicker(etQuebra2SemValvulaData));
+        etQuebra2DetectorData.setOnClickListener(v -> mostrarDatePicker(etQuebra2DetectorData));
+        etQuebra2DataCalibracaoBalanca.setOnClickListener(v -> mostrarDatePicker(etQuebra2DataCalibracaoBalanca));
+        etQuebra2DataCalibracaoManometro.setOnClickListener(v -> mostrarDatePicker(etQuebra2DataCalibracaoManometro));
     }
 
     private void salvarVacuoQuebraUcabr() {
@@ -938,6 +966,20 @@ public class ChecklistActivity extends AppCompatActivity {
         editor.putString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_balanca"), etQuebraDataCalibracaoBalanca.getText().toString());
         editor.putString(gerarChaveVacuo(this, checklistId, "quebra_num_manometro"), etQuebraNumManometro.getText().toString());
         editor.putString(gerarChaveVacuo(this, checklistId, "quebra_data_cal_manometro"), etQuebraDataCalibracaoManometro.getText().toString());
+
+        // Quebra do vácuo C2
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_com_data"), etQuebra2ComValvulaData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_qtd_refri"), etQuebra2QtdRefrigerante.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_com_resp"), etQuebra2ComValvulaResp.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_sem_data"), etQuebra2SemValvulaData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_carga_n2"), etQuebra2CargaNitrogenio.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_sem_resp"), etQuebra2SemValvulaResp.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_det_data"), etQuebra2DetectorData.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_det_resp"), etQuebra2DetectorResp.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_num_balanca"), etQuebra2NumBalanca.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_data_cal_balanca"), etQuebra2DataCalibracaoBalanca.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_num_manometro"), etQuebra2NumManometro.getText().toString());
+        editor.putString(gerarChaveVacuo(this, checklistId, "quebra2_data_cal_manometro"), etQuebra2DataCalibracaoManometro.getText().toString());
 
         editor.apply();
         Toast.makeText(this, "Dados de vácuo e quebra salvos", Toast.LENGTH_SHORT).show();
@@ -1221,19 +1263,7 @@ public class ChecklistActivity extends AppCompatActivity {
             editor.remove(chaveCustom);
 
             // Remove status/flags de todos os itens definidos no JSON para este checklist
-            String json = lerArquivoAssets("checklist.json");
-            JSONObject root = new JSONObject(json);
-            JSONArray checklistsArray = root.getJSONArray("checklists");
-
-            JSONObject checklistSelecionado = null;
-            for (int i = 0; i < checklistsArray.length(); i++) {
-                JSONObject obj = checklistsArray.getJSONObject(i);
-                if (obj.getString("id").equals(checklistId)) {
-                    checklistSelecionado = obj;
-                    break;
-                }
-            }
-
+            JSONObject checklistSelecionado = ChecklistRepository.getChecklistById(this, checklistId);
             if (checklistSelecionado != null) {
                 JSONArray itensArray = checklistSelecionado.getJSONArray("itens");
                 for (int i = 0; i < itensArray.length(); i++) {
@@ -1551,22 +1581,22 @@ public class ChecklistActivity extends AppCompatActivity {
     }
 
     // Chaves específicas para campos dos compressores (UCABR), também por equipamento
-    private static String gerarChaveComp(android.content.Context context, String checklistId, String campo) {
+    public static String gerarChaveComp(android.content.Context context, String checklistId, String campo) {
         return getEquipPrefix(context, checklistId) + "comp_" + campo;
     }
 
     // Chaves específicas para pressões das válvulas de alívio (UCABR - Montagem frigorífica), por equipamento
-    private static String gerarChavePressaoValvula(android.content.Context context, String checklistId, String campo) {
+    public static String gerarChavePressaoValvula(android.content.Context context, String checklistId, String campo) {
         return getEquipPrefix(context, checklistId) + "pressao_" + campo;
     }
 
     // Chaves específicas para teste de estanqueidade (UCABR), por equipamento
-    private static String gerarChaveEstanq(android.content.Context context, String checklistId, String campo) {
+    public static String gerarChaveEstanq(android.content.Context context, String checklistId, String campo) {
         return getEquipPrefix(context, checklistId) + "estanq_" + campo;
     }
 
     // Chaves específicas para vácuo e quebra do vácuo (UCABR), por equipamento
-    private static String gerarChaveVacuo(android.content.Context context, String checklistId, String campo) {
+    public static String gerarChaveVacuo(android.content.Context context, String checklistId, String campo) {
         return getEquipPrefix(context, checklistId) + "vacuo_" + campo;
     }
 }

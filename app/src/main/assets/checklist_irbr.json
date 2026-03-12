@@ -1,0 +1,365 @@
+{
+  "checklists": [
+    {
+      "id": "checklist_irbr_pre_montagem",
+      "nome": "Checklist IRBR - Pré-montagem",
+      "itens": [
+        {
+          "id": "irbr_pre_1",
+          "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"
+        },
+        {
+          "id": "irbr_pre_2",
+          "titulo": "O pallet está em boas condições (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
+        },
+        {
+          "id": "irbr_pre_3",
+          "titulo": "Para trocadores de calor enviados para tratamento superficial, realizar testes de vazamento"
+        },
+        {
+          "id": "irbr_pre_4",
+          "titulo": "Quando houver compressor no projeto, apertar todos os parafusos ou porcas com 11Nm ±1Nm"
+        },
+        {
+          "id": "irbr_pre_5",
+          "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"
+        },
+        {
+          "id": "irbr_pre_6",
+          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_montagem_frigorifica",
+      "nome": "Checklist IRBR - Montagem frigorífica",
+      "itens": [
+        {
+          "id": "irbr_frig_1",
+          "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia"
+        },
+        {
+          "id": "irbr_frig_2",
+          "titulo": "Conferir componentes conforme lista do projeto"
+        },
+        {
+          "id": "irbr_frig_3",
+          "titulo": "Verificar se materiais estão em boas condições"
+        },
+        {
+          "id": "irbr_frig_4",
+          "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições"
+        },
+        {
+          "id": "irbr_frig_5",
+          "titulo": "Verificar corte da tubulação conforme medida solicitada"
+        },
+        {
+          "id": "irbr_frig_6",
+          "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto"
+        },
+        {
+          "id": "irbr_frig_7",
+          "titulo": "Verificar retirada de toda a rebarba do tubo"
+        },
+        {
+          "id": "irbr_frig_8",
+          "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa"
+        },
+        {
+          "id": "irbr_frig_9",
+          "titulo": "Verificar regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos"
+        },
+        {
+          "id": "irbr_frig_10",
+          "titulo": "Inspeção visual das válvulas instaladas na tubulação perto do compressor"
+        },
+        {
+          "id": "irbr_frig_11",
+          "titulo": "Verificar todas as soldas executadas no compressor"
+        },
+        {
+          "id": "irbr_frig_12",
+          "titulo": "Inspeção visual das válvulas instaladas na tubulação"
+        },
+        {
+          "id": "irbr_frig_13",
+          "titulo": "Verificar todas as soldas executadas na tubulação"
+        },
+        {
+          "id": "irbr_frig_14",
+          "titulo": "Inspeção visual das válvulas instaladas no equipamento"
+        },
+        {
+          "id": "irbr_frig_15",
+          "titulo": "Verificar todas as soldas executadas no equipamento"
+        },
+        {
+          "id": "irbr_frig_16",
+          "titulo": "Verificar execução da montagem frigorífica/brasagem conforme projeto"
+        },
+        {
+          "id": "irbr_frig_17",
+          "titulo": "Verificar se a tubulação está limpa"
+        },
+        {
+          "id": "irbr_frig_18",
+          "titulo": "Verificar sentido da válvula solenoide 1"
+        },
+        {
+          "id": "irbr_frig_19",
+          "titulo": "Verificar sentido da válvula solenoide 2"
+        },
+        {
+          "id": "irbr_frig_20",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 1 (fluido)"
+        },
+        {
+          "id": "irbr_frig_21",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 2 (fluido)"
+        },
+        {
+          "id": "irbr_frig_22",
+          "titulo": "Verificar sentido do filtro secador 1"
+        },
+        {
+          "id": "irbr_frig_23",
+          "titulo": "Verificar sentido do filtro secador 2"
+        },
+        {
+          "id": "irbr_frig_24",
+          "titulo": "Verificar sentido da válvula digital"
+        },
+        {
+          "id": "irbr_frig_25",
+          "titulo": "Verificar instalação do separador de óleo"
+        },
+        {
+          "id": "irbr_frig_26",
+          "titulo": "Verificar nível de óleo no separador"
+        },
+        {
+          "id": "irbr_frig_27",
+          "titulo": "Pressão válvula alívio 1 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        },
+        {
+          "id": "irbr_frig_28",
+          "titulo": "Pressão válvula alívio 2 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_compressores",
+      "nome": "Checklist IRBR - Compressores",
+      "itens": [
+        {
+          "id": "irbr_comp_valores",
+          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores conforme projeto"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_teste_estanqueidade",
+      "nome": "Checklist IRBR - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "irbr_estanq_c1",
+          "titulo": "O teste de estanqueidade foi realizado conforme procedimento definido para o circuito principal"
+        },
+        {
+          "id": "irbr_estanq_c2",
+          "titulo": "Registrar resultado do teste de estanqueidade no circuito secundário (quando aplicável)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_vacuo_quebra",
+      "nome": "Checklist IRBR - Vácuo e quebra do vácuo",
+      "itens": [
+        {
+          "id": "irbr_vac_1",
+          "titulo": "Verificar se o vácuo foi realizado até o valor especificado em projeto"
+        },
+        {
+          "id": "irbr_vac_2",
+          "titulo": "Registrar valores e observações do teste de quebra do vácuo realizado"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_isolamento_gabinete",
+      "nome": "Checklist IRBR - Isolamento de gabinete",
+      "itens": [
+        {
+          "id": "irbr_iso_gab_1",
+          "titulo": "Ispeção visual do gabinete: superfícies a serem coladas devem estar secas"
+        },
+        {
+          "id": "irbr_iso_gab_2",
+          "titulo": "Verificar estado do adesivo antes de cortar a manta"
+        },
+        {
+          "id": "irbr_iso_gab_3",
+          "titulo": "Verificar isolamento e ausência de bolhas"
+        },
+        {
+          "id": "irbr_iso_gab_4",
+          "titulo": "Verificar secagem do adesivo por 36 horas"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_isolamento_tubulacao",
+      "nome": "Checklist IRBR - Isolamento de tubulação",
+      "itens": [
+        {
+          "id": "irbr_iso_tub_1",
+          "titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca"
+        },
+        {
+          "id": "irbr_iso_tub_2",
+          "titulo": "Verificar estado do isolamento antes de cortar"
+        },
+        {
+          "id": "irbr_iso_tub_3",
+          "titulo": "Certificar-se de que as colagens não tocam a tubulação"
+        },
+        {
+          "id": "irbr_iso_tub_4",
+          "titulo": "Verificar secagem do adesivo por 36 horas"
+        },
+        {
+          "id": "irbr_iso_tub_5",
+          "titulo": "Verificar isolamento instalado na tubulação"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_fechamento_mecanico",
+      "nome": "Checklist IRBR - Fechamento mecânico e acabamento",
+      "itens": [
+        {
+          "id": "irbr_fech_1",
+          "titulo": "Verificar se todos os parafusos estão fixados"
+        },
+        {
+          "id": "irbr_fech_2",
+          "titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas"
+        },
+        {
+          "id": "irbr_fech_3",
+          "titulo": "Verificar se todos os rebites estão fixados"
+        },
+        {
+          "id": "irbr_fech_4",
+          "titulo": "Verificar se as tubulações estão limpas"
+        },
+        {
+          "id": "irbr_fech_5",
+          "titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados"
+        },
+        {
+          "id": "irbr_fech_6",
+          "titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas"
+        },
+        {
+          "id": "irbr_fech_7",
+          "titulo": "Verificar se terminais sem ligações (TCM) estão isolados"
+        },
+        {
+          "id": "irbr_fech_8",
+          "titulo": "Verificar se filtro(s) de ar estão instalado(s)"
+        },
+        {
+          "id": "irbr_fech_9",
+          "titulo": "Verificar se foram realizados os ajustes das portas"
+        },
+        {
+          "id": "irbr_fech_10",
+          "titulo": "Verificar visualmente defeitos de pintura e realizar retoques se necessário"
+        },
+        {
+          "id": "irbr_fech_11",
+          "titulo": "Verificar instalação da mangueira do dreno"
+        },
+        {
+          "id": "irbr_fech_12",
+          "titulo": "Quando houver bomba de dreno, verificar se alavanca está na posição manual"
+        },
+        {
+          "id": "irbr_fech_13",
+          "titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)"
+        },
+        {
+          "id": "irbr_fech_14",
+          "titulo": "Verificar se todos os componentes estão instalados"
+        },
+        {
+          "id": "irbr_fech_15",
+          "titulo": "Verificar se tampa do motor do ventilador e prensa cabos estão vedados"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_embalagem",
+      "nome": "Checklist IRBR - Embalagem",
+      "itens": [
+        {
+          "id": "irbr_emb_1",
+          "titulo": "Verificar se unidade está dentro do pallet com etiqueta de identificação e inspeção visual"
+        },
+        {
+          "id": "irbr_emb_2",
+          "titulo": "Verificar posicionamento das cantoneiras"
+        },
+        {
+          "id": "irbr_emb_3",
+          "titulo": "Verificar etiquetas de identificação da unidade"
+        },
+        {
+          "id": "irbr_emb_4",
+          "titulo": "Verificar posicionamento do arqueamento (fitas)"
+        },
+        {
+          "id": "irbr_emb_5",
+          "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display"
+        },
+        {
+          "id": "irbr_emb_6",
+          "titulo": "Verificar se todos os campos do checklist estão preenchidos"
+        },
+        {
+          "id": "irbr_emb_7",
+          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
+        },
+        {
+          "id": "irbr_emb_8",
+          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
+        },
+        {
+          "id": "irbr_emb_9",
+          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_liberacao_final",
+      "nome": "Checklist IRBR - Liberação final do equipamento",
+      "itens": [
+        {
+          "id": "irbr_lib_1",
+          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+        },
+        {
+          "id": "irbr_lib_2",
+          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira"
+        },
+        {
+          "id": "irbr_lib_3",
+          "titulo": "Preparar o produto para expedição (nacional e exportação)"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1050,7 +1050,7 @@
             android:layout_height="wrap_content"
             android:hint="Responsável" />
 
-                <!-- Instrumentos para quebra do vácuo -->
+                <!-- Instrumentos para quebra do vácuo C1 -->
                 <TextView
             android:id="@+id/tvQuebraNumBalancaLabel"
             android:layout_width="match_parent"
@@ -1075,6 +1075,163 @@
 
                 <EditText
             android:id="@+id/etQuebraDataCalibracaoBalanca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <!-- Bloco Quebra do vácuo C2 -->
+                <TextView
+            android:id="@+id/tvQuebraVacuoC2Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quebra do vácuo C2"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+                <!-- Sistema com válvula de serviço C2 -->
+                <TextView
+            android:id="@+id/tvQuebra2ComValvulaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Com válvula de serviço"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebra2ComValvulaData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebra2QtdRefrigerante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantidade de refrigerante (g)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etQuebra2ComValvulaResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Sistema sem válvula de serviço C2 -->
+                <TextView
+            android:id="@+id/tvQuebra2SemValvulaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sem válvula de serviço"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebra2SemValvulaData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebra2CargaNitrogenio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Carga de nitrogênio (psi)"
+            android:inputType="numberDecimal" />
+
+                <EditText
+            android:id="@+id/etQuebra2SemValvulaResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Detector de vazamento C2 -->
+                <TextView
+            android:id="@+id/tvQuebra2DetectorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detector de vazamento"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+                <EditText
+            android:id="@+id/etQuebra2DetectorData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <EditText
+            android:id="@+id/etQuebra2DetectorResp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Responsável" />
+
+                <!-- Instrumentos para quebra do vácuo C2 -->
+                <TextView
+            android:id="@+id/tvQuebra2NumBalancaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº Balança"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebra2NumBalanca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número da balança" />
+
+                <TextView
+            android:id="@+id/tvQuebra2DataCalibracaoBalancaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração balança"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebra2DataCalibracaoBalanca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true" />
+
+                <TextView
+            android:id="@+id/tvQuebra2NumManometroLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nº Manômetro"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebra2NumManometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número do manômetro" />
+
+                <TextView
+            android:id="@+id/tvQuebra2DataCalibracaoManometroLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da calibração manômetro"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp" />
+
+                <EditText
+            android:id="@+id/etQuebra2DataCalibracaoManometro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="dd/mm/aaaa"

@@ -71,7 +71,7 @@ public class IrbrMenuActivity extends AppCompatActivity {
 
     private void carregarChecklistsIrbrDoJson() {
         try {
-            String json = lerArquivoAssets("checklist.json");
+            String json = lerArquivoAssets("checklist_irbr.json");
             JSONObject root = new JSONObject(json);
             JSONArray checklistsArray = root.getJSONArray("checklists");
 

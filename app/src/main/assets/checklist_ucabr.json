@@ -1,0 +1,449 @@
+{
+  "checklists": [
+    {
+      "id": "checklist_ucabr_pre_montagem",
+      "nome": "Checklist UCABR - Pré-montagem",
+      "itens": [
+        {
+          "id": "ucabr_pre_1",
+          "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
+        },
+        {
+          "id": "ucabr_pre_2",
+          "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"
+        },
+        {
+          "id": "ucabr_pre_3",
+          "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"
+        },
+        {
+          "id": "ucabr_pre_4",
+          "titulo": "Quando o projeto solicitar compressor, travar todos os parafusos ou porcas com 11Nm ±1Nm"
+        },
+        {
+          "id": "ucabr_pre_5",
+          "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"
+        },
+        {
+          "id": "ucabr_pre_6",
+          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
+        },
+        {
+          "id": "ucabr_pre_7",
+          "titulo": "Verificar se todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_montagem_frigorifica",
+      "nome": "Checklist UCABR - Montagem frigorífica",
+      "itens": [
+        {
+          "id": "ucabr_frig_1",
+          "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia"
+        },
+        {
+          "id": "ucabr_frig_2",
+          "titulo": "Conferir componentes conforme lista do projeto"
+        },
+        {
+          "id": "ucabr_frig_3",
+          "titulo": "Verificar se materiais estão em boas condições"
+        },
+        {
+          "id": "ucabr_frig_4",
+          "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições"
+        },
+        {
+          "id": "ucabr_frig_5",
+          "titulo": "Verificar corte da tubulação conforme medida solicitada"
+        },
+        {
+          "id": "ucabr_frig_6",
+          "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto"
+        },
+        {
+          "id": "ucabr_frig_7",
+          "titulo": "Verificar retirada de toda a rebarba do tubo"
+        },
+        {
+          "id": "ucabr_frig_8",
+          "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa"
+        },
+        {
+          "id": "ucabr_frig_9",
+          "titulo": "Verificar regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos"
+        },
+        {
+          "id": "ucabr_frig_10",
+          "titulo": "Inspeção visual das válvulas instaladas na tubulação perto do compressor"
+        },
+        {
+          "id": "ucabr_frig_11",
+          "titulo": "Verificar todas as soldas executadas no compressor"
+        },
+        {
+          "id": "ucabr_frig_12",
+          "titulo": "Inspeção visual das válvulas instaladas na tubulação"
+        },
+        {
+          "id": "ucabr_frig_13",
+          "titulo": "Verificar todas as soldas executadas na tubulação"
+        },
+        {
+          "id": "ucabr_frig_14",
+          "titulo": "Inspeção visual das válvulas instaladas no equipamento"
+        },
+        {
+          "id": "ucabr_frig_15",
+          "titulo": "Verificar todas as soldas executadas no equipamento"
+        },
+        {
+          "id": "ucabr_frig_16",
+          "titulo": "Verificar execução da montagem frigorífica/brasagem conforme projeto"
+        },
+        {
+          "id": "ucabr_frig_17",
+          "titulo": "Verificar se a tubulação está limpa"
+        },
+        {
+          "id": "ucabr_frig_18",
+          "titulo": "Verificar sentido da válvula solenoide 1"
+        },
+        {
+          "id": "ucabr_frig_19",
+          "titulo": "Verificar sentido da válvula solenoide 2"
+        },
+        {
+          "id": "ucabr_frig_20",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 1 (fluido)"
+        },
+        {
+          "id": "ucabr_frig_21",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 2 (fluido)"
+        },
+        {
+          "id": "ucabr_frig_22",
+          "titulo": "Verificar sentido do filtro secador 1"
+        },
+        {
+          "id": "ucabr_frig_23",
+          "titulo": "Verificar sentido do filtro secador 2"
+        },
+        {
+          "id": "ucabr_frig_24",
+          "titulo": "Verificar sentido da válvula digital"
+        },
+        {
+          "id": "ucabr_frig_25",
+          "titulo": "Verificar instalação do separador de óleo"
+        },
+        {
+          "id": "ucabr_frig_26",
+          "titulo": "Verificar nível de óleo no separador"
+        },
+        {
+          "id": "ucabr_frig_27",
+          "titulo": "Pressão válvula alívio 1 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        },
+        {
+          "id": "ucabr_frig_28",
+          "titulo": "Pressão válvula alívio 2 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_compressores",
+      "nome": "Checklist UCABR - Compressores",
+      "itens": [
+        {
+          "id": "ucabr_comp_valores",
+          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores C1 e C2 conforme projeto"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_teste_estanqueidade",
+      "nome": "Checklist UCABR - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "ucabr_estanq_c1",
+          "titulo": "O teste de estanqueidade foi realizado por 24 horas no circuito C1"
+        },
+        {
+          "id": "ucabr_estanq_c2",
+          "titulo": "O teste de estanqueidade foi realizado por 24 horas no circuito C2"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_vacuo_quebra",
+      "nome": "Checklist UCABR - Vácuo e quebra do vácuo",
+      "itens": [
+        {
+          "id": "ucabr_vac_1",
+          "titulo": "Verificar se o vácuo foi realizado até valor abaixo de 500μHg ±50μHg em cada circuito"
+        },
+        {
+          "id": "ucabr_vac_2",
+          "titulo": "Verificar teste de estanqueidade realizado por 24 horas em cada circuito"
+        },
+        {
+          "id": "ucabr_vac_3",
+          "titulo": "Ao quebrar o vácuo em sistema com válvula de serviço, verificar pressurização com 200±10 g de fluido refrigerante"
+        },
+        {
+          "id": "ucabr_vac_4",
+          "titulo": "Ao quebrar o vácuo em sistema sem válvula de serviço, verificar pressurização com nitrogênio (45–50 psi exportação, 95–100 psi nacional)"
+        },
+        {
+          "id": "ucabr_vac_5",
+          "titulo": "Verificar com detector de vazamento, em especial áreas com uniões de solda"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_montagem_eletrica",
+      "nome": "Checklist UCABR - Montagem elétrica",
+      "itens": [
+        {
+          "id": "ucabr_ele_1",
+          "titulo": "Verificar instalação elétrica do compressor C1"
+        },
+        {
+          "id": "ucabr_ele_2",
+          "titulo": "Verificar instalação elétrica do compressor C2"
+        },
+        {
+          "id": "ucabr_ele_3",
+          "titulo": "Verificar instalação do driver do compressor"
+        },
+        {
+          "id": "ucabr_ele_4",
+          "titulo": "Verificar instalação elétrica do ventilador 1"
+        },
+        {
+          "id": "ucabr_ele_5",
+          "titulo": "Verificar instalação elétrica do ventilador 2"
+        },
+        {
+          "id": "ucabr_ele_6",
+          "titulo": "Verificar instalação do driver do ventilador"
+        },
+        {
+          "id": "ucabr_ele_7",
+          "titulo": "Verificar ventiladores e cabos vedados"
+        },
+        {
+          "id": "ucabr_ele_8",
+          "titulo": "Verificar double check ventilador 1"
+        },
+        {
+          "id": "ucabr_ele_9",
+          "titulo": "Verificar double check ventilador 2"
+        },
+        {
+          "id": "ucabr_ele_10",
+          "titulo": "Verificar pressostato, sensores e conexões elétricas"
+        },
+        {
+          "id": "ucabr_ele_11",
+          "titulo": "Verificar resistência Carter C1"
+        },
+        {
+          "id": "ucabr_ele_12",
+          "titulo": "Verificar resistência Carter C2"
+        },
+        {
+          "id": "ucabr_ele_13",
+          "titulo": "Verificar válvula solenoide C1"
+        },
+        {
+          "id": "ucabr_ele_14",
+          "titulo": "Verificar válvula solenoide C2"
+        },
+        {
+          "id": "ucabr_ele_15",
+          "titulo": "Verificar válvula de controle de capacidade"
+        },
+        {
+          "id": "ucabr_ele_16",
+          "titulo": "Verificar sensores"
+        },
+        {
+          "id": "ucabr_ele_17",
+          "titulo": "Verificar pressostato"
+        },
+        {
+          "id": "ucabr_ele_18",
+          "titulo": "Verificar fios e emendas bem isolados"
+        },
+        {
+          "id": "ucabr_ele_19",
+          "titulo": "Verificar válvula de controle de condensação 1"
+        },
+        {
+          "id": "ucabr_ele_20",
+          "titulo": "Verificar válvula de controle de condensação 2"
+        },
+        {
+          "id": "ucabr_ele_21",
+          "titulo": "Verificar passa fio / prensa cabo"
+        },
+        {
+          "id": "ucabr_ele_22",
+          "titulo": "Verificar canaletas e quadro elétrico"
+        },
+        {
+          "id": "ucabr_ele_23",
+          "titulo": "Verificar conexões elétricas apertadas"
+        },
+        {
+          "id": "ucabr_ele_24",
+          "titulo": "Verificar etiquetas de identificação"
+        },
+        {
+          "id": "ucabr_ele_25",
+          "titulo": "Realizar a limpeza"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_isolamento_tubulacao",
+      "nome": "Checklist UCABR - Isolamento de tubulação",
+      "itens": [
+        {
+          "id": "ucabr_iso_tub_1",
+          "titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca"
+        },
+        {
+          "id": "ucabr_iso_tub_2",
+          "titulo": "Verificar estado do isolamento antes de cortar"
+        },
+        {
+          "id": "ucabr_iso_tub_3",
+          "titulo": "Certificar-se de que as colagens não tocam a tubulação"
+        },
+        {
+          "id": "ucabr_iso_tub_4",
+          "titulo": "Verificar secagem do adesivo por 36 horas"
+        },
+        {
+          "id": "ucabr_iso_tub_5",
+          "titulo": "Verificar isolamento instalado"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_fechamento_mecanico",
+      "nome": "Checklist UCABR - Fechamento mecânico e acabamento",
+      "itens": [
+        {
+          "id": "ucabr_fech_1",
+          "titulo": "Verificar se todos os parafusos estão fixados"
+        },
+        {
+          "id": "ucabr_fech_2",
+          "titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas"
+        },
+        {
+          "id": "ucabr_fech_3",
+          "titulo": "Verificar se todos os rebites estão fixados"
+        },
+        {
+          "id": "ucabr_fech_4",
+          "titulo": "Verificar se as tubulações estão limpas"
+        },
+        {
+          "id": "ucabr_fech_5",
+          "titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados"
+        },
+        {
+          "id": "ucabr_fech_6",
+          "titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas"
+        },
+        {
+          "id": "ucabr_fech_7",
+          "titulo": "Verificar defeitos de pintura e realizar retoques se necessário"
+        },
+        {
+          "id": "ucabr_fech_8",
+          "titulo": "Realizar limpeza do equipamento"
+        },
+        {
+          "id": "ucabr_fech_9",
+          "titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)"
+        },
+        {
+          "id": "ucabr_fech_10",
+          "titulo": "Verificar todos os componentes instalados"
+        },
+        {
+          "id": "ucabr_fech_11",
+          "titulo": "Verificar tampa do motor do ventilador e prensa cabos vedados"
+        },
+        {
+          "id": "ucabr_fech_12",
+          "titulo": "Verificar cabos elétricos dos ventiladores com pingadeira"
+        },
+        {
+          "id": "ucabr_fech_13",
+          "titulo": "Verificar todas as tampas fixadas"
+        },
+        {
+          "id": "ucabr_fech_14",
+          "titulo": "Verificar todas as etiquetas fixadas"
+        },
+        {
+          "id": "ucabr_fech_15",
+          "titulo": "Verificar se todos os campos do checklist estão preenchidos"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_embalagem",
+      "nome": "Checklist UCABR - Embalagem",
+      "itens": [
+        {
+          "id": "ucabr_emb_1",
+          "titulo": "Verificar unidade dentro do pallet com etiqueta de identificação e inspeção visual"
+        },
+        {
+          "id": "ucabr_emb_2",
+          "titulo": "Verificar posicionamento das cantoneiras"
+        },
+        {
+          "id": "ucabr_emb_3",
+          "titulo": "Verificar etiquetas de identificação da unidade"
+        },
+        {
+          "id": "ucabr_emb_4",
+          "titulo": "Verificar posicionamento do arqueamento"
+        },
+        {
+          "id": "ucabr_emb_5",
+          "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display"
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_liberacao_final",
+      "nome": "Checklist UCABR - Liberação final do equipamento",
+      "itens": [
+        {
+          "id": "ucabr_lib_1",
+          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+        },
+        {
+          "id": "ucabr_lib_2",
+          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+        },
+        {
+          "id": "ucabr_lib_3",
+          "titulo": "Preparar o produto para expedição (nacional e exportação)"
+        }
+      ]
+    }
+  ]
+}
+

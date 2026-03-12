@@ -71,7 +71,7 @@ public class EsbragMenuActivity extends AppCompatActivity {
 
     private void carregarChecklistsEsbragDoJson() {
         try {
-            String json = lerArquivoAssets("checklist.json");
+            String json = lerArquivoAssets("checklist_esbrag.json");
             JSONObject root = new JSONObject(json);
             JSONArray checklistsArray = root.getJSONArray("checklists");
 
