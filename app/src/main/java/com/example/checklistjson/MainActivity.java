@@ -11,11 +11,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listViewChecklists;
     private final String[] opcoesMenu = new String[]{
-            
             "Modelo IRBR",
             "Modelo UCABR",
             "Modelo EDBRSE/EUBRSE",
-            "Modelo ESBRAG/ESBRHAG"
+            "Modelo ESBRAG/ESBRHAG",
+            "Modelo CABR"
     };
 
     @Override
@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("header_key", "esbrag");
                     intent.putExtra("header_titulo", "Modelo ESBRAG/ESBRHAG");
                     intent.putExtra("destino_tipo", "esbrag_menu");
+                    startActivity(intent);
+                } else if (position == 4) {
+                    android.content.Intent intent = new android.content.Intent(MainActivity.this, ChecklistHeaderActivity.class);
+                    intent.putExtra("header_key", "cabr");
+                    intent.putExtra("header_titulo", "Modelo CABR");
+                    intent.putExtra("destino_tipo", "cabr_menu");
                     startActivity(intent);
                 }
             }

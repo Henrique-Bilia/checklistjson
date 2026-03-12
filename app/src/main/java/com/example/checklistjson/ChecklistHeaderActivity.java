@@ -117,6 +117,9 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
                 } else if ("esbrag_menu".equals(destinoTipo)) {
                     Intent intent = new Intent(ChecklistHeaderActivity.this, EsbragMenuActivity.class);
                     startActivity(intent);
+                } else if ("cabr_menu".equals(destinoTipo)) {
+                    Intent intent = new Intent(ChecklistHeaderActivity.this, CabrMenuActivity.class);
+                    startActivity(intent);
                 }
             }
         });

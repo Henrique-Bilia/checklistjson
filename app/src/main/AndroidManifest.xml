@@ -28,6 +28,11 @@
             android:theme="@style/Theme.Checklistjson" />
 
         <activity
+            android:name=".CabrMenuActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Checklistjson" />
+
+        <activity
             android:name=".EdbrseMenuActivity"
             android:exported="false"
             android:theme="@style/Theme.Checklistjson" />

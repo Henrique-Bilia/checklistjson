@@ -50,35 +50,35 @@
       "itens": [
         {
           "id": "irbr_frig_1",
-          "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com Engenharia"
+          "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia"
         },
         {
           "id": "irbr_frig_2",
-          "titulo": "Verificar retirada de toda a rebarba do tubo"
-        },
-        {
-          "id": "irbr_frig_3",
-          "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa"
-        },
-        {
-          "id": "irbr_frig_4",
           "titulo": "Conferir componentes conforme lista do projeto"
         },
         {
+          "id": "irbr_frig_3",
+          "titulo": "Verificar se materiais estão em boas condições"
+        },
+        {
+          "id": "irbr_frig_4",
+          "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições"
+        },
+        {
           "id": "irbr_frig_5",
-          "titulo": "Verificar se os materiais estão em boas condições"
+          "titulo": "Verificar corte da tubulação conforme medida solicitada"
         },
         {
           "id": "irbr_frig_6",
-          "titulo": "Verificar corte da tubulação e se está conforme medida solicitada"
-        },
-        {
-          "id": "irbr_frig_7",
           "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto"
         },
         {
+          "id": "irbr_frig_7",
+          "titulo": "Verificar retirada de toda a rebarba do tubo"
+        },
+        {
           "id": "irbr_frig_8",
-          "titulo": "Verificar se materiais de substituição, se usados, estão em boas condições"
+          "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa"
         },
         {
           "id": "irbr_frig_9",
@@ -99,6 +99,104 @@
         {
           "id": "irbr_frig_13",
           "titulo": "Verificar todas as soldas executadas na tubulação"
+        },
+        {
+          "id": "irbr_frig_14",
+          "titulo": "Inspeção visual das válvulas instaladas no equipamento"
+        },
+        {
+          "id": "irbr_frig_15",
+          "titulo": "Verificar todas as soldas executadas no equipamento"
+        },
+        {
+          "id": "irbr_frig_16",
+          "titulo": "Verificar execução da montagem frigorífica/brasagem conforme projeto"
+        },
+        {
+          "id": "irbr_frig_17",
+          "titulo": "Verificar se a tubulação está limpa"
+        },
+        {
+          "id": "irbr_frig_18",
+          "titulo": "Verificar sentido da válvula solenoide 1"
+        },
+        {
+          "id": "irbr_frig_19",
+          "titulo": "Verificar sentido da válvula solenoide 2"
+        },
+        {
+          "id": "irbr_frig_20",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 1 (fluido)"
+        },
+        {
+          "id": "irbr_frig_21",
+          "titulo": "Verificar sentido da válvula de expansão eletrônica/termostática 2 (fluido)"
+        },
+        {
+          "id": "irbr_frig_22",
+          "titulo": "Verificar sentido do filtro secador 1"
+        },
+        {
+          "id": "irbr_frig_23",
+          "titulo": "Verificar sentido do filtro secador 2"
+        },
+        {
+          "id": "irbr_frig_24",
+          "titulo": "Verificar sentido da válvula digital"
+        },
+        {
+          "id": "irbr_frig_25",
+          "titulo": "Verificar instalação do separador de óleo"
+        },
+        {
+          "id": "irbr_frig_26",
+          "titulo": "Verificar nível de óleo no separador"
+        },
+        {
+          "id": "irbr_frig_27",
+          "titulo": "Pressão válvula alívio 1 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        },
+        {
+          "id": "irbr_frig_28",
+          "titulo": "Pressão válvula alívio 2 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_compressores",
+      "nome": "Checklist IRBR - Compressores",
+      "itens": [
+        {
+          "id": "irbr_comp_valores",
+          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores conforme projeto"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_teste_estanqueidade",
+      "nome": "Checklist IRBR - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "irbr_estanq_c1",
+          "titulo": "O teste de estanqueidade foi realizado conforme procedimento definido para o circuito principal"
+        },
+        {
+          "id": "irbr_estanq_c2",
+          "titulo": "Registrar resultado do teste de estanqueidade no circuito secundário (quando aplicável)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_irbr_vacuo_quebra",
+      "nome": "Checklist IRBR - Vácuo e quebra do vácuo",
+      "itens": [
+        {
+          "id": "irbr_vac_1",
+          "titulo": "Verificar se o vácuo foi realizado até o valor especificado em projeto"
+        },
+        {
+          "id": "irbr_vac_2",
+          "titulo": "Registrar valores e observações do teste de quebra do vácuo realizado"
         }
       ]
     },
@@ -243,6 +341,18 @@
         {
           "id": "irbr_emb_6",
           "titulo": "Verificar se todos os campos do checklist estão preenchidos"
+        },
+        {
+          "id": "irbr_emb_7",
+          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
+        },
+        {
+          "id": "irbr_emb_8",
+          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
+        },
+        {
+          "id": "irbr_emb_9",
+          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
         }
       ]
     },
@@ -509,6 +619,66 @@
         {
           "id": "ucabr_ele_10",
           "titulo": "Verificar pressostato, sensores e conexões elétricas"
+        },
+        {
+          "id": "ucabr_ele_11",
+          "titulo": "Verificar resistência Carter C1"
+        },
+        {
+          "id": "ucabr_ele_12",
+          "titulo": "Verificar resistência Carter C2"
+        },
+        {
+          "id": "ucabr_ele_13",
+          "titulo": "Verificar válvula solenoide C1"
+        },
+        {
+          "id": "ucabr_ele_14",
+          "titulo": "Verificar válvula solenoide C2"
+        },
+        {
+          "id": "ucabr_ele_15",
+          "titulo": "Verificar válvula de controle de capacidade"
+        },
+        {
+          "id": "ucabr_ele_16",
+          "titulo": "Verificar sensores"
+        },
+        {
+          "id": "ucabr_ele_17",
+          "titulo": "Verificar pressostato"
+        },
+        {
+          "id": "ucabr_ele_18",
+          "titulo": "Verificar fios e emendas bem isolados"
+        },
+        {
+          "id": "ucabr_ele_19",
+          "titulo": "Verificar válvula de controle de condensação 1"
+        },
+        {
+          "id": "ucabr_ele_20",
+          "titulo": "Verificar válvula de controle de condensação 2"
+        },
+        {
+          "id": "ucabr_ele_21",
+          "titulo": "Verificar passa fio / prensa cabo"
+        },
+        {
+          "id": "ucabr_ele_22",
+          "titulo": "Verificar canaletas e quadro elétrico"
+        },
+        {
+          "id": "ucabr_ele_23",
+          "titulo": "Verificar conexões elétricas apertadas"
+        },
+        {
+          "id": "ucabr_ele_24",
+          "titulo": "Verificar etiquetas de identificação"
+        },
+        {
+          "id": "ucabr_ele_25",
+          "titulo": "Realizar a limpeza"
         }
       ]
     },
@@ -605,8 +775,8 @@
       ]
     },
     {
-      "id": "checklist_ucabr_embalagem_liberacao",
-      "nome": "Checklist UCABR - Embalagem e liberação final",
+      "id": "checklist_ucabr_embalagem",
+      "nome": "Checklist UCABR - Embalagem",
       "itens": [
         {
           "id": "ucabr_emb_1",
@@ -627,17 +797,23 @@
         {
           "id": "ucabr_emb_5",
           "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display"
-        },
+        }
+      ]
+    },
+    {
+      "id": "checklist_ucabr_liberacao_final",
+      "nome": "Checklist UCABR - Liberação final do equipamento",
+      "itens": [
         {
-          "id": "ucabr_emb_6",
+          "id": "ucabr_lib_1",
           "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
         },
         {
-          "id": "ucabr_emb_7",
+          "id": "ucabr_lib_2",
           "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
         },
         {
-          "id": "ucabr_emb_8",
+          "id": "ucabr_lib_3",
           "titulo": "Preparar o produto para expedição (nacional e exportação)"
         }
       ]
@@ -759,24 +935,26 @@
       ]
     },
     {
-      "id": "checklist_edbrse_isolamento_gabinete",
-      "nome": "Checklist EDBRSE/EUBRSE - Isolamento de gabinete",
+      "id": "checklist_edbrse_compressores",
+      "nome": "Checklist EDBRSE/EUBRSE - Compressores",
       "itens": [
         {
-          "id": "ed_iso_gab_1",
-          "titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas"
+          "id": "ed_comp_valores",
+          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores conforme projeto"
+        }
+      ]
+    },
+    {
+      "id": "checklist_edbrse_teste_estanqueidade",
+      "nome": "Checklist EDBRSE/EUBRSE - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "ed_estanq_c1",
+          "titulo": "O teste de estanqueidade foi realizado conforme procedimento definido para o circuito principal"
         },
         {
-          "id": "ed_iso_gab_2",
-          "titulo": "Verificar estado do adesivo antes de cortar a manta"
-        },
-        {
-          "id": "ed_iso_gab_3",
-          "titulo": "Verificar isolamento e ausência de bolhas"
-        },
-        {
-          "id": "ed_iso_gab_4",
-          "titulo": "Verificar secagem do adesivo por 36 horas"
+          "id": "ed_estanq_c2",
+          "titulo": "Registrar resultado do teste de estanqueidade no circuito secundário (quando aplicável)"
         }
       ]
     },
@@ -812,67 +990,161 @@
       "itens": [
         {
           "id": "ed_ele_1",
-          "titulo": "Verificar instalação elétrica do compressor C1"
+          "titulo": "Verificar resistência Carter C1"
         },
         {
           "id": "ed_ele_2",
-          "titulo": "Verificar instalação elétrica do compressor C2"
+          "titulo": "Verificar resistência Carter C2"
         },
         {
           "id": "ed_ele_3",
-          "titulo": "Verificar instalação do driver do compressor"
+          "titulo": "Verificar válvula solenoide C1"
         },
         {
           "id": "ed_ele_4",
-          "titulo": "Verificar instalação elétrica dos ventiladores 1, 2, 3 e 4"
+          "titulo": "Verificar válvula solenoide C2"
         },
         {
           "id": "ed_ele_5",
-          "titulo": "Verificar double check dos ventiladores 1 a 4"
+          "titulo": "Verificar instalação do driver do compressor"
         },
         {
           "id": "ed_ele_6",
-          "titulo": "Verificar ventiladores e cabos vedados"
+          "titulo": "Verificar instalação elétrica do ventilador 1"
         },
         {
           "id": "ed_ele_7",
-          "titulo": "Verificar pressostato, sensores, damper e bomba"
+          "titulo": "Verificar instalação elétrica do ventilador 2"
         },
         {
           "id": "ed_ele_8",
-          "titulo": "Verificar conexões elétricas apertadas"
+          "titulo": "Verificar instalação elétrica do ventilador 3"
         },
         {
           "id": "ed_ele_9",
-          "titulo": "Verificar canaletas e quadro elétrico"
+          "titulo": "Verificar instalação elétrica do ventilador 4"
         },
         {
           "id": "ed_ele_10",
-          "titulo": "Verificar passa fio / prensa cabo"
+          "titulo": "Verificar double check ventilador 1"
         },
         {
           "id": "ed_ele_11",
-          "titulo": "Verificar reaquecimentos, umidificador, EVD e cabo de comunicação"
+          "titulo": "Verificar double check ventilador 2"
         },
         {
           "id": "ed_ele_12",
-          "titulo": "Verificar mangueira para fluxo de ar"
+          "titulo": "Verificar double check ventilador 3"
         },
         {
           "id": "ed_ele_13",
-          "titulo": "Verificar fios e emendas bem isolados"
+          "titulo": "Verificar double check ventilador 4"
         },
         {
           "id": "ed_ele_14",
-          "titulo": "Verificar válvulas de controle de condensação 1 e 2"
+          "titulo": "Verificar ventiladores e cabos vedados"
         },
         {
           "id": "ed_ele_15",
-          "titulo": "Verificar aterramento entre painel, estrutura e porta"
+          "titulo": "Verificar Reaquecimento 1"
         },
         {
           "id": "ed_ele_16",
+          "titulo": "Verificar Reaquecimento 2"
+        },
+        {
+          "id": "ed_ele_17",
+          "titulo": "Verificar umidificador"
+        },
+        {
+          "id": "ed_ele_18",
+          "titulo": "Verificar damper"
+        },
+        {
+          "id": "ed_ele_19",
+          "titulo": "Verificar bomba"
+        },
+        {
+          "id": "ed_ele_20",
+          "titulo": "Verificar sensores"
+        },
+        {
+          "id": "ed_ele_21",
+          "titulo": "Verificar instalação EVD"
+        },
+        {
+          "id": "ed_ele_22",
+          "titulo": "Verificar cabo de comunicação"
+        },
+        {
+          "id": "ed_ele_23",
+          "titulo": "Verificar mangueira para fluxo de ar"
+        },
+        {
+          "id": "ed_ele_24",
+          "titulo": "Verificar pressostato"
+        },
+        {
+          "id": "ed_ele_25",
+          "titulo": "Verificar válvula de controle de condensação 1"
+        },
+        {
+          "id": "ed_ele_26",
+          "titulo": "Verificar válvula de controle de condensação 2"
+        },
+        {
+          "id": "ed_ele_27",
+          "titulo": "Verificar aterramento entre painel, estrutura e porta"
+        },
+        {
+          "id": "ed_ele_28",
           "titulo": "Verificar instalação do IHM"
+        },
+        {
+          "id": "ed_ele_29",
+          "titulo": "Verificar passa fio / prensa cabo"
+        },
+        {
+          "id": "ed_ele_30",
+          "titulo": "Verificar canaletas e quadro elétrico"
+        },
+        {
+          "id": "ed_ele_31",
+          "titulo": "Verificar conexões elétricas apertadas"
+        },
+        {
+          "id": "ed_ele_32",
+          "titulo": "Verificar fios e emendas bem isolados"
+        },
+        {
+          "id": "ed_ele_33",
+          "titulo": "Verificar etiquetas de identificação"
+        },
+        {
+          "id": "ed_ele_34",
+          "titulo": "Realizar a limpeza do equipamento"
+        }
+      ]
+    },
+    {
+      "id": "checklist_edbrse_isolamento_gabinete",
+      "nome": "Checklist EDBRSE/EUBRSE - Isolamento de gabinete",
+      "itens": [
+        {
+          "id": "ed_iso_gab_1",
+          "titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas"
+        },
+        {
+          "id": "ed_iso_gab_2",
+          "titulo": "Verificar estado do adesivo antes de cortar a manta"
+        },
+        {
+          "id": "ed_iso_gab_3",
+          "titulo": "Verificar isolamento e ausência de bolhas"
+        },
+        {
+          "id": "ed_iso_gab_4",
+          "titulo": "Verificar secagem do adesivo por 36 horas"
         }
       ]
     },
@@ -977,8 +1249,8 @@
       ]
     },
     {
-      "id": "checklist_edbrse_embalagem_liberacao",
-      "nome": "Checklist EDBRSE/EUBRSE - Embalagem e liberação final",
+      "id": "checklist_edbrse_embalagem",
+      "nome": "Checklist EDBRSE/EUBRSE - Embalagem",
       "itens": [
         {
           "id": "ed_emb_1",
@@ -1002,14 +1274,32 @@
         },
         {
           "id": "ed_emb_6",
-          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
         },
         {
           "id": "ed_emb_7",
-          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
         },
         {
           "id": "ed_emb_8",
+          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_edbrse_liberacao_final",
+      "nome": "Checklist EDBRSE/EUBRSE - Liberação final do equipamento",
+      "itens": [
+        {
+          "id": "ed_lib_1",
+          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+        },
+        {
+          "id": "ed_lib_2",
+          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+        },
+        {
+          "id": "ed_lib_3",
           "titulo": "Preparar o produto para expedição (nacional e exportação)"
         }
       ]
@@ -1156,15 +1446,35 @@
         },
         {
           "id": "es_ele_4",
-          "titulo": "Verificar instalação elétrica do ventilador 4"
+          "titulo": "Verificar Reaquecimento"
         },
         {
           "id": "es_ele_5",
-          "titulo": "Verificar instalação de EVD, cabo de comunicação e mangueira de fluxo de ar"
+          "titulo": "Verificar Umidificador"
         },
         {
           "id": "es_ele_6",
-          "titulo": "Verificar reaquecimento, umidificador, damper, bomba e sensores"
+          "titulo": "Verificar Cabo de comunicação"
+        },
+        {
+          "id": "es_ele_7",
+          "titulo": "Verificar Damper"
+        },
+        {
+          "id": "es_ele_8",
+          "titulo": "Verificar Bomba"
+        },
+        {
+          "id": "es_ele_9",
+          "titulo": "Verificar Sensores"
+        },
+        {
+          "id": "es_ele_10",
+          "titulo": "Verificar instalação EVD"
+        },
+        {
+          "id": "es_ele_11",
+          "titulo": "Verificar mangueira para fluxo de ar"
         }
       ]
     },
@@ -1265,8 +1575,8 @@
       ]
     },
     {
-      "id": "checklist_esbrag_embalagem_liberacao",
-      "nome": "Checklist ESBRAG/ESBRHAG - Embalagem e liberação final",
+      "id": "checklist_esbrag_embalagem",
+      "nome": "Checklist ESBRAG/ESBRHAG - Embalagem",
       "itens": [
         {
           "id": "es_emb_1",
@@ -1290,14 +1600,292 @@
         },
         {
           "id": "es_emb_6",
-          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
         },
         {
           "id": "es_emb_7",
-          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
         },
         {
           "id": "es_emb_8",
+          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_esbrag_liberacao_final",
+      "nome": "Checklist ESBRAG/ESBRHAG - Liberação final do equipamento",
+      "itens": [
+        {
+          "id": "es_lib_1",
+          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+        },
+        {
+          "id": "es_lib_2",
+          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+        },
+        {
+          "id": "es_lib_3",
+          "titulo": "Preparar o produto para expedição (nacional e exportação)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_pre_montagem",
+      "nome": "Checklist CABR - Pré-montagem",
+      "itens": [
+        {
+          "id": "cabr_pre_1",
+          "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"
+        },
+        {
+          "id": "cabr_pre_2",
+          "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
+        },
+        {
+          "id": "cabr_pre_3",
+          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
+        },
+        {
+          "id": "cabr_pre_4",
+          "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"
+        },
+        {
+          "id": "cabr_pre_5",
+          "titulo": "Todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_montagem_frigorifica",
+      "nome": "Checklist CABR - Montagem frigorífica",
+      "itens": [
+        {
+          "id": "cabr_frig_1",
+          "titulo": "O projeto frigorífico está disponível na pasta da obra e dúvidas foram sanadas com a Engenharia"
+        },
+        {
+          "id": "cabr_frig_2",
+          "titulo": "Componentes conforme lista do projeto"
+        },
+        {
+          "id": "cabr_frig_3",
+          "titulo": "Materiais em boas condições"
+        },
+        {
+          "id": "cabr_frig_4",
+          "titulo": "Materiais de substituição, se utilizados, em boas condições"
+        },
+        {
+          "id": "cabr_frig_5",
+          "titulo": "Corte da tubulação conforme medida solicitada"
+        },
+        {
+          "id": "cabr_frig_6",
+          "titulo": "Dobra da tubulação de acordo com o desenho/projeto"
+        },
+        {
+          "id": "cabr_frig_7",
+          "titulo": "Retirada de toda a rebarba do tubo"
+        },
+        {
+          "id": "cabr_frig_8",
+          "titulo": "Tubulação, especialmente a área de brasagem, limpa"
+        },
+        {
+          "id": "cabr_frig_9",
+          "titulo": "Regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos"
+        },
+        {
+          "id": "cabr_frig_10",
+          "titulo": "Inspeção visual das válvulas instaladas na tubulação"
+        },
+        {
+          "id": "cabr_frig_11",
+          "titulo": "Todas as soldas executadas na tubulação"
+        },
+        {
+          "id": "cabr_frig_12",
+          "titulo": "Inspeção visual das válvulas instaladas no equipamento"
+        },
+        {
+          "id": "cabr_frig_13",
+          "titulo": "Todas as soldas executadas no equipamento"
+        },
+        {
+          "id": "cabr_frig_14",
+          "titulo": "Execução da montagem frigorífica/brasagem conforme projeto frigorífico"
+        },
+        {
+          "id": "cabr_frig_15",
+          "titulo": "Tubulação limpa"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_teste_estanqueidade",
+      "nome": "Checklist CABR - Teste de estanqueidade",
+      "itens": [
+        {
+          "id": "cabr_estanq_c1",
+          "titulo": "O Teste de Estanqueidade foi realizado por 24 horas no Circuito 1"
+        },
+        {
+          "id": "cabr_estanq_c2",
+          "titulo": "O Teste de Estanqueidade foi realizado por 24 horas no Circuito 2"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_vacuo_quebra",
+      "nome": "Checklist CABR - Vácuo e quebra do vácuo",
+      "itens": [
+        {
+          "id": "cabr_vac_1",
+          "titulo": "O vácuo foi realizado até vacuômetro indicar valor abaixo de 500μHg ±50μHg"
+        },
+        {
+          "id": "cabr_vac_2",
+          "titulo": "Ao quebrar o vácuo em sistema com válvula de serviço, pressurizado com 200±10 g de fluido refrigerante"
+        },
+        {
+          "id": "cabr_vac_3",
+          "titulo": "Ao quebrar o vácuo em sistema sem válvula de serviço, pressurizado com nitrogênio (45–50 psi exportação, 95–100 psi nacional)"
+        },
+        {
+          "id": "cabr_vac_4",
+          "titulo": "Verificar com detector de vazamento, em especial áreas com uniões de solda"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_montagem_eletrica",
+      "nome": "Checklist CABR - Montagem elétrica",
+      "itens": [
+        {
+          "id": "cabr_ele_1",
+          "titulo": "Instalação elétrica do ventilador 1"
+        },
+        {
+          "id": "cabr_ele_2",
+          "titulo": "Instalação elétrica do ventilador 2"
+        },
+        {
+          "id": "cabr_ele_3",
+          "titulo": "Instalação driver do ventilador"
+        },
+        {
+          "id": "cabr_ele_4",
+          "titulo": "Fios e emendas bem isolados"
+        },
+        {
+          "id": "cabr_ele_5",
+          "titulo": "Passa fio / prensa cabo"
+        },
+        {
+          "id": "cabr_ele_6",
+          "titulo": "Conexões elétricas apertadas"
+        },
+        {
+          "id": "cabr_ele_7",
+          "titulo": "Etiquetas de identificação"
+        },
+        {
+          "id": "cabr_ele_8",
+          "titulo": "Realizar a limpeza"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_fechamento_mecanico",
+      "nome": "Checklist CABR - Fechamento mecânico e acabamento",
+      "itens": [
+        {
+          "id": "cabr_fech_1",
+          "titulo": "Todos os parafusos estão fixados"
+        },
+        {
+          "id": "cabr_fech_2",
+          "titulo": "Todas as válvulas Schrader sem uso estão com tampas"
+        },
+        {
+          "id": "cabr_fech_3",
+          "titulo": "Todos os rebites estão fixados"
+        },
+        {
+          "id": "cabr_fech_4",
+          "titulo": "As tubulações estão limpas"
+        },
+        {
+          "id": "cabr_fech_5",
+          "titulo": "Todos os prensas cabos e passa fios estão colocados e fixados"
+        },
+        {
+          "id": "cabr_fech_6",
+          "titulo": "Verificação visual se todas as conexões elétricas estão fixadas"
+        },
+        {
+          "id": "cabr_fech_7",
+          "titulo": "Todos os componentes estão instalados"
+        },
+        {
+          "id": "cabr_fech_8",
+          "titulo": "Realizar a limpeza do equipamento"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_embalagem",
+      "nome": "Checklist CABR - Embalagem",
+      "itens": [
+        {
+          "id": "cabr_emb_1",
+          "titulo": "Unidade dentro do pallet e com a etiqueta de identificação do equipamento. Inspeção visual do equipamento"
+        },
+        {
+          "id": "cabr_emb_2",
+          "titulo": "Posicionamento das cantoneiras"
+        },
+        {
+          "id": "cabr_emb_3",
+          "titulo": "Etiquetas de identificação da unidade"
+        },
+        {
+          "id": "cabr_emb_4",
+          "titulo": "Posicionamento do arqueamento"
+        },
+        {
+          "id": "cabr_emb_5",
+          "titulo": "Os grampos estejam no fundo da unidade e a fita de arquear não passa sobre o display se presente"
+        },
+        {
+          "id": "cabr_emb_6",
+          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
+        },
+        {
+          "id": "cabr_emb_7",
+          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
+        },
+        {
+          "id": "cabr_emb_8",
+          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
+        }
+      ]
+    },
+    {
+      "id": "checklist_cabr_liberacao_final",
+      "nome": "Checklist CABR - Liberação final do equipamento",
+      "itens": [
+        {
+          "id": "cabr_lib_1",
+          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
+        },
+        {
+          "id": "cabr_lib_2",
+          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
+        },
+        {
+          "id": "cabr_lib_3",
           "titulo": "Preparar o produto para expedição (nacional e exportação)"
         }
       ]

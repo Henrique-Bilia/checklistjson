@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvCabrTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Checklists CABR"
+        android:textSize="20sp"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnExportarModeloCabr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exportar modelo CABR em PDF"
+        android:layout_marginBottom="8dp" />
+
+    <ListView
+        android:id="@+id/listViewCabr"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
+

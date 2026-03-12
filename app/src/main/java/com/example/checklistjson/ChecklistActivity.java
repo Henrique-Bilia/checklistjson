@@ -211,14 +211,29 @@ public class ChecklistActivity extends AppCompatActivity {
             tvTitulo.setText(titulo);
         }
 
-        // Esconde campos de Responsável e Data do topo (já existem em outras telas/partes do fluxo)
-        if (tvResponsavelLabel != null) tvResponsavelLabel.setVisibility(View.GONE);
-        if (etResponsavel != null) etResponsavel.setVisibility(View.GONE);
-        if (tvDataLabel != null) tvDataLabel.setVisibility(View.GONE);
-        if (etData != null) etData.setVisibility(View.GONE);
+        // Esconde campos de Responsável e Data do topo (já existem em outras telas/partes do fluxo),
+        // exceto nos checklists de liberação final, onde eles são a informação principal.
+        if (!"checklist_ucabr_liberacao_final".equals(checklistId)
+                && !"checklist_irbr_liberacao_final".equals(checklistId)
+                && !"checklist_edbrse_liberacao_final".equals(checklistId)
+                && !"checklist_esbrag_liberacao_final".equals(checklistId)
+                && !"checklist_cabr_liberacao_final".equals(checklistId)) {
+            if (tvResponsavelLabel != null) tvResponsavelLabel.setVisibility(View.GONE);
+            if (etResponsavel != null) etResponsavel.setVisibility(View.GONE);
+            if (tvDataLabel != null) tvDataLabel.setVisibility(View.GONE);
+            if (etData != null) etData.setVisibility(View.GONE);
+        } else {
+            // No checklist de liberação final, renomeia o rótulo para "Data da liberação"
+            if (tvDataLabel != null) {
+                tvDataLabel.setText("Data da liberação");
+            }
+        }
 
-        // Se for o checklist específico de compressores UCABR, exibe seção própria e esconde IT/OP/cabeçalho geral
-        if ("checklist_ucabr_compressores".equals(checklistId)) {
+        // Se for o checklist específico de compressores (UCABR, IRBR ou EDBRSE/EUBRSE), exibe seção própria e esconde IT/OP/cabeçalho geral
+        if ("checklist_ucabr_compressores".equals(checklistId) ||
+                "checklist_irbr_compressores".equals(checklistId) ||
+                "checklist_edbrse_compressores".equals(checklistId) ||
+                "checklist_cabr_compressores".equals(checklistId)) {
             if (layoutCompressoresUcabr != null) {
                 layoutCompressoresUcabr.setVisibility(View.VISIBLE);
                 carregarCompressoresUcabr();
@@ -238,8 +253,12 @@ public class ChecklistActivity extends AppCompatActivity {
             }
         }
 
-        // Se for o checklist de teste de estanqueidade UCABR, esconder apenas IT e OP
-        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId)) {
+        // Se for o checklist de teste de estanqueidade / teste hidrostático (UCABR, IRBR, EDBRSE/EUBRSE ou ESBRAG/ESBRHAG), esconder apenas IT e OP
+        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId) ||
+                "checklist_irbr_teste_estanqueidade".equals(checklistId) ||
+                "checklist_edbrse_teste_estanqueidade".equals(checklistId) ||
+                "checklist_esbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_cabr_teste_estanqueidade".equals(checklistId)) {
             TextView tvItChecklistLabel2 = findViewById(R.id.tvItChecklistLabel);
             TextView tvOpChecklistLabel2 = findViewById(R.id.tvOpChecklistLabel);
             if (tvItChecklistLabel2 != null) tvItChecklistLabel2.setVisibility(View.GONE);
@@ -248,8 +267,32 @@ public class ChecklistActivity extends AppCompatActivity {
             if (etOpChecklist != null) etOpChecklist.setVisibility(View.GONE);
         }
 
-        // Se for o checklist UCABR - Montagem frigorífica, exibe seção de pressão das válvulas de alívio
-        if ("checklist_ucabr_montagem_frigorifica".equals(checklistId)) {
+        // Se for checklist de liberação final (UCABR, IRBR, EDBRSE/EUBRSE ou ESBRAG/ESBRHAG), esconder IT/OP e todas as seções especiais
+        if ("checklist_ucabr_liberacao_final".equals(checklistId)
+                || "checklist_irbr_liberacao_final".equals(checklistId)
+                || "checklist_edbrse_liberacao_final".equals(checklistId)
+                || "checklist_esbrag_liberacao_final".equals(checklistId)
+                || "checklist_cabr_liberacao_final".equals(checklistId)) {
+            TextView tvItChecklistLabel3 = findViewById(R.id.tvItChecklistLabel);
+            TextView tvOpChecklistLabel3 = findViewById(R.id.tvOpChecklistLabel);
+            Button btnRestaurar = findViewById(R.id.btnRestaurarItensPadrao);
+            Button btnAdicionarItemTopo = findViewById(R.id.btnAdicionarItem);
+            if (tvItChecklistLabel3 != null) tvItChecklistLabel3.setVisibility(View.GONE);
+            if (etItChecklist != null) etItChecklist.setVisibility(View.GONE);
+            if (tvOpChecklistLabel3 != null) tvOpChecklistLabel3.setVisibility(View.GONE);
+            if (etOpChecklist != null) etOpChecklist.setVisibility(View.GONE);
+            if (layoutCompressoresUcabr != null) layoutCompressoresUcabr.setVisibility(View.GONE);
+            if (layoutPressaoValvulasUcabr != null) layoutPressaoValvulasUcabr.setVisibility(View.GONE);
+            if (layoutEstanqueidadeUcabr != null) layoutEstanqueidadeUcabr.setVisibility(View.GONE);
+            if (layoutVacuoQuebraUcabr != null) layoutVacuoQuebraUcabr.setVisibility(View.GONE);
+            if (btnRestaurar != null) btnRestaurar.setVisibility(View.GONE);
+            if (btnAdicionarItemTopo != null) btnAdicionarItemTopo.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist de Montagem frigorífica (UCABR ou IRBR), exibe seção de pressão das válvulas de alívio
+        if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
+                "checklist_irbr_montagem_frigorifica".equals(checklistId) ||
+                "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
             if (layoutPressaoValvulasUcabr != null) {
                 layoutPressaoValvulasUcabr.setVisibility(View.VISIBLE);
                 carregarPressaoValvulasUcabr();
@@ -258,8 +301,12 @@ public class ChecklistActivity extends AppCompatActivity {
             layoutPressaoValvulasUcabr.setVisibility(View.GONE);
         }
 
-        // Se for o checklist UCABR - Teste de estanqueidade, exibe seção específica
-        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId)) {
+        // Se for o checklist de Teste de estanqueidade / Teste hidrostático (UCABR, IRBR, EDBRSE/EUBRSE ou ESBRAG/ESBRHAG), exibe seção específica
+        if ("checklist_ucabr_teste_estanqueidade".equals(checklistId) ||
+                "checklist_irbr_teste_estanqueidade".equals(checklistId) ||
+                "checklist_edbrse_teste_estanqueidade".equals(checklistId) ||
+                "checklist_esbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_cabr_teste_estanqueidade".equals(checklistId)) {
             if (layoutEstanqueidadeUcabr != null) {
                 layoutEstanqueidadeUcabr.setVisibility(View.VISIBLE);
                 carregarEstanqueidadeUcabr();
@@ -268,8 +315,11 @@ public class ChecklistActivity extends AppCompatActivity {
             layoutEstanqueidadeUcabr.setVisibility(View.GONE);
         }
 
-        // Se for o checklist UCABR - Vácuo e quebra do vácuo, exibe seção específica
-        if ("checklist_ucabr_vacuo_quebra".equals(checklistId)) {
+        // Se for o checklist de Vácuo e quebra do vácuo (UCABR, IRBR ou EDBRSE/EUBRSE), exibe seção específica
+        if ("checklist_ucabr_vacuo_quebra".equals(checklistId) ||
+                "checklist_irbr_vacuo_quebra".equals(checklistId) ||
+                "checklist_edbrse_vacuo_quebra".equals(checklistId) ||
+                "checklist_cabr_vacuo_quebra".equals(checklistId)) {
             if (layoutVacuoQuebraUcabr != null) {
                 layoutVacuoQuebraUcabr.setVisibility(View.VISIBLE);
                 carregarVacuoQuebraUcabr();
@@ -325,6 +375,11 @@ public class ChecklistActivity extends AppCompatActivity {
         btnAdicionarItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Nas telas de liberação final não é permitido adicionar itens
+                if ("checklist_ucabr_liberacao_final".equals(checklistId)
+                        || "checklist_irbr_liberacao_final".equals(checklistId)
+                        || "checklist_edbrse_liberacao_final".equals(checklistId)
+                        || "checklist_esbrag_liberacao_final".equals(checklistId)) return;
                 mostrarDialogAdicionarItem();
             }
         });
@@ -340,6 +395,11 @@ public class ChecklistActivity extends AppCompatActivity {
         btnRestaurar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Nas telas de liberação final não há itens padrão para restaurar
+                if ("checklist_ucabr_liberacao_final".equals(checklistId)
+                        || "checklist_irbr_liberacao_final".equals(checklistId)
+                        || "checklist_edbrse_liberacao_final".equals(checklistId)
+                        || "checklist_esbrag_liberacao_final".equals(checklistId)) return;
                 new AlertDialog.Builder(ChecklistActivity.this)
                         .setTitle("Restaurar itens padrão")
                         .setMessage("Isso vai restaurar todos os itens originais deste checklist e remover itens personalizados. Deseja continuar?")
@@ -349,7 +409,9 @@ public class ChecklistActivity extends AppCompatActivity {
             }
         });
 
-        if (!"checklist_ucabr_compressores".equals(checklistId)) {
+        if (!"checklist_ucabr_compressores".equals(checklistId) &&
+                !"checklist_irbr_compressores".equals(checklistId) &&
+                !"checklist_edbrse_compressores".equals(checklistId)) {
             etData.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -420,12 +482,14 @@ public class ChecklistActivity extends AppCompatActivity {
         String modelName = null;
         if ("irbr".equals(modelKey) && "checklist_irbr_liberacao_final".equals(checklistId)) {
             modelName = "Modelo IRBR";
-        } else if ("ucabr".equals(modelKey) && "checklist_ucabr_embalagem_liberacao".equals(checklistId)) {
+        } else if ("ucabr".equals(modelKey) && "checklist_ucabr_liberacao_final".equals(checklistId)) {
             modelName = "Modelo UCABR";
-        } else if ("edbrse".equals(modelKey) && "checklist_edbrse_embalagem_liberacao".equals(checklistId)) {
+        } else if ("edbrse".equals(modelKey) && "checklist_edbrse_liberacao_final".equals(checklistId)) {
             modelName = "Modelo EDBRSE/EUBRSE";
-        } else if ("esbrag".equals(modelKey) && "checklist_esbrag_embalagem_liberacao".equals(checklistId)) {
+        } else if ("esbrag".equals(modelKey) && "checklist_esbrag_liberacao_final".equals(checklistId)) {
             modelName = "Modelo ESBRAG/ESBRHAG";
+        } else if ("cabr".equals(modelKey) && "checklist_cabr_liberacao_final".equals(checklistId)) {
+            modelName = "Modelo CABR";
         } else if ("manutencao".equals(modelKey) && "checklist_manutencao".equals(checklistId)) {
             modelName = "Modelo Manutenção (Exemplo)";
         }
@@ -465,13 +529,23 @@ public class ChecklistActivity extends AppCompatActivity {
 
             if (checklistSelecionado == null) return;
 
+            // Nas liberações finais (UCABR, IRBR, EDBRSE/EUBRSE, ESBRAG/ESBRHAG e CABR), não exibimos itens SIM/NÃO, apenas cabeçalho e observação.
+            if ("checklist_ucabr_liberacao_final".equals(checklistId)
+                    || "checklist_irbr_liberacao_final".equals(checklistId)
+                    || "checklist_edbrse_liberacao_final".equals(checklistId)
+                    || "checklist_esbrag_liberacao_final".equals(checklistId)
+                    || "checklist_cabr_liberacao_final".equals(checklistId)) {
+                return;
+            }
+
             JSONArray itensArray = checklistSelecionado.getJSONArray("itens");
             SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
 
             List<String> idsRemovidos = carregarIdsRemovidos();
-            // Garantia: para o checklist UCABR - Montagem frigorífica, sempre mostrar todos os itens
-            // ignorando qualquer remoção antiga salva em SharedPreferences.
-            if ("checklist_ucabr_montagem_frigorifica".equals(checklistId)) {
+            // Garantia: para os checklists de Montagem frigorífica (UCABR e IRBR),
+            // sempre mostrar todos os itens ignorando qualquer remoção antiga salva em SharedPreferences.
+            if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
+                    "checklist_irbr_montagem_frigorifica".equals(checklistId)) {
                 idsRemovidos.clear();
             }
 
@@ -1222,6 +1296,8 @@ public class ChecklistActivity extends AppCompatActivity {
             modelKey = "edbrse";
         } else if (checklistId.startsWith("checklist_esbrag_")) {
             modelKey = "esbrag";
+        } else if (checklistId.startsWith("checklist_cabr_")) {
+            modelKey = "cabr";
         } else if ("checklist_manutencao".equals(checklistId)) {
             modelKey = "manutencao";
         } else {
