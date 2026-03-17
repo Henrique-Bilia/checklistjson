@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -97,6 +99,29 @@ public class ChecklistActivity extends AppCompatActivity {
     // Segundo teste de vácuo (C2)
     private EditText etVacuoC2DataInicio, etVacuoC2DataFim, etVacuoC2Resp, etVacuoC2HoraInicio, etVacuoC2HoraFim, etVacuoC2Valor;
     private EditText etVacuoNumBombaC2, etVacuoNumVacuometroC2, etVacuoDataCalibracaoVacuometroC2;
+    // Campos específicos para IRBR - Montagem elétrica (instrumentos de medição)
+    private LinearLayout layoutEletricaInstrumentos;
+    private EditText etEletricaInstr1Num, etEletricaInstr1Data;
+    private EditText etEletricaInstr2Num, etEletricaInstr2Data;
+    private EditText etEletricaInstr3Num, etEletricaInstr3Data;
+    private static final int QR_TARGET_NONE = 0;
+    private static final int QR_TARGET_ELETRICA_1 = 1;
+    private static final int QR_TARGET_ELETRICA_2 = 2;
+    private static final int QR_TARGET_ELETRICA_3 = 3;
+    private static final int QR_TARGET_EST_C1 = 4;
+    private static final int QR_TARGET_EST_C2 = 5;
+    private static final int QR_TARGET_VACUO_INSTR_C1 = 6;
+    private static final int QR_TARGET_VACUO_INSTR_C2 = 7;
+    private static final int QR_TARGET_QUEBRA_BALANCA_C1 = 8;
+    private static final int QR_TARGET_QUEBRA_BALANCA_C2 = 9;
+    private static final int QR_TARGET_QUEBRA_MANOMETRO_C1 = 11;
+    private static final int QR_TARGET_QUEBRA_MANOMETRO_C2 = 12;
+    private static final int QR_TARGET_IRBR_PRE_TORQUE = 10;
+    private int qrTarget = QR_TARGET_NONE;
+    private ActivityResultLauncher<Intent> qrScanLauncher;
+    // IRBR - Pré-montagem: Torquímetro
+    private LinearLayout layoutIrbrPreTorquimetro;
+    private EditText etIrbrPreTorqueNum, etIrbrPreTorqueDataCal, etIrbrPreTorqueData, etIrbrPreTorqueResp;
     private final List<String> listaFotos = new ArrayList<>();
     private Uri fotoTempUri;
 
@@ -104,6 +129,16 @@ public class ChecklistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checklist);
+
+        qrScanLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() != RESULT_OK || result.getData() == null) return;
+                    String raw = result.getData().getStringExtra(QrScanTestActivity.EXTRA_RESULT_RAW);
+                    if (raw == null) raw = "";
+                    aplicarQrPorTarget(qrTarget, raw);
+                }
+        );
 
         TextView tvTitulo = findViewById(R.id.tvChecklistTitulo);
         TextView tvResponsavelLabel = findViewById(R.id.tvResponsavelLabel);
@@ -162,6 +197,8 @@ public class ChecklistActivity extends AppCompatActivity {
         etEstDataCalibracaoC1 = findViewById(R.id.etEstDataCalibracaoC1);
         etEstDataCalibracaoC2 = findViewById(R.id.etEstDataCalibracaoC2);
         Button btnSalvarEstanqueidade = findViewById(R.id.btnSalvarEstanqueidade);
+        Button btnEstQrC1 = findViewById(R.id.btnEstQrC1);
+        Button btnEstQrC2 = findViewById(R.id.btnEstQrC2);
         // Inicializa campos de vácuo e quebra de vácuo (UCABR)
         layoutVacuoQuebraUcabr = findViewById(R.id.layoutVacuoQuebraUcabr);
         etVacuoC1DataInicio = findViewById(R.id.etVacuoC1DataInicio);
@@ -198,6 +235,10 @@ public class ChecklistActivity extends AppCompatActivity {
         etQuebra2DataCalibracaoBalanca = findViewById(R.id.etQuebra2DataCalibracaoBalanca);
         etQuebra2NumManometro = findViewById(R.id.etQuebra2NumManometro);
         etQuebra2DataCalibracaoManometro = findViewById(R.id.etQuebra2DataCalibracaoManometro);
+        Button btnQuebraBalancaQr = findViewById(R.id.btnQuebraBalancaQr);
+        Button btnQuebra2BalancaQr = findViewById(R.id.btnQuebra2BalancaQr);
+        Button btnQuebraManometroQr = findViewById(R.id.btnQuebraManometroQr);
+        Button btnQuebra2ManometroQr = findViewById(R.id.btnQuebra2ManometroQr);
         Button btnSalvarVacuoQuebra = findViewById(R.id.btnSalvarVacuoQuebra);
         etVacuoC2DataInicio = findViewById(R.id.etVacuoC2DataInicio);
         etVacuoC2DataFim = findViewById(R.id.etVacuoC2DataFim);
@@ -208,6 +249,30 @@ public class ChecklistActivity extends AppCompatActivity {
         etVacuoNumBombaC2 = findViewById(R.id.etVacuoNumBombaC2);
         etVacuoNumVacuometroC2 = findViewById(R.id.etVacuoNumVacuometroC2);
         etVacuoDataCalibracaoVacuometroC2 = findViewById(R.id.etVacuoDataCalibracaoVacuometroC2);
+        Button btnVacuoInstrQrC1 = findViewById(R.id.btnVacuoInstrQrC1);
+        Button btnVacuoInstrQrC2 = findViewById(R.id.btnVacuoInstrQrC2);
+
+        // Inicializa campos de instrumentos (IRBR - Montagem elétrica)
+        layoutEletricaInstrumentos = findViewById(R.id.layoutEletricaInstrumentos);
+        etEletricaInstr1Num = findViewById(R.id.etEletricaInstr1Num);
+        etEletricaInstr1Data = findViewById(R.id.etEletricaInstr1Data);
+        etEletricaInstr2Num = findViewById(R.id.etEletricaInstr2Num);
+        etEletricaInstr2Data = findViewById(R.id.etEletricaInstr2Data);
+        etEletricaInstr3Num = findViewById(R.id.etEletricaInstr3Num);
+        etEletricaInstr3Data = findViewById(R.id.etEletricaInstr3Data);
+        Button btnSalvarEletricaInstrumentos = findViewById(R.id.btnSalvarEletricaInstrumentos);
+        Button btnEletricaInstr1Qr = findViewById(R.id.btnEletricaInstr1Qr);
+        Button btnEletricaInstr2Qr = findViewById(R.id.btnEletricaInstr2Qr);
+        Button btnEletricaInstr3Qr = findViewById(R.id.btnEletricaInstr3Qr);
+
+        // IRBR - Pré-montagem: Torquímetro
+        layoutIrbrPreTorquimetro = findViewById(R.id.layoutIrbrPreTorquimetro);
+        etIrbrPreTorqueNum = findViewById(R.id.etIrbrPreTorqueNum);
+        etIrbrPreTorqueDataCal = findViewById(R.id.etIrbrPreTorqueDataCal);
+        etIrbrPreTorqueData = findViewById(R.id.etIrbrPreTorqueData);
+        etIrbrPreTorqueResp = findViewById(R.id.etIrbrPreTorqueResp);
+        Button btnIrbrPreTorqueQr = findViewById(R.id.btnIrbrPreTorqueQr);
+        Button btnSalvarIrbrPreTorquimetro = findViewById(R.id.btnSalvarIrbrPreTorquimetro);
 
         checklistId = getIntent().getStringExtra("checklist_id");
         String checklistNome = getIntent().getStringExtra("checklist_nome");
@@ -308,13 +373,32 @@ public class ChecklistActivity extends AppCompatActivity {
             if (btnAdicionarItemTopo != null) btnAdicionarItemTopo.setVisibility(View.GONE);
         }
 
-        // Se for o checklist de Montagem frigorífica (UCABR ou IRBR), exibe seção de pressão das válvulas de alívio
+        // Se for o checklist de Montagem frigorífica (UCABR/IRBR/EDBRSE/CABR), exibe seção de pressão das válvulas de alívio
         if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
                 "checklist_irbr_montagem_frigorifica".equals(checklistId) ||
+                "checklist_edbrse_montagem_frigorifica".equals(checklistId) ||
                 "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
             if (layoutPressaoValvulasUcabr != null) {
                 layoutPressaoValvulasUcabr.setVisibility(View.VISIBLE);
                 carregarPressaoValvulasUcabr();
+
+                TextView tvTituloPressao = findViewById(R.id.tvPressaoValvulasTitulo);
+                if (tvTituloPressao != null) {
+                    tvTituloPressao.setText("Pressão válvulas de alívio");
+                }
+
+                // No EDBRSE/EUBRSE, o formulário pede apenas 1 valor por válvula (sem dia 2)
+                if ("checklist_edbrse_montagem_frigorifica".equals(checklistId)) {
+                    if (etPressaoAlivio1Dia2 != null) etPressaoAlivio1Dia2.setVisibility(View.GONE);
+                    if (etPressaoAlivio2Dia2 != null) etPressaoAlivio2Dia2.setVisibility(View.GONE);
+                    if (etPressaoAlivio1 != null) etPressaoAlivio1.setHint("Valor (kgf/cm²)");
+                    if (etPressaoAlivio2 != null) etPressaoAlivio2.setHint("Valor (kgf/cm²)");
+                } else {
+                    if (etPressaoAlivio1Dia2 != null) etPressaoAlivio1Dia2.setVisibility(View.VISIBLE);
+                    if (etPressaoAlivio2Dia2 != null) etPressaoAlivio2Dia2.setVisibility(View.VISIBLE);
+                    if (etPressaoAlivio1 != null) etPressaoAlivio1.setHint("Valor dia 1 (kgf/cm²)");
+                    if (etPressaoAlivio2 != null) etPressaoAlivio2.setHint("Valor dia 1 (kgf/cm²)");
+                }
             }
         } else if (layoutPressaoValvulasUcabr != null) {
             layoutPressaoValvulasUcabr.setVisibility(View.GONE);
@@ -330,6 +414,10 @@ public class ChecklistActivity extends AppCompatActivity {
                 layoutEstanqueidadeUcabr.setVisibility(View.VISIBLE);
                 carregarEstanqueidadeUcabr();
             }
+
+            // QR para instrumentos C1/C2 (preenche nº e data calibração)
+            if (btnEstQrC1 != null) btnEstQrC1.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_EST_C1));
+            if (btnEstQrC2 != null) btnEstQrC2.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_EST_C2));
         } else if (layoutEstanqueidadeUcabr != null) {
             layoutEstanqueidadeUcabr.setVisibility(View.GONE);
         }
@@ -343,8 +431,50 @@ public class ChecklistActivity extends AppCompatActivity {
                 layoutVacuoQuebraUcabr.setVisibility(View.VISIBLE);
                 carregarVacuoQuebraUcabr();
             }
+
+            if (btnVacuoInstrQrC1 != null) btnVacuoInstrQrC1.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_VACUO_INSTR_C1));
+            if (btnVacuoInstrQrC2 != null) btnVacuoInstrQrC2.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_VACUO_INSTR_C2));
+            if (btnQuebraBalancaQr != null) btnQuebraBalancaQr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_QUEBRA_BALANCA_C1));
+            if (btnQuebra2BalancaQr != null) btnQuebra2BalancaQr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_QUEBRA_BALANCA_C2));
+            if (btnQuebraManometroQr != null) btnQuebraManometroQr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_QUEBRA_MANOMETRO_C1));
+            if (btnQuebra2ManometroQr != null) btnQuebra2ManometroQr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_QUEBRA_MANOMETRO_C2));
         } else if (layoutVacuoQuebraUcabr != null) {
             layoutVacuoQuebraUcabr.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist de Montagem elétrica (IRBR/UCABR/EDBRSE), exibe seção de instrumentos no final
+        if ("checklist_irbr_montagem_eletrica".equals(checklistId)
+                || "checklist_ucabr_montagem_eletrica".equals(checklistId)
+                || "checklist_edbrse_montagem_eletrica".equals(checklistId)) {
+            if (layoutEletricaInstrumentos != null) {
+                layoutEletricaInstrumentos.setVisibility(View.VISIBLE);
+                carregarEletricaInstrumentos();
+            }
+            configurarDatePicker(etEletricaInstr1Data);
+            configurarDatePicker(etEletricaInstr2Data);
+            configurarDatePicker(etEletricaInstr3Data);
+
+            if (btnEletricaInstr1Qr != null) btnEletricaInstr1Qr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_ELETRICA_1));
+            if (btnEletricaInstr2Qr != null) btnEletricaInstr2Qr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_ELETRICA_2));
+            if (btnEletricaInstr3Qr != null) btnEletricaInstr3Qr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_ELETRICA_3));
+        } else if (layoutEletricaInstrumentos != null) {
+            layoutEletricaInstrumentos.setVisibility(View.GONE);
+        }
+
+        // Se for o checklist de Pré-montagem (IRBR/UCABR/EDBRSE/CABR), exibe bloco do torquímetro
+        if ("checklist_irbr_pre_montagem".equals(checklistId)
+                || "checklist_ucabr_pre_montagem".equals(checklistId)
+                || "checklist_edbrse_pre_montagem".equals(checklistId)
+                || "checklist_cabr_pre_montagem".equals(checklistId)) {
+            if (layoutIrbrPreTorquimetro != null) {
+                layoutIrbrPreTorquimetro.setVisibility(View.VISIBLE);
+                carregarIrbrPreTorquimetro();
+            }
+            configurarDatePicker(etIrbrPreTorqueDataCal);
+            configurarDatePicker(etIrbrPreTorqueData);
+            if (btnIrbrPreTorqueQr != null) btnIrbrPreTorqueQr.setOnClickListener(v -> iniciarLeituraQr(QR_TARGET_IRBR_PRE_TORQUE));
+        } else if (layoutIrbrPreTorquimetro != null) {
+            layoutIrbrPreTorquimetro.setVisibility(View.GONE);
         }
 
         // Configura navegação apenas quando viemos de um menu com lista (ex.: IRBR)
@@ -496,6 +626,14 @@ public class ChecklistActivity extends AppCompatActivity {
             });
         }
 
+        if (btnSalvarEletricaInstrumentos != null) {
+            btnSalvarEletricaInstrumentos.setOnClickListener(v -> salvarEletricaInstrumentos());
+        }
+
+        if (btnSalvarIrbrPreTorquimetro != null) {
+            btnSalvarIrbrPreTorquimetro.setOnClickListener(v -> salvarIrbrPreTorquimetro());
+        }
+
         // Botão de exportar modelo inteiro (visível apenas em alguns casos)
         String modelKey = getHeaderKeyForChecklist(checklistId);
         String modelName = null;
@@ -548,10 +686,12 @@ public class ChecklistActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
 
             List<String> idsRemovidos = carregarIdsRemovidos();
-            // Garantia: para os checklists de Montagem frigorífica (UCABR e IRBR),
+            // Garantia: para os checklists de Montagem frigorífica,
             // sempre mostrar todos os itens ignorando qualquer remoção antiga salva em SharedPreferences.
             if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
-                    "checklist_irbr_montagem_frigorifica".equals(checklistId)) {
+                    "checklist_irbr_montagem_frigorifica".equals(checklistId) ||
+                    "checklist_edbrse_montagem_frigorifica".equals(checklistId) ||
+                    "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
                 idsRemovidos.clear();
             }
 
@@ -983,6 +1123,230 @@ public class ChecklistActivity extends AppCompatActivity {
 
         editor.apply();
         Toast.makeText(this, "Dados de vácuo e quebra salvos", Toast.LENGTH_SHORT).show();
+    }
+
+    private void carregarEletricaInstrumentos() {
+        if (layoutEletricaInstrumentos == null) return;
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        if (etEletricaInstr1Num != null) etEletricaInstr1Num.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_num"), ""));
+        if (etEletricaInstr1Data != null) etEletricaInstr1Data.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_data"), ""));
+        if (etEletricaInstr2Num != null) etEletricaInstr2Num.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr2_num"), ""));
+        if (etEletricaInstr2Data != null) etEletricaInstr2Data.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr2_data"), ""));
+        if (etEletricaInstr3Num != null) etEletricaInstr3Num.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr3_num"), ""));
+        if (etEletricaInstr3Data != null) etEletricaInstr3Data.setText(prefs.getString(gerarChaveEletrica(this, checklistId, "instr3_data"), ""));
+    }
+
+    private void salvarEletricaInstrumentos() {
+        if (layoutEletricaInstrumentos == null) return;
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr1_num"), texto(etEletricaInstr1Num));
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr1_data"), texto(etEletricaInstr1Data));
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr2_num"), texto(etEletricaInstr2Num));
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr2_data"), texto(etEletricaInstr2Data));
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr3_num"), texto(etEletricaInstr3Num));
+        editor.putString(gerarChaveEletrica(this, checklistId, "instr3_data"), texto(etEletricaInstr3Data));
+        editor.apply();
+        Toast.makeText(this, "Instrumentos salvos", Toast.LENGTH_SHORT).show();
+    }
+
+    private static String texto(EditText et) {
+        return et != null && et.getText() != null ? et.getText().toString().trim() : "";
+    }
+
+    private void configurarDatePicker(EditText editText) {
+        if (editText == null) return;
+        editText.setOnClickListener(v -> abrirDatePicker(editText));
+    }
+
+    private void abrirDatePicker(EditText target) {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        int m = month + 1;
+                        String data = String.format("%02d/%02d/%04d", dayOfMonth, m, year);
+                        target.setText(data);
+                    }
+                },
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)
+        );
+        dialog.show();
+    }
+
+    private void iniciarLeituraQr(int target) {
+        qrTarget = target;
+        Intent intent = new Intent(this, QrScanTestActivity.class);
+        intent.putExtra(QrScanTestActivity.EXTRA_RETURN_RESULT, true);
+        qrScanLauncher.launch(intent);
+    }
+
+    private void aplicarQrPorTarget(int target, String raw) {
+        if (target == QR_TARGET_NONE) return;
+        String textoRaw = raw != null ? raw.trim() : "";
+        if (textoRaw.isEmpty()) {
+            Toast.makeText(this, "Nenhum texto lido no QR", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String num = "";
+        String dataCal = "";
+        try {
+            java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+            num = dados.getOrDefault("NUM", "");
+            dataCal = dados.getOrDefault("DATA_CAL", "");
+        } catch (Exception ignored) {
+        }
+
+        if (target == QR_TARGET_ELETRICA_1 || target == QR_TARGET_ELETRICA_2 || target == QR_TARGET_ELETRICA_3) {
+            EditText etNum;
+            EditText etData;
+            if (target == QR_TARGET_ELETRICA_1) {
+                etNum = etEletricaInstr1Num;
+                etData = etEletricaInstr1Data;
+            } else if (target == QR_TARGET_ELETRICA_2) {
+                etNum = etEletricaInstr2Num;
+                etData = etEletricaInstr2Data;
+            } else {
+                etNum = etEletricaInstr3Num;
+                etData = etEletricaInstr3Data;
+            }
+
+            if (etNum != null) etNum.setText(!num.isEmpty() ? num : textoRaw);
+            if (etData != null && !dataCal.isEmpty()) etData.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_EST_C1) {
+            if (etEstNumManometroC1 != null) etEstNumManometroC1.setText(!num.isEmpty() ? num : textoRaw);
+            if (etEstDataCalibracaoC1 != null && !dataCal.isEmpty()) etEstDataCalibracaoC1.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_EST_C2) {
+            if (etEstNumManometroC2 != null) etEstNumManometroC2.setText(!num.isEmpty() ? num : textoRaw);
+            if (etEstDataCalibracaoC2 != null && !dataCal.isEmpty()) etEstDataCalibracaoC2.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_VACUO_INSTR_C1) {
+            String bomba = "";
+            String vacuometro = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                bomba = dados.getOrDefault("BOMBA", "");
+                vacuometro = dados.getOrDefault("VACUOMETRO", "");
+            } catch (Exception ignored) {
+            }
+            if (etVacuoNumBomba != null && !bomba.isEmpty()) etVacuoNumBomba.setText(bomba);
+            if (etVacuoNumVacuometro != null && !vacuometro.isEmpty()) etVacuoNumVacuometro.setText(vacuometro);
+            if (etVacuoDataCalibracaoVacuometro != null && !dataCal.isEmpty()) etVacuoDataCalibracaoVacuometro.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_VACUO_INSTR_C2) {
+            String bomba = "";
+            String vacuometro = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                bomba = dados.getOrDefault("BOMBA", "");
+                vacuometro = dados.getOrDefault("VACUOMETRO", "");
+            } catch (Exception ignored) {
+            }
+            if (etVacuoNumBombaC2 != null && !bomba.isEmpty()) etVacuoNumBombaC2.setText(bomba);
+            if (etVacuoNumVacuometroC2 != null && !vacuometro.isEmpty()) etVacuoNumVacuometroC2.setText(vacuometro);
+            if (etVacuoDataCalibracaoVacuometroC2 != null && !dataCal.isEmpty()) etVacuoDataCalibracaoVacuometroC2.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_QUEBRA_BALANCA_C1) {
+            String balanca = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                balanca = dados.getOrDefault("BALANCA", "");
+                if (balanca.isEmpty()) balanca = dados.getOrDefault("NUM", "");
+            } catch (Exception ignored) {
+            }
+            if (etQuebraNumBalanca != null) etQuebraNumBalanca.setText(!balanca.isEmpty() ? balanca : textoRaw);
+            if (etQuebraDataCalibracaoBalanca != null && !dataCal.isEmpty()) etQuebraDataCalibracaoBalanca.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_QUEBRA_BALANCA_C2) {
+            String balanca = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                balanca = dados.getOrDefault("BALANCA", "");
+                if (balanca.isEmpty()) balanca = dados.getOrDefault("NUM", "");
+            } catch (Exception ignored) {
+            }
+            if (etQuebra2NumBalanca != null) etQuebra2NumBalanca.setText(!balanca.isEmpty() ? balanca : textoRaw);
+            if (etQuebra2DataCalibracaoBalanca != null && !dataCal.isEmpty()) etQuebra2DataCalibracaoBalanca.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_QUEBRA_MANOMETRO_C1) {
+            String manometro = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                manometro = dados.getOrDefault("MANOMETRO", "");
+                if (manometro.isEmpty()) manometro = dados.getOrDefault("NUM", "");
+            } catch (Exception ignored) {
+            }
+            if (etQuebraNumManometro != null) etQuebraNumManometro.setText(!manometro.isEmpty() ? manometro : textoRaw);
+            if (etQuebraDataCalibracaoManometro != null && !dataCal.isEmpty()) etQuebraDataCalibracaoManometro.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_QUEBRA_MANOMETRO_C2) {
+            String manometro = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                manometro = dados.getOrDefault("MANOMETRO", "");
+                if (manometro.isEmpty()) manometro = dados.getOrDefault("NUM", "");
+            } catch (Exception ignored) {
+            }
+            if (etQuebra2NumManometro != null) etQuebra2NumManometro.setText(!manometro.isEmpty() ? manometro : textoRaw);
+            if (etQuebra2DataCalibracaoManometro != null && !dataCal.isEmpty()) etQuebra2DataCalibracaoManometro.setText(dataCal);
+            return;
+        }
+
+        if (target == QR_TARGET_IRBR_PRE_TORQUE) {
+            String torque = "";
+            try {
+                java.util.Map<String, String> dados = QrUtils.parseQr(textoRaw);
+                torque = dados.getOrDefault("TORQUIMETRO", "");
+            } catch (Exception ignored) {
+            }
+            if (torque.isEmpty()) torque = !num.isEmpty() ? num : textoRaw;
+            if (etIrbrPreTorqueNum != null) etIrbrPreTorqueNum.setText(torque);
+            if (etIrbrPreTorqueDataCal != null && !dataCal.isEmpty()) etIrbrPreTorqueDataCal.setText(dataCal);
+        }
+    }
+
+    private void carregarIrbrPreTorquimetro() {
+        if (layoutIrbrPreTorquimetro == null) return;
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        if (etIrbrPreTorqueNum != null) etIrbrPreTorqueNum.setText(prefs.getString(gerarChavePre(this, checklistId, "torque_num"), ""));
+        if (etIrbrPreTorqueDataCal != null) etIrbrPreTorqueDataCal.setText(prefs.getString(gerarChavePre(this, checklistId, "torque_data_cal"), ""));
+        if (etIrbrPreTorqueData != null) etIrbrPreTorqueData.setText(prefs.getString(gerarChavePre(this, checklistId, "torque_data"), ""));
+        if (etIrbrPreTorqueResp != null) etIrbrPreTorqueResp.setText(prefs.getString(gerarChavePre(this, checklistId, "torque_resp"), ""));
+    }
+
+    private void salvarIrbrPreTorquimetro() {
+        if (layoutIrbrPreTorquimetro == null) return;
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(gerarChavePre(this, checklistId, "torque_num"), texto(etIrbrPreTorqueNum));
+        editor.putString(gerarChavePre(this, checklistId, "torque_data_cal"), texto(etIrbrPreTorqueDataCal));
+        editor.putString(gerarChavePre(this, checklistId, "torque_data"), texto(etIrbrPreTorqueData));
+        editor.putString(gerarChavePre(this, checklistId, "torque_resp"), texto(etIrbrPreTorqueResp));
+        editor.apply();
+        Toast.makeText(this, "Torquímetro salvo", Toast.LENGTH_SHORT).show();
     }
 
     private void carregarFotos() {
@@ -1437,6 +1801,92 @@ public class ChecklistActivity extends AppCompatActivity {
                 }
             }
 
+            // Seção extra: torquímetro (Pré-montagem - IRBR/UCABR/EDBRSE/CABR)
+            if ("checklist_irbr_pre_montagem".equals(checklistId)
+                    || "checklist_ucabr_pre_montagem".equals(checklistId)
+                    || "checklist_edbrse_pre_montagem".equals(checklistId)
+                    || "checklist_cabr_pre_montagem".equals(checklistId)) {
+                String torqueNum = prefs.getString(gerarChavePre(this, checklistId, "torque_num"), "");
+                String torqueDataCal = prefs.getString(gerarChavePre(this, checklistId, "torque_data_cal"), "");
+                String torqueData = prefs.getString(gerarChavePre(this, checklistId, "torque_data"), "");
+                String torqueResp = prefs.getString(gerarChavePre(this, checklistId, "torque_resp"), "");
+
+                y += lineHeight;
+                if (y > 800) {
+                    document.finishPage(page);
+                    pageInfo = new PdfDocument.PageInfo.Builder(595, 842, document.getPages().size() + 1).create();
+                    page = document.startPage(pageInfo);
+                    canvas = page.getCanvas();
+                    y = 50;
+                }
+
+                canvas.drawText("Torquímetro:", x, y, titlePaint); y += lineHeight;
+                canvas.drawText("Nº instr.: " + torqueNum, x, y, textPaint); y += lineHeight;
+                canvas.drawText("Data da calibração: " + torqueDataCal, x, y, textPaint); y += lineHeight;
+                canvas.drawText("Data: " + torqueData, x, y, textPaint); y += lineHeight;
+                canvas.drawText("Responsável: " + torqueResp, x, y, textPaint); y += lineHeight;
+            }
+
+            // Seção extra: pressão válvulas de alívio (Montagem frigorífica)
+            if ("checklist_ucabr_montagem_frigorifica".equals(checklistId)
+                    || "checklist_irbr_montagem_frigorifica".equals(checklistId)
+                    || "checklist_edbrse_montagem_frigorifica".equals(checklistId)
+                    || "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
+
+                String p1Dia1 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia1"), "");
+                String p1Dia2 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio1_dia2"), "");
+                String p2Dia1 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia1"), "");
+                String p2Dia2 = prefs.getString(gerarChavePressaoValvula(this, checklistId, "alivio2_dia2"), "");
+
+                y += lineHeight;
+                if (y > 800) {
+                    document.finishPage(page);
+                    pageInfo = new PdfDocument.PageInfo.Builder(595, 842, document.getPages().size() + 1).create();
+                    page = document.startPage(pageInfo);
+                    canvas = page.getCanvas();
+                    y = 50;
+                }
+
+                canvas.drawText("Pressão válvulas de alívio:", x, y, titlePaint); y += lineHeight;
+                if ("checklist_edbrse_montagem_frigorifica".equals(checklistId)) {
+                    canvas.drawText("Válvula alívio 1 (kgf/cm²): " + p1Dia1, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Válvula alívio 2 (kgf/cm²): " + p2Dia1, x, y, textPaint); y += lineHeight;
+                } else {
+                    canvas.drawText("Válvula alívio 1 - dia 1/2 (kgf/cm²): " + p1Dia1 + " / " + p1Dia2, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Válvula alívio 2 - dia 1/2 (kgf/cm²): " + p2Dia1 + " / " + p2Dia2, x, y, textPaint); y += lineHeight;
+                }
+            }
+
+            // Seção extra: instrumentos (Montagem elétrica - IRBR/UCABR)
+            if ("checklist_irbr_montagem_eletrica".equals(checklistId)
+                    || "checklist_ucabr_montagem_eletrica".equals(checklistId)
+                    || "checklist_edbrse_montagem_eletrica".equals(checklistId)) {
+                String instr1Num = prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_num"), "");
+                String instr1Data = prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_data"), "");
+                String instr2Num = prefs.getString(gerarChaveEletrica(this, checklistId, "instr2_num"), "");
+                String instr2Data = prefs.getString(gerarChaveEletrica(this, checklistId, "instr2_data"), "");
+                String instr3Num = prefs.getString(gerarChaveEletrica(this, checklistId, "instr3_num"), "");
+                String instr3Data = prefs.getString(gerarChaveEletrica(this, checklistId, "instr3_data"), "");
+
+                y += lineHeight;
+                if (y > 800) {
+                    document.finishPage(page);
+                    pageInfo = new PdfDocument.PageInfo.Builder(595, 842, document.getPages().size() + 1).create();
+                    page = document.startPage(pageInfo);
+                    canvas = page.getCanvas();
+                    y = 50;
+                }
+
+                canvas.drawText("Instrumentos:", x, y, titlePaint);
+                y += lineHeight;
+                canvas.drawText("Nº Instr. Medição 1: " + instr1Num + "    Data calibração: " + instr1Data, x, y, textPaint);
+                y += lineHeight;
+                canvas.drawText("Nº Instr. Medição 2: " + instr2Num + "    Data calibração: " + instr2Data, x, y, textPaint);
+                y += lineHeight;
+                canvas.drawText("Nº Instr. Medição 3: " + instr3Num + "    Data calibração: " + instr3Data, x, y, textPaint);
+                y += lineHeight;
+            }
+
             y += lineHeight;
             canvas.drawText("Observação geral:", x, y, titlePaint); y += lineHeight;
 
@@ -1598,6 +2048,16 @@ public class ChecklistActivity extends AppCompatActivity {
     // Chaves específicas para vácuo e quebra do vácuo (UCABR), por equipamento
     public static String gerarChaveVacuo(android.content.Context context, String checklistId, String campo) {
         return getEquipPrefix(context, checklistId) + "vacuo_" + campo;
+    }
+
+    // Chaves específicas para instrumentos (Montagem elétrica - IRBR), por equipamento
+    public static String gerarChaveEletrica(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "eletrica_" + campo;
+    }
+
+    // Chaves específicas (IRBR - Pré-montagem), por equipamento
+    public static String gerarChavePre(android.content.Context context, String checklistId, String campo) {
+        return getEquipPrefix(context, checklistId) + "pre_" + campo;
     }
 }
 

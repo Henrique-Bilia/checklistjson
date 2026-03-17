@@ -10,7 +10,7 @@
         },
         {
           "id": "cabr_pre_2",
-          "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
+          "titulo": "O pallet está em boas condições de uso (isento de mofo, todas as madeiras estão firmes e sem nenhum dano estrutural aparente)"
         },
         {
           "id": "cabr_pre_3",
@@ -22,6 +22,14 @@
         },
         {
           "id": "cabr_pre_5",
+          "titulo": "Após montagem frigorífica, os ventilador(es) todos os parafusos travados com adesivo trava rosca e torque conforme desenho"
+        },
+        {
+          "id": "cabr_pre_6",
+          "titulo": "Após pré montagem dos ventilador(es), todos os elementos de fixação foram aplicados lacre químico"
+        },
+        {
+          "id": "cabr_pre_7",
           "titulo": "Todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
         }
       ]

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -61,6 +63,17 @@
             android:name=".ChecklistActivity"
             android:exported="false"
             android:theme="@style/Theme.Checklistjson" />
+
+        <activity
+            android:name=".QrParseTestActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Checklistjson" />
+
+        <activity
+            android:name=".QrScanTestActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Checklistjson" />
+
 
         <activity
             android:name=".MainActivity"

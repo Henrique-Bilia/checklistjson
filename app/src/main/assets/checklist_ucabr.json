@@ -6,31 +6,39 @@
       "itens": [
         {
           "id": "ucabr_pre_1",
-          "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
-        },
-        {
-          "id": "ucabr_pre_2",
           "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"
         },
         {
+          "id": "ucabr_pre_2",
+          "titulo": "O pallet está em boas condições de uso (isento de mofo, todas as madeiras estão firmes e sem nenhum dano estrutural aparente)"
+        },
+        {
           "id": "ucabr_pre_3",
-          "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"
+          "titulo": "Todas as peças foram fixadas com todos os rebites."
         },
         {
           "id": "ucabr_pre_4",
-          "titulo": "Quando o projeto solicitar compressor, travar todos os parafusos ou porcas com 11Nm ±1Nm"
+          "titulo": "Para trocadores de calor que foram enviados para tratamento superficial e aqueles que não vieram com pressão do fornecedor, foram realizados os testes de vazamento"
         },
         {
           "id": "ucabr_pre_5",
-          "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"
+          "titulo": "Quando no projeto for solicitado compressor, todos os parafusos ou porcas foram travados conforme desenho"
         },
         {
           "id": "ucabr_pre_6",
-          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
+          "titulo": "Quando no projeto for solicitado compressor, todos elementos de fixação foram aplicados lacre químico"
         },
         {
           "id": "ucabr_pre_7",
-          "titulo": "Verificar se todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
+          "titulo": "Após montagem frigorífica, os ventilador(es) todos os parafusos travados com adesivo trava rosca e torque conforme desenho"
+        },
+        {
+          "id": "ucabr_pre_8",
+          "titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"
+        },
+        {
+          "id": "ucabr_pre_9",
+          "titulo": "Todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
         }
       ]
     },

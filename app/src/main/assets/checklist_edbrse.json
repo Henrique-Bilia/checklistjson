@@ -31,6 +31,14 @@
         {
           "id": "ed_pre_7",
           "titulo": "Verificar se todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
+        },
+        {
+          "id": "ed_pre_8",
+          "titulo": "Quando no projeto for solicitado compressor, todos elementos de fixação foram aplicados lacre químico"
+        },
+        {
+          "id": "ed_pre_9",
+          "titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"
         }
       ]
     },
@@ -40,79 +48,131 @@
       "itens": [
         {
           "id": "ed_frig_1",
-          "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia"
+          "titulo": "O projeto frigorífico na pasta da obra e sanar as dúvidas com a Engenharia."
         },
         {
           "id": "ed_frig_2",
-          "titulo": "Verificar corte da tubulação conforme medida solicitada"
+          "titulo": "Componentes conforme a lista."
         },
         {
           "id": "ed_frig_3",
-          "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto"
+          "titulo": "Os materiais sejam em boas condições."
         },
         {
           "id": "ed_frig_4",
-          "titulo": "Verificar que foi retirada toda a rebarba do tubo"
+          "titulo": "Os materiais de substituição, se precisar, sejam em boas condições."
         },
         {
           "id": "ed_frig_5",
-          "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa"
+          "titulo": "O corte da tubulação e que a tubulação seja cortada conforme a medida solicitada."
         },
         {
           "id": "ed_frig_6",
-          "titulo": "Conferir componentes conforme lista do projeto"
+          "titulo": "A dobra está sendo executada de acordo com o desenho."
         },
         {
           "id": "ed_frig_7",
-          "titulo": "Verificar se os materiais estão em boas condições"
+          "titulo": "Verificar que foi retirada toda a rebarba do tubo."
         },
         {
           "id": "ed_frig_8",
-          "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições"
+          "titulo": "A tubulação, especialmente a área de brasagem, deve estar limpa."
         },
         {
           "id": "ed_frig_9",
-          "titulo": "Verificar regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos"
+          "titulo": "Verificar que o trocador não seja obstruído."
         },
         {
           "id": "ed_frig_10",
-          "titulo": "Inspeção visual das válvulas instaladas na tubulação perto do compressor"
+          "titulo": "A regulagem dos gases para brasagem e que seja utilizado nitrogênio na parte interna dos tubos."
         },
         {
           "id": "ed_frig_11",
-          "titulo": "Verificar todas as soldas executadas no compressor"
+          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação perto do compressor."
         },
         {
           "id": "ed_frig_12",
-          "titulo": "Inspeção visual das válvulas instaladas na tubulação"
+          "titulo": "Todas as soldas executadas no compressor."
         },
         {
           "id": "ed_frig_13",
-          "titulo": "Verificar todas as soldas executadas na tubulação"
+          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação."
         },
         {
           "id": "ed_frig_14",
-          "titulo": "Inspeção visual das válvulas instaladas no equipamento"
+          "titulo": "Todas as soldas executadas na tubulação."
         },
         {
           "id": "ed_frig_15",
-          "titulo": "Verificar todas as soldas executadas no equipamento"
+          "titulo": "Sentido da válvula solenoide 1"
         },
         {
           "id": "ed_frig_16",
-          "titulo": "Verificar execução da montagem frigorífica/brasagem conforme projeto"
+          "titulo": "Sentido da válvula solenoide 2"
         },
         {
           "id": "ed_frig_17",
-          "titulo": "Verificar se a tubulação está limpa"
+          "titulo": "Sentido válvula expansão eletrônica/termostática 1 (fluido)"
         },
         {
           "id": "ed_frig_18",
-          "titulo": "Verificar sentido das válvulas solenoides, válvulas de retenção, filtros secadores e válvula digital"
+          "titulo": "Sentido válvula expansão eletrônica/termostática 2 (fluido)"
         },
         {
           "id": "ed_frig_19",
-          "titulo": "Verificar separador de óleo e presença de óleo no separador"
+          "titulo": "Sentido do filtro secador 1"
+        },
+        {
+          "id": "ed_frig_20",
+          "titulo": "Sentido do filtro secador 2"
+        },
+        {
+          "id": "ed_frig_21",
+          "titulo": "A válvula Digital"
+        },
+        {
+          "id": "ed_frig_22",
+          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) no equipamento"
+        },
+        {
+          "id": "ed_frig_23",
+          "titulo": "Todas as solda executada no equipamento"
+        },
+        {
+          "id": "ed_frig_24",
+          "titulo": "A execução da montagem frigorífica/brasagem conforme projeto frigorífico"
+        },
+        {
+          "id": "ed_frig_25",
+          "titulo": "A tubulação seja limpa"
+        },
+        {
+          "id": "ed_frig_26",
+          "titulo": "Inspeção a tubulação seja fechada com film stretch"
+        },
+        {
+          "id": "ed_frig_27",
+          "titulo": "Separador de óleo"
+        },
+        {
+          "id": "ed_frig_28",
+          "titulo": "Óleo no separador"
+        },
+        {
+          "id": "ed_frig_29",
+          "titulo": "O visor de óleo"
+        },
+        {
+          "id": "ed_frig_30",
+          "titulo": "Pressão válvula alívio 1:"
+        },
+        {
+          "id": "ed_frig_31",
+          "titulo": "Pressão válvula alívio 2:"
+        },
+        {
+          "id": "ed_frig_32",
+          "titulo": "Inspeção visual final"
         }
       ]
     },
@@ -172,139 +232,155 @@
       "itens": [
         {
           "id": "ed_ele_1",
-          "titulo": "Verificar resistência Carter C1"
+          "titulo": "Instalação elétrica do compressor C1"
         },
         {
           "id": "ed_ele_2",
-          "titulo": "Verificar resistência Carter C2"
+          "titulo": "Instalação elétrica do compressor C2"
         },
         {
           "id": "ed_ele_3",
-          "titulo": "Verificar válvula solenoide C1"
+          "titulo": "Válvula controle de capacidade"
         },
         {
           "id": "ed_ele_4",
-          "titulo": "Verificar válvula solenoide C2"
+          "titulo": "Resistência Carter C1"
         },
         {
           "id": "ed_ele_5",
-          "titulo": "Verificar instalação do driver do compressor"
+          "titulo": "Resistência Carter C2"
         },
         {
           "id": "ed_ele_6",
-          "titulo": "Verificar instalação elétrica do ventilador 1"
+          "titulo": "Válvula solenoide C1"
         },
         {
           "id": "ed_ele_7",
-          "titulo": "Verificar instalação elétrica do ventilador 2"
+          "titulo": "Válvula solenoide C2"
         },
         {
           "id": "ed_ele_8",
-          "titulo": "Verificar instalação elétrica do ventilador 3"
+          "titulo": "Instalação driver do compressor"
         },
         {
           "id": "ed_ele_9",
-          "titulo": "Verificar instalação elétrica do ventilador 4"
+          "titulo": "Instalação elétrica do ventilador 1"
         },
         {
           "id": "ed_ele_10",
-          "titulo": "Verificar double check ventilador 1"
+          "titulo": "Instalação elétrica do ventilador 2"
         },
         {
           "id": "ed_ele_11",
-          "titulo": "Verificar double check ventilador 2"
+          "titulo": "Instalação elétrica do ventilador 3"
         },
         {
           "id": "ed_ele_12",
-          "titulo": "Verificar double check ventilador 3"
+          "titulo": "Instalação elétrica do ventilador 4"
         },
         {
           "id": "ed_ele_13",
-          "titulo": "Verificar double check ventilador 4"
+          "titulo": "Instalação driver do ventilador"
         },
         {
           "id": "ed_ele_14",
-          "titulo": "Verificar ventiladores e cabos vedados"
+          "titulo": "Double check ventilador 1"
         },
         {
           "id": "ed_ele_15",
-          "titulo": "Verificar Reaquecimento 1"
+          "titulo": "Double check ventilador 2"
         },
         {
           "id": "ed_ele_16",
-          "titulo": "Verificar Reaquecimento 2"
+          "titulo": "Double check ventilador 3"
         },
         {
           "id": "ed_ele_17",
-          "titulo": "Verificar umidificador"
+          "titulo": "Double check ventilador 4"
         },
         {
           "id": "ed_ele_18",
-          "titulo": "Verificar damper"
+          "titulo": "Ventiladores e cabos vedados"
         },
         {
           "id": "ed_ele_19",
-          "titulo": "Verificar bomba"
+          "titulo": "Reaquecimento 1"
         },
         {
           "id": "ed_ele_20",
-          "titulo": "Verificar sensores"
+          "titulo": "Reaquecimento 2"
         },
         {
           "id": "ed_ele_21",
-          "titulo": "Verificar instalação EVD"
+          "titulo": "Umidificador"
         },
         {
           "id": "ed_ele_22",
-          "titulo": "Verificar cabo de comunicação"
+          "titulo": "Damper"
         },
         {
           "id": "ed_ele_23",
-          "titulo": "Verificar mangueira para fluxo de ar"
+          "titulo": "Bomba"
         },
         {
           "id": "ed_ele_24",
-          "titulo": "Verificar pressostato"
+          "titulo": "Sensores"
         },
         {
           "id": "ed_ele_25",
-          "titulo": "Verificar válvula de controle de condensação 1"
+          "titulo": "Instalação EVD"
         },
         {
           "id": "ed_ele_26",
-          "titulo": "Verificar válvula de controle de condensação 2"
+          "titulo": "Cabo de comunicação"
         },
         {
           "id": "ed_ele_27",
-          "titulo": "Verificar aterramento entre painel, estrutura e porta"
+          "titulo": "Mangueira para fluxo de ar"
         },
         {
           "id": "ed_ele_28",
-          "titulo": "Verificar instalação do IHM"
+          "titulo": "Pressostato"
         },
         {
           "id": "ed_ele_29",
-          "titulo": "Verificar passa fio / prensa cabo"
+          "titulo": "Fios e emendas bem isolados"
         },
         {
           "id": "ed_ele_30",
-          "titulo": "Verificar canaletas e quadro elétrico"
+          "titulo": "Válvula de controle de cond. 1"
         },
         {
           "id": "ed_ele_31",
-          "titulo": "Verificar conexões elétricas apertadas"
+          "titulo": "Válvula de controle de cond. 2"
         },
         {
           "id": "ed_ele_32",
-          "titulo": "Verificar fios e emendas bem isolados"
+          "titulo": "Aterramento entre painel, estrutura e porta"
         },
         {
           "id": "ed_ele_33",
-          "titulo": "Verificar etiquetas de identificação"
+          "titulo": "Instalação do IHM"
         },
         {
           "id": "ed_ele_34",
-          "titulo": "Realizar a limpeza do equipamento"
+          "titulo": "Passa fio / prensa cabo"
+        },
+        {
+          "id": "ed_ele_35",
+          "titulo": "Canaletas e quadro elétrico"
+        },
+        {
+          "id": "ed_ele_36",
+          "titulo": "Conexões elétricas apertados"
+        },
+        {
+          "id": "ed_ele_37",
+          "titulo": "Etiquetas de identificação"
+        },
+        {
+          "id": "ed_ele_38",
+          "titulo": "Realizar a limpeza"
         }
       ]
     },

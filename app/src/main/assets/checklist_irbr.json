@@ -10,23 +10,31 @@
         },
         {
           "id": "irbr_pre_2",
-          "titulo": "O pallet está em boas condições (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
+          "titulo": "O pallet está em boas condições de uso (isento de mofo, todas as madeiras estão firmes e sem nenhum dano estrutural aparente)"
         },
         {
           "id": "irbr_pre_3",
-          "titulo": "Para trocadores de calor enviados para tratamento superficial, realizar testes de vazamento"
+          "titulo": "Todas as peças foram fixadas com todos os rebites."
         },
         {
           "id": "irbr_pre_4",
-          "titulo": "Quando houver compressor no projeto, apertar todos os parafusos ou porcas com 11Nm ±1Nm"
+          "titulo": "Para trocadores de calor que foram enviados para tratamento superficial e aqueles que não vieram com pressão do fornecedor, foram realizados os testes de vazamento"
         },
         {
           "id": "irbr_pre_5",
-          "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"
+          "titulo": "Quando no projeto for solicitado compressor, todos os parafusos ou porcas foram travados conforme desenho"
         },
         {
           "id": "irbr_pre_6",
-          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
+          "titulo": "Quando no projeto for solicitado compressor, todos elementos de fixação foram aplicados lacre químico"
+        },
+        {
+          "id": "irbr_pre_7",
+          "titulo": "Foram pré montados os suportes (do)s ventilador(es), com adesivo trava rosca e torque conforme desenho"
+        },
+        {
+          "id": "irbr_pre_8",
+          "titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"
         }
       ]
     },
@@ -146,6 +154,38 @@
           "id": "irbr_frig_28",
           "titulo": "Pressão válvula alívio 2 (registrar valor em kgf/cm² e verificar conformidade com o projeto)"
         }
+      ]
+    },
+    {
+      "id": "checklist_irbr_montagem_eletrica",
+      "nome": "Checklist IRBR - Montagem elétrica",
+      "itens": [
+        { "id": "irbr_ele_1", "titulo": "Instalação elétrica do compressor C1" },
+        { "id": "irbr_ele_2", "titulo": "Instalação elétrica do compressor C2" },
+        { "id": "irbr_ele_3", "titulo": "Resistência Carter C1" },
+        { "id": "irbr_ele_4", "titulo": "Resistência Carter C2" },
+        { "id": "irbr_ele_5", "titulo": "Válvula solenoide C1" },
+        { "id": "irbr_ele_6", "titulo": "Válvula solenoide C2" },
+        { "id": "irbr_ele_7", "titulo": "Válvula controle de capacidade" },
+        { "id": "irbr_ele_8", "titulo": "Instalação elétrica do ventilador 1" },
+        { "id": "irbr_ele_9", "titulo": "Instalação elétrica do ventilador 2" },
+        { "id": "irbr_ele_10", "titulo": "Instalação elétrica do ventilador 3" },
+        { "id": "irbr_ele_11", "titulo": "Instalação elétrica do ventilador 4" },
+        { "id": "irbr_ele_12", "titulo": "Instalação elétrica do ventilador 5" },
+        { "id": "irbr_ele_13", "titulo": "Instalação driver do ventilador" },
+        { "id": "irbr_ele_14", "titulo": "Umidificador" },
+        { "id": "irbr_ele_15", "titulo": "Reaquecimento 1" },
+        { "id": "irbr_ele_16", "titulo": "Reaquecimento 2" },
+        { "id": "irbr_ele_17", "titulo": "Sensores" },
+        { "id": "irbr_ele_18", "titulo": "Fios e emendas bem isolados" },
+        { "id": "irbr_ele_19", "titulo": "IHM e opções na porta" },
+        { "id": "irbr_ele_20", "titulo": "Cabo de comunicação" },
+        { "id": "irbr_ele_21", "titulo": "Passa fio / prensa cabo" },
+        { "id": "irbr_ele_22", "titulo": "Quadro elétrico" },
+        { "id": "irbr_ele_23", "titulo": "Aterramento" },
+        { "id": "irbr_ele_24", "titulo": "Conexões elétricas apertadas" },
+        { "id": "irbr_ele_25", "titulo": "Etiquetas de identificação" },
+        { "id": "irbr_ele_26", "titulo": "Realizar a limpeza" }
       ]
     },
     {

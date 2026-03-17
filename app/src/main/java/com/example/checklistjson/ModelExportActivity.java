@@ -349,6 +349,7 @@ public class ModelExportActivity extends AppCompatActivity {
                 // Dados especiais de pressão das válvulas de alívio (Montagem frigorífica) no PDF do modelo
                 if ("checklist_ucabr_montagem_frigorifica".equals(def.id)
                         || "checklist_irbr_montagem_frigorifica".equals(def.id)
+                        || "checklist_edbrse_montagem_frigorifica".equals(def.id)
                         || "checklist_cabr_montagem_frigorifica".equals(def.id)) {
 
                     if (y > 760) {
@@ -373,13 +374,85 @@ public class ModelExportActivity extends AppCompatActivity {
                     String p2Dia2 = prefs.getString(ChecklistActivity.gerarChavePressaoValvula(this, def.id, "alivio2_dia2"), "");
 
                     canvas.drawText("Válvula de alívio 1:", x, y, textPaint); y += lineHeight;
-                    canvas.drawText("  Valor dia 1 (kgf/cm²): " + p1Dia1, x, y, textPaint); y += lineHeight;
-                    canvas.drawText("  Valor dia 2 (kgf/cm²): " + p1Dia2, x, y, textPaint); y += lineHeight;
+                    if ("checklist_edbrse_montagem_frigorifica".equals(def.id)) {
+                        canvas.drawText("  Valor (kgf/cm²): " + p1Dia1, x, y, textPaint); y += lineHeight;
+                    } else {
+                        canvas.drawText("  Valor dia 1 (kgf/cm²): " + p1Dia1, x, y, textPaint); y += lineHeight;
+                        canvas.drawText("  Valor dia 2 (kgf/cm²): " + p1Dia2, x, y, textPaint); y += lineHeight;
+                    }
 
                     y += lineHeight;
                     canvas.drawText("Válvula de alívio 2:", x, y, textPaint); y += lineHeight;
-                    canvas.drawText("  Valor dia 1 (kgf/cm²): " + p2Dia1, x, y, textPaint); y += lineHeight;
-                    canvas.drawText("  Valor dia 2 (kgf/cm²): " + p2Dia2, x, y, textPaint); y += lineHeight;
+                    if ("checklist_edbrse_montagem_frigorifica".equals(def.id)) {
+                        canvas.drawText("  Valor (kgf/cm²): " + p2Dia1, x, y, textPaint); y += lineHeight;
+                    } else {
+                        canvas.drawText("  Valor dia 1 (kgf/cm²): " + p2Dia1, x, y, textPaint); y += lineHeight;
+                        canvas.drawText("  Valor dia 2 (kgf/cm²): " + p2Dia2, x, y, textPaint); y += lineHeight;
+                    }
+                }
+
+                // Campos extras (Pré-montagem - IRBR/UCABR/EDBRSE/CABR): Torquímetro (Nº, calibração, data e responsável)
+                if ("checklist_irbr_pre_montagem".equals(def.id)
+                        || "checklist_ucabr_pre_montagem".equals(def.id)
+                        || "checklist_edbrse_pre_montagem".equals(def.id)
+                        || "checklist_cabr_pre_montagem".equals(def.id)) {
+                    if (y > 760) {
+                        document.finishPage(page);
+                        pageNumber++;
+                        pageInfo = new PdfDocument.PageInfo.Builder(595, 842, pageNumber).create();
+                        page = document.startPage(pageInfo);
+                        canvas = page.getCanvas();
+                        x = 40;
+                        y = 50;
+                        canvas.drawText(modelName + " - " + def.nome + " (torquímetro)", x, y, titlePaint);
+                        y += lineHeight * 2;
+                    } else {
+                        y += lineHeight * 2;
+                        canvas.drawText("Torquímetro (Pré-montagem)", x, y, titlePaint);
+                        y += lineHeight;
+                    }
+
+                    String torqueNum = prefs.getString(ChecklistActivity.gerarChavePre(this, def.id, "torque_num"), "");
+                    String torqueDataCal = prefs.getString(ChecklistActivity.gerarChavePre(this, def.id, "torque_data_cal"), "");
+                    String torqueData = prefs.getString(ChecklistActivity.gerarChavePre(this, def.id, "torque_data"), "");
+                    String torqueResp = prefs.getString(ChecklistActivity.gerarChavePre(this, def.id, "torque_resp"), "");
+
+                    canvas.drawText("Nº instr. Torquímetro: " + torqueNum, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Data da calibração: " + torqueDataCal, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Data: " + torqueData, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Responsável: " + torqueResp, x, y, textPaint); y += lineHeight;
+                }
+
+                // Campos extras (IRBR/UCABR/EDBRSE - Montagem elétrica): instrumentos de medição e datas de calibração
+                if ("checklist_irbr_montagem_eletrica".equals(def.id)
+                        || "checklist_ucabr_montagem_eletrica".equals(def.id)
+                        || "checklist_edbrse_montagem_eletrica".equals(def.id)) {
+                    if (y > 760) {
+                        document.finishPage(page);
+                        pageNumber++;
+                        pageInfo = new PdfDocument.PageInfo.Builder(595, 842, pageNumber).create();
+                        page = document.startPage(pageInfo);
+                        canvas = page.getCanvas();
+                        x = 40;
+                        y = 50;
+                        canvas.drawText(modelName + " - " + def.nome + " (instrumentos)", x, y, titlePaint);
+                        y += lineHeight * 2;
+                    } else {
+                        y += lineHeight * 2;
+                        canvas.drawText("Instrumentos (Montagem elétrica)", x, y, titlePaint);
+                        y += lineHeight;
+                    }
+
+                    String i1Num = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr1_num"), "");
+                    String i1Data = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr1_data"), "");
+                    String i2Num = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr2_num"), "");
+                    String i2Data = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr2_data"), "");
+                    String i3Num = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr3_num"), "");
+                    String i3Data = prefs.getString(ChecklistActivity.gerarChaveEletrica(this, def.id, "instr3_data"), "");
+
+                    canvas.drawText("Nº Instr. medição 1 / Data calibração: " + i1Num + " / " + i1Data, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Nº Instr. medição 2 / Data calibração: " + i2Num + " / " + i2Data, x, y, textPaint); y += lineHeight;
+                    canvas.drawText("Nº Instr. medição 3 / Data calibração: " + i3Num + " / " + i3Data, x, y, textPaint); y += lineHeight;
                 }
 
                 // Dados especiais de Vácuo e quebra de vácuo (C1 e C2) no PDF do modelo
