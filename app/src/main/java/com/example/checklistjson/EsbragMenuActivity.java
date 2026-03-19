@@ -33,6 +33,7 @@ public class EsbragMenuActivity extends AppCompatActivity {
         TextView tvTitulo = findViewById(R.id.tvEsbragTitulo);
         listViewEsbrag = findViewById(R.id.listViewEsbrag);
         android.widget.Button btnExportarModeloEsbrag = findViewById(R.id.btnExportarModeloEsbrag);
+        android.widget.Button btnImportarOcrEsbrag = findViewById(R.id.btnImportarOcrEsbrag);
 
         tvTitulo.setText("Checklists ESBRAG/ESBRHAG");
 
@@ -65,6 +66,16 @@ public class EsbragMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(EsbragMenuActivity.this, ModelExportActivity.class);
             intent.putExtra("model_key", "esbrag");
             intent.putExtra("model_name", "Modelo ESBRAG/ESBRHAG");
+            startActivity(intent);
+        });
+
+        btnImportarOcrEsbrag.setOnClickListener(v -> {
+            Intent intent = new Intent(EsbragMenuActivity.this, ChecklistHeaderActivity.class);
+            intent.putExtra("header_key", "esbrag");
+            intent.putExtra("header_titulo", "Modelo ESBRAG/ESBRHAG");
+            intent.putExtra("destino_tipo", "esbrag_menu");
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_AUTO_IMPORT_OCR, true);
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_FINISH_AFTER_OCR, false);
             startActivity(intent);
         });
     }

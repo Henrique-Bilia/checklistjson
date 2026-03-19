@@ -25,6 +25,13 @@
             android:text="Selecionar máquina"
             android:layout_marginBottom="12dp" />
 
+        <Button
+            android:id="@+id/btnImportarOcr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Importar (OCR) - OP/TAG"
+            android:layout_marginBottom="12dp" />
+
         <!-- Linha 1: Elaborado / Data elaboração / Aprovado / Data aprovação -->
         <LinearLayout
             android:layout_width="match_parent"

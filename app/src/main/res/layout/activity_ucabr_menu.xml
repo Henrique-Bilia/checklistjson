@@ -20,6 +20,13 @@
         android:text="Exportar modelo UCABR em PDF"
         android:layout_marginBottom="8dp" />
 
+    <Button
+        android:id="@+id/btnImportarOcrUcabr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Importar (OCR) - OP/TAG"
+        android:layout_marginBottom="8dp" />
+
     <ListView
         android:id="@+id/listViewUcabr"
         android:layout_width="match_parent"

@@ -48,6 +48,10 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.3.4")
     implementation("androidx.camera:camera-view:1.3.4")
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
+    // OCR (importar OP/modelo/UN a partir de foto do Word)
+    implementation("com.google.mlkit:text-recognition:16.0.1")
+    // Scanner de documento (recorte + perspectiva + contraste) antes do OCR
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

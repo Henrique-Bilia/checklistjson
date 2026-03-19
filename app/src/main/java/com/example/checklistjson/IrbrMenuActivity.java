@@ -33,6 +33,7 @@ public class IrbrMenuActivity extends AppCompatActivity {
         TextView tvTitulo = findViewById(R.id.tvIrbrTitulo);
         listViewIrbr = findViewById(R.id.listViewIrbr);
         android.widget.Button btnExportarModeloIrbr = findViewById(R.id.btnExportarModeloIrbr);
+        android.widget.Button btnImportarOcrIrbr = findViewById(R.id.btnImportarOcrIrbr);
 
         tvTitulo.setText("Checklists IRBR");
 
@@ -65,6 +66,17 @@ public class IrbrMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(IrbrMenuActivity.this, ModelExportActivity.class);
             intent.putExtra("model_key", "irbr");
             intent.putExtra("model_name", "Modelo IRBR");
+            startActivity(intent);
+        });
+
+        btnImportarOcrIrbr.setOnClickListener(v -> {
+            Intent intent = new Intent(IrbrMenuActivity.this, ChecklistHeaderActivity.class);
+            intent.putExtra("header_key", "irbr");
+            intent.putExtra("header_titulo", "Modelo IRBR");
+            intent.putExtra("destino_tipo", "irbr_menu");
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_AUTO_IMPORT_OCR, true);
+            // Não finaliza após OCR: deixa o usuário ver/ajustar os dados do equipamento.
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_FINISH_AFTER_OCR, false);
             startActivity(intent);
         });
     }

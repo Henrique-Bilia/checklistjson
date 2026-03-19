@@ -3,17 +3,35 @@ package com.example.checklistjson;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.result.IntentSenderRequest;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanner;
+import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions;
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanning;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+
+import java.util.Locale;
+
 public class ChecklistHeaderActivity extends AppCompatActivity {
+
+    public static final String EXTRA_AUTO_IMPORT_OCR = "auto_import_ocr";
+    public static final String EXTRA_FINISH_AFTER_OCR = "finish_after_ocr";
 
     private String headerKey;   // chave atual (modelo ou modelo_op_tag)
     private String modelKey;    // apenas o modelo base (irbr, ucabr, ...)
@@ -34,6 +52,12 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
     private EditText etOp;
     private EditText etTag;
 
+    private ActivityResultLauncher<IntentSenderRequest> docScanLauncher;
+    private GmsDocumentScanner docScanner;
+    private TextRecognizer textRecognizer;
+    private boolean finishAfterOcr = false;
+    private String ultimoTextoOcr = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +77,27 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         etTag = findViewById(R.id.etTag);
         Button btnContinuar = findViewById(R.id.btnContinuarChecklist);
         Button btnSelecionarMaquina = findViewById(R.id.btnSelecionarMaquina);
+        Button btnImportarOcr = findViewById(R.id.btnImportarOcr);
+
+        textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        docScanner = GmsDocumentScanning.getClient(
+                new GmsDocumentScannerOptions.Builder()
+                        .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_FULL)
+                        .setGalleryImportAllowed(true)
+                        .setResultFormats(GmsDocumentScannerOptions.RESULT_FORMAT_JPEG)
+                        .build()
+        );
+        docScanLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartIntentSenderForResult(),
+                result -> {
+                    if (result.getResultCode() != RESULT_OK || result.getData() == null) return;
+                    com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult r =
+                            com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult.fromActivityResultIntent(result.getData());
+                    if (r == null || r.getPages() == null || r.getPages().isEmpty()) return;
+                    Uri pageUri = r.getPages().get(0).getImageUri();
+                    if (pageUri != null) importarPorOcr(pageUri);
+                }
+        );
 
         headerKey = getIntent().getStringExtra("header_key");
         modelKey = headerKey; // por compatibilidade, headerKey original é o modelo
@@ -60,6 +105,7 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         destinoTipo = getIntent().getStringExtra("destino_tipo");
         destinoChecklistId = getIntent().getStringExtra("destino_checklist_id");
         destinoChecklistNome = getIntent().getStringExtra("destino_checklist_nome");
+        finishAfterOcr = getIntent() != null && getIntent().getBooleanExtra(EXTRA_FINISH_AFTER_OCR, false);
 
         if (headerTitulo != null) {
             tvTitulo.setText("Dados do equipamento - " + headerTitulo);
@@ -73,6 +119,7 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         }
 
         carregarCabecalhoEquipamento();
+        preencherModeloSeVazio();
 
         // DatePickers para as datas de elaboração e aprovação
         etDataElaboracao.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +142,14 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
                 mostrarDialogSelecionarMaquina();
             }
         });
+
+        btnImportarOcr.setOnClickListener(v -> mostrarOpcoesImportacaoOcr());
+
+        boolean autoImport = getIntent() != null && getIntent().getBooleanExtra(EXTRA_AUTO_IMPORT_OCR, false);
+        if (autoImport) {
+            // precisa ser pós-layout/registro do launcher
+            btnImportarOcr.post(this::mostrarOpcoesImportacaoOcr);
+        }
 
         btnContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +178,211 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            if (textRecognizer != null) textRecognizer.close();
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void importarPorOcr(Uri uri) {
+        try {
+            InputImage image = InputImage.fromFilePath(this, uri);
+            textRecognizer.process(image)
+                    .addOnSuccessListener(result -> {
+                        ultimoTextoOcr = result == null ? "" : result.getText();
+                        aplicarImportacaoOcr(ultimoTextoOcr);
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Falha ao ler texto da imagem: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                    );
+        } catch (Exception e) {
+            Toast.makeText(this, "Não foi possível abrir a imagem: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void mostrarOpcoesImportacaoOcr() {
+        String[] opcoes = new String[]{"Scanner (câmera/galeria)"};
+        new AlertDialog.Builder(this)
+                .setTitle("Importar (OCR)")
+                .setItems(opcoes, (d, which) -> {
+                    iniciarScannerDocumento();
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void iniciarScannerDocumento() {
+        try {
+            docScanner.getStartScanIntent(this)
+                    .addOnSuccessListener(intentSender ->
+                            docScanLauncher.launch(new IntentSenderRequest.Builder(intentSender).build())
+                    )
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Falha ao iniciar scanner: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                    );
+        } catch (Exception e) {
+            Toast.makeText(this, "Falha ao iniciar scanner: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void aplicarImportacaoOcr(String textoOcr) {
+        WorkOrderOcrParser.Parsed parsed = WorkOrderOcrParser.parse(textoOcr);
+        if (parsed == null || parsed.op == null || parsed.op.trim().isEmpty()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Importar (OCR)")
+                    .setMessage("Não consegui identificar a OP na imagem.\n\nDica: verifique se aparece algo como \"OP: 5254\".")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return;
+        }
+
+        // Para o teste: usamos o modelo atual da tela. Se o OCR indicar outro modelo, apenas avisamos.
+        WorkOrderOcrParser.ModelUnits mu = null;
+        for (WorkOrderOcrParser.ModelUnits x : parsed.modelUnits) {
+            if (x != null && modelKey != null && modelKey.equals(x.modelKey)) {
+                mu = x;
+                break;
+            }
+        }
+        if (mu == null && !parsed.modelUnits.isEmpty()) {
+            mu = parsed.modelUnits.get(0);
+        }
+
+        int units = mu != null ? mu.units : 0;
+        if (units <= 0) units = 1;
+        String modeloDetectado = mu != null ? mu.modelKey : "";
+
+        String avisoModelo = "";
+        if (modeloDetectado != null && !modeloDetectado.isEmpty() && modelKey != null && !modelKey.equals(modeloDetectado)) {
+            avisoModelo = "\n\nAtenção: a imagem parece ser do modelo " + modeloDetectado.toUpperCase(Locale.ROOT)
+                    + ", mas você está no modelo " + modelKey.toUpperCase(Locale.ROOT) + ".";
+        }
+
+        String fluidoDetectado = parsed.fluido == null ? "" : parsed.fluido.trim();
+        String tensaoDetectada = parsed.tensao == null ? "" : parsed.tensao.trim();
+        String clienteObraDetectado = parsed.clienteObra == null ? "" : parsed.clienteObra.trim();
+
+        String msg = "Detectado:\n"
+                + "- OP: " + parsed.op + "\n"
+                + "- Quantidade (UN): " + units + "\n"
+                + "- Cliente/Obra: " + (clienteObraDetectado.isEmpty() ? "-" : clienteObraDetectado) + "\n"
+                + "- Fluído: " + (fluidoDetectado.isEmpty() ? "-" : fluidoDetectado) + "\n"
+                + "- Tensão: " + (tensaoDetectada.isEmpty() ? "-" : tensaoDetectada) + "\n"
+                + "- TAGs que serão criadas: 01 até " + String.format(Locale.ROOT, "%02d", units)
+                + avisoModelo
+                + "\n\nDeseja aplicar agora?";
+
+        int finalUnits = units;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle("Importar (OCR)")
+                .setMessage(msg)
+                .setNegativeButton("Cancelar", null)
+                .setPositiveButton("Aplicar", (d, w) -> {
+                    aplicarOpETags(parsed.op, finalUnits, clienteObraDetectado, fluidoDetectado, tensaoDetectada);
+                });
+
+        if (ultimoTextoOcr != null && !ultimoTextoOcr.trim().isEmpty()) {
+            builder.setNeutralButton("Ver texto OCR", (d, w) -> {
+                new AlertDialog.Builder(this)
+                        .setTitle("Texto OCR bruto")
+                        .setMessage(ultimoTextoOcr)
+                        .setPositiveButton("Fechar", null)
+                        .show();
+            });
+        }
+
+        builder.show();
+    }
+
+    private void aplicarOpETags(String op, int units, String clienteObra, String fluido, String tensao) {
+        if (op == null) op = "";
+        if (units <= 0) units = 1;
+
+        SharedPreferences prefs = getSharedPreferences("checklists_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // Corrige o bug: não dá para depender de prefs.getString() dentro do loop,
+        // porque o editor ainda não aplicou as alterações. Então montamos a lista em memória e gravamos 1 vez.
+        String listKey = getEquipListKey(modelKey);
+        String existing = prefs.getString(listKey, "");
+        java.util.LinkedHashSet<String> keys = new java.util.LinkedHashSet<>();
+        if (existing != null && !existing.trim().isEmpty()) {
+            for (String k : existing.split(";")) {
+                if (k != null && !k.trim().isEmpty()) keys.add(k.trim());
+            }
+        }
+
+        for (int i = 1; i <= units; i++) {
+            String tag = String.format(Locale.ROOT, "%02d", i);
+            String equipKey = gerarEquipKey(modelKey, op.trim(), tag);
+            keys.add(equipKey);
+
+            // garante OP/TAG persistidos para cada máquina criada
+            editor.putString(gerarChaveEquip(equipKey, "op"), op.trim());
+            editor.putString(gerarChaveEquip(equipKey, "tag"), tag);
+            // modelo também não deve precisar ser digitado novamente
+            editor.putString(gerarChaveEquip(equipKey, "modelo"), labelDoModeloAtual());
+            if (clienteObra != null && !clienteObra.trim().isEmpty()) {
+                editor.putString(gerarChaveEquip(equipKey, "cliente_obra"), clienteObra.trim());
+            }
+
+            if (fluido != null && !fluido.trim().isEmpty()) {
+                editor.putString(gerarChaveEquip(equipKey, "fluido"), fluido.trim());
+            }
+            if (tensao != null && !tensao.trim().isEmpty()) {
+                editor.putString(gerarChaveEquip(equipKey, "tensao"), tensao.trim());
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String k : keys) {
+            if (sb.length() > 0) sb.append(";");
+            sb.append(k);
+        }
+        editor.putString(listKey, sb.toString());
+
+        String equipKeyAtual = gerarEquipKey(modelKey, op.trim(), "01");
+        setCurrentEquipKey(editor, modelKey, equipKeyAtual);
+        editor.apply();
+
+        headerKey = equipKeyAtual;
+        carregarCabecalhoEquipamento();
+        preencherModeloSeVazio();
+        preencherClienteObraSeVazio();
+
+        Toast.makeText(this, "OP " + op.trim() + " importada. Selecionada TAG 01.", Toast.LENGTH_SHORT).show();
+        if (finishAfterOcr) {
+            finish();
+        }
+    }
+
+    private void preencherModeloSeVazio() {
+        if (etModelo == null) return;
+        String atual = etModelo.getText() == null ? "" : etModelo.getText().toString().trim();
+        if (!atual.isEmpty()) return;
+        etModelo.setText(labelDoModeloAtual());
+    }
+
+    private void preencherClienteObraSeVazio() {
+        if (etClienteObra == null) return;
+        String atual = etClienteObra.getText() == null ? "" : etClienteObra.getText().toString().trim();
+        if (!atual.isEmpty()) return;
+        // Se não houver valor salvo, não inventa aqui (o OCR já salva quando detectar).
+        // Mantemos esta função para manter simetria e permitir futuras regras.
+    }
+
+    private String labelDoModeloAtual() {
+        if ("irbr".equals(modelKey)) return "IRBR";
+        if ("ucabr".equals(modelKey)) return "UCABR";
+        if ("edbrse".equals(modelKey)) return "EDBRSE/EUBRSE";
+        if ("esbrag".equals(modelKey)) return "ESBRAG/ESBRHAG";
+        if ("cabr".equals(modelKey)) return "CABR";
+        return modelKey == null ? "" : modelKey.toUpperCase(Locale.ROOT);
     }
 
     private void carregarCabecalhoEquipamento() {

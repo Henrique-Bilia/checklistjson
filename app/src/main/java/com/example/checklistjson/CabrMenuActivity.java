@@ -33,6 +33,7 @@ public class CabrMenuActivity extends AppCompatActivity {
         TextView tvTitulo = findViewById(R.id.tvCabrTitulo);
         listViewCabr = findViewById(R.id.listViewCabr);
         android.widget.Button btnExportarModeloCabr = findViewById(R.id.btnExportarModeloCabr);
+        android.widget.Button btnImportarOcrCabr = findViewById(R.id.btnImportarOcrCabr);
 
         tvTitulo.setText("Checklists CABR");
 
@@ -65,6 +66,16 @@ public class CabrMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(CabrMenuActivity.this, ModelExportActivity.class);
             intent.putExtra("model_key", "cabr");
             intent.putExtra("model_name", "Modelo CABR");
+            startActivity(intent);
+        });
+
+        btnImportarOcrCabr.setOnClickListener(v -> {
+            Intent intent = new Intent(CabrMenuActivity.this, ChecklistHeaderActivity.class);
+            intent.putExtra("header_key", "cabr");
+            intent.putExtra("header_titulo", "Modelo CABR");
+            intent.putExtra("destino_tipo", "cabr_menu");
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_AUTO_IMPORT_OCR, true);
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_FINISH_AFTER_OCR, false);
             startActivity(intent);
         });
     }

@@ -33,6 +33,7 @@ public class UcabrMenuActivity extends AppCompatActivity {
         TextView tvTitulo = findViewById(R.id.tvUcabrTitulo);
         listViewUcabr = findViewById(R.id.listViewUcabr);
         android.widget.Button btnExportarModeloUcabr = findViewById(R.id.btnExportarModeloUcabr);
+        android.widget.Button btnImportarOcrUcabr = findViewById(R.id.btnImportarOcrUcabr);
 
         tvTitulo.setText("Checklists UCABR");
 
@@ -65,6 +66,16 @@ public class UcabrMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(UcabrMenuActivity.this, ModelExportActivity.class);
             intent.putExtra("model_key", "ucabr");
             intent.putExtra("model_name", "Modelo UCABR");
+            startActivity(intent);
+        });
+
+        btnImportarOcrUcabr.setOnClickListener(v -> {
+            Intent intent = new Intent(UcabrMenuActivity.this, ChecklistHeaderActivity.class);
+            intent.putExtra("header_key", "ucabr");
+            intent.putExtra("header_titulo", "Modelo UCABR");
+            intent.putExtra("destino_tipo", "ucabr_menu");
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_AUTO_IMPORT_OCR, true);
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_FINISH_AFTER_OCR, false);
             startActivity(intent);
         });
     }

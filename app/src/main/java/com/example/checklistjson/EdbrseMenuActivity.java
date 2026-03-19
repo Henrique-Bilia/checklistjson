@@ -33,6 +33,7 @@ public class EdbrseMenuActivity extends AppCompatActivity {
         TextView tvTitulo = findViewById(R.id.tvEdbrseTitulo);
         listViewEdbrse = findViewById(R.id.listViewEdbrse);
         android.widget.Button btnExportarModeloEdbrse = findViewById(R.id.btnExportarModeloEdbrse);
+        android.widget.Button btnImportarOcrEdbrse = findViewById(R.id.btnImportarOcrEdbrse);
 
         tvTitulo.setText("Checklists EDBRSE/EUBRSE");
 
@@ -65,6 +66,16 @@ public class EdbrseMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(EdbrseMenuActivity.this, ModelExportActivity.class);
             intent.putExtra("model_key", "edbrse");
             intent.putExtra("model_name", "Modelo EDBRSE/EUBRSE");
+            startActivity(intent);
+        });
+
+        btnImportarOcrEdbrse.setOnClickListener(v -> {
+            Intent intent = new Intent(EdbrseMenuActivity.this, ChecklistHeaderActivity.class);
+            intent.putExtra("header_key", "edbrse");
+            intent.putExtra("header_titulo", "Modelo EDBRSE/EUBRSE");
+            intent.putExtra("destino_tipo", "edbrse_menu");
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_AUTO_IMPORT_OCR, true);
+            intent.putExtra(ChecklistHeaderActivity.EXTRA_FINISH_AFTER_OCR, false);
             startActivity(intent);
         });
     }
