@@ -232,7 +232,9 @@ public final class WorkOrderOcrParser {
         if (prefix.startsWith("CABR")) return "cabr";
         if (prefix.startsWith("IRBR")) return "irbr";
         if (prefix.startsWith("UCABR")) return "ucabr";
-        if (prefix.startsWith("EDBRSE") || prefix.startsWith("EUBRSE")) return "edbrse";
+        // EDBRSE / EUBR* (ex.: EUBRO26SEAV01601)
+        if (prefix.startsWith("EDBR") || prefix.startsWith("EUBR")) return "edbrse";
+        // ESBRAG / ESBRHAG
         if (prefix.startsWith("ESBR")) return "esbrag";
         return null;
     }
