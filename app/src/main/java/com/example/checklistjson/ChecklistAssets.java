@@ -19,8 +19,16 @@ public class ChecklistAssets {
             return "checklist_edbrse.json";
         } else if (checklistId.startsWith("checklist_esbrag_")) {
             return "checklist_esbrag.json";
+        } else if (checklistId.startsWith("checklist_esbrla_")) {
+            return "checklist_esbrla.json";
+        } else if (checklistId.startsWith("checklist_wall_")) {
+            return "checklist_wall.json";
         } else if (checklistId.startsWith("checklist_cabr_")) {
             return "checklist_cabr.json";
+        } else if (checklistId.startsWith("checklist_edbrag_")) {
+            return "checklist_edbrag.json";
+        } else if (checklistId.startsWith("checklist_dcbr_")) {
+            return "checklist_dcbr.json";
         } else {
             // fallback para o exemplo genérico
             return "checklist.json";
@@ -40,8 +48,16 @@ public class ChecklistAssets {
             return "checklist_edbrse.json";
         } else if ("esbrag".equals(modelKey)) {
             return "checklist_esbrag.json";
+        } else if ("esbrla".equals(modelKey)) {
+            return "checklist_esbrla.json";
+        } else if ("wall".equals(modelKey)) {
+            return "checklist_wall.json";
         } else if ("cabr".equals(modelKey)) {
             return "checklist_cabr.json";
+        } else if ("edbrag".equals(modelKey)) {
+            return "checklist_edbrag.json";
+        } else if ("dcbr".equals(modelKey)) {
+            return "checklist_dcbr.json";            
         } else if ("manutencao".equals(modelKey)) {
             return "checklist.json";
         } else {

@@ -1,5 +1,7 @@
 package com.example.checklistjson;
 
+import static android.content.Intent.getIntent;
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -301,7 +303,11 @@ public class ChecklistActivity extends AppCompatActivity {
                 && !"checklist_irbr_liberacao_final".equals(checklistId)
                 && !"checklist_edbrse_liberacao_final".equals(checklistId)
                 && !"checklist_esbrag_liberacao_final".equals(checklistId)
-                && !"checklist_cabr_liberacao_final".equals(checklistId)) {
+                && !"checklist_esbrla_liberacao_final".equals(checklistId)
+                && !"checklist_wall_liberacao_final_wubr_wdbr".equals(checklistId)
+                && !"checklist_edbrag_liberacao_final".equals(checklistId)
+                && !"checklist_cabr_liberacao_final".equals(checklistId)
+                && !"checklist_dcbr_liberacao_final".equals(checklistId)) {
             if (tvResponsavelLabel != null) tvResponsavelLabel.setVisibility(View.GONE);
             if (etResponsavel != null) etResponsavel.setVisibility(View.GONE);
             if (tvDataLabel != null) tvDataLabel.setVisibility(View.GONE);
@@ -317,6 +323,7 @@ public class ChecklistActivity extends AppCompatActivity {
         if ("checklist_ucabr_compressores".equals(checklistId) ||
                 "checklist_irbr_compressores".equals(checklistId) ||
                 "checklist_edbrse_compressores".equals(checklistId) ||
+                "checklist_wall_compressores_wubr_wdbr".equals(checklistId) ||
                 "checklist_cabr_compressores".equals(checklistId)) {
             if (layoutCompressoresUcabr != null) {
                 layoutCompressoresUcabr.setVisibility(View.VISIBLE);
@@ -342,6 +349,10 @@ public class ChecklistActivity extends AppCompatActivity {
                 "checklist_irbr_teste_estanqueidade".equals(checklistId) ||
                 "checklist_edbrse_teste_estanqueidade".equals(checklistId) ||
                 "checklist_esbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_esbrla_teste_hidrostatico".equals(checklistId) ||
+                "checklist_edbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_wall_teste_estanquiedade_wubr_wdbr".equals(checklistId) ||
+                "checklist_dcbr_teste_hidrostatico".equals(checklistId) ||
                 "checklist_cabr_teste_estanqueidade".equals(checklistId)) {
             TextView tvItChecklistLabel2 = findViewById(R.id.tvItChecklistLabel);
             TextView tvOpChecklistLabel2 = findViewById(R.id.tvOpChecklistLabel);
@@ -356,6 +367,10 @@ public class ChecklistActivity extends AppCompatActivity {
                 || "checklist_irbr_liberacao_final".equals(checklistId)
                 || "checklist_edbrse_liberacao_final".equals(checklistId)
                 || "checklist_esbrag_liberacao_final".equals(checklistId)
+                || "checklist_esbrla_liberacao_final".equals(checklistId)
+                || "checklist_wall_liberacao_final_wubr_wdbr".equals(checklistId)
+                || "checklist_edbrag_liberacao_final".equals(checklistId)
+                || "checklist_dcbr_liberacao_final".equals(checklistId)
                 || "checklist_cabr_liberacao_final".equals(checklistId)) {
             TextView tvItChecklistLabel3 = findViewById(R.id.tvItChecklistLabel);
             TextView tvOpChecklistLabel3 = findViewById(R.id.tvOpChecklistLabel);
@@ -377,6 +392,7 @@ public class ChecklistActivity extends AppCompatActivity {
         if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
                 "checklist_irbr_montagem_frigorifica".equals(checklistId) ||
                 "checklist_edbrse_montagem_frigorifica".equals(checklistId) ||
+                "checklist_wall_montagem_frigorifica_wubr_wdbr".equals(checklistId) ||
                 "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
             if (layoutPressaoValvulasUcabr != null) {
                 layoutPressaoValvulasUcabr.setVisibility(View.VISIBLE);
@@ -409,6 +425,10 @@ public class ChecklistActivity extends AppCompatActivity {
                 "checklist_irbr_teste_estanqueidade".equals(checklistId) ||
                 "checklist_edbrse_teste_estanqueidade".equals(checklistId) ||
                 "checklist_esbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_esbrla_teste_hidrostatico".equals(checklistId) ||
+                "checklist_edbrag_teste_hidrostatico".equals(checklistId) ||
+                "checklist_wall_teste_estanquiedade_wubr_wdbr".equals(checklistId) ||
+                "checklist_dcbr_teste_hidrostatico".equals(checklistId) ||
                 "checklist_cabr_teste_estanqueidade".equals(checklistId)) {
             if (layoutEstanqueidadeUcabr != null) {
                 layoutEstanqueidadeUcabr.setVisibility(View.VISIBLE);
@@ -426,6 +446,8 @@ public class ChecklistActivity extends AppCompatActivity {
         if ("checklist_ucabr_vacuo_quebra".equals(checklistId) ||
                 "checklist_irbr_vacuo_quebra".equals(checklistId) ||
                 "checklist_edbrse_vacuo_quebra".equals(checklistId) ||
+                "checklist_esbrla_vacuo_quebra".equals(checklistId) ||
+                "checklist_wall_vacuo_quebra_wubr_wdbr".equals(checklistId) ||
                 "checklist_cabr_vacuo_quebra".equals(checklistId)) {
             if (layoutVacuoQuebraUcabr != null) {
                 layoutVacuoQuebraUcabr.setVisibility(View.VISIBLE);
@@ -445,6 +467,9 @@ public class ChecklistActivity extends AppCompatActivity {
         // Se for o checklist de Montagem elétrica (IRBR/UCABR/EDBRSE), exibe seção de instrumentos no final
         if ("checklist_irbr_montagem_eletrica".equals(checklistId)
                 || "checklist_ucabr_montagem_eletrica".equals(checklistId)
+                || "checklist_wall_montagem_eletrica_wubr_wdbr".equals(checklistId)
+                || "checklist_edbrag_montagem_eletrica".equals(checklistId)
+                || "checklist_dcbr_montagem_eletrica".equals(checklistId)
                 || "checklist_edbrse_montagem_eletrica".equals(checklistId)) {
             if (layoutEletricaInstrumentos != null) {
                 layoutEletricaInstrumentos.setVisibility(View.VISIBLE);
@@ -465,6 +490,9 @@ public class ChecklistActivity extends AppCompatActivity {
         if ("checklist_irbr_pre_montagem".equals(checklistId)
                 || "checklist_ucabr_pre_montagem".equals(checklistId)
                 || "checklist_edbrse_pre_montagem".equals(checklistId)
+                || "checklist_wall_pre_montagem_wubr_wdbr".equals(checklistId)
+                || "checklist_edbrag_pre_montagem".equals(checklistId)
+                || "checklist_dcbr_pre_montagem".equals(checklistId)
                 || "checklist_cabr_pre_montagem".equals(checklistId)) {
             if (layoutIrbrPreTorquimetro != null) {
                 layoutIrbrPreTorquimetro.setVisibility(View.VISIBLE);
@@ -528,7 +556,11 @@ public class ChecklistActivity extends AppCompatActivity {
                 if ("checklist_ucabr_liberacao_final".equals(checklistId)
                         || "checklist_irbr_liberacao_final".equals(checklistId)
                         || "checklist_edbrse_liberacao_final".equals(checklistId)
-                        || "checklist_esbrag_liberacao_final".equals(checklistId)) return;
+                        || "checklist_esbrag_liberacao_final".equals(checklistId)
+                        || "checklist_wall_liberacao_final_wubr_wdbr".equals(checklistId)
+                        || "checklist_dcbr_liberacao_final".equals(checklistId)
+                        || "checklist_edbrag_liberacao_final".equals(checklistId)
+                        || "checklist_esbrla_liberacao_final".equals(checklistId)) return;
                 mostrarDialogAdicionarItem();
             }
         });
@@ -548,7 +580,11 @@ public class ChecklistActivity extends AppCompatActivity {
                 if ("checklist_ucabr_liberacao_final".equals(checklistId)
                         || "checklist_irbr_liberacao_final".equals(checklistId)
                         || "checklist_edbrse_liberacao_final".equals(checklistId)
-                        || "checklist_esbrag_liberacao_final".equals(checklistId)) return;
+                        || "checklist_esbrag_liberacao_final".equals(checklistId)
+                        || "checklist_wall_liberacao_final_wubr_wdbr".equals(checklistId)
+                        || "checklist_edbrag_liberacao_final".equals(checklistId)
+                        || "checklist_dcbr_liberacao_final".equals(checklistId)
+                        || "checklist_esbrla_liberacao_final".equals(checklistId)) return;
                 new AlertDialog.Builder(ChecklistActivity.this)
                         .setTitle("Restaurar itens padrão")
                         .setMessage("Isso vai restaurar todos os itens originais deste checklist e remover itens personalizados. Deseja continuar?")
@@ -645,8 +681,14 @@ public class ChecklistActivity extends AppCompatActivity {
             modelName = "Modelo EDBRSE/EUBRSE";
         } else if ("esbrag".equals(modelKey) && "checklist_esbrag_liberacao_final".equals(checklistId)) {
             modelName = "Modelo ESBRAG/ESBRHAG";
+        } else if ("esbrla".equals(modelKey) && "checklist_esbrla_liberacao_final".equals(checklistId)) {
+            modelName = "Modelo ESBR-ESBRH-ESLA";
         } else if ("cabr".equals(modelKey) && "checklist_cabr_liberacao_final".equals(checklistId)) {
             modelName = "Modelo CABR";
+        } else if ("edbrag".equals(modelKey) && "checklist_edbrag_liberacao_final".equals(checklistId)) {
+            modelName = "Modelo EDBRAG";
+        } else if ("dcbr".equals(modelKey) && "checklist_dcbr_liberacao_final".equals(checklistId)) {
+            modelName = "Modelo DCBR";    
         } else if ("manutencao".equals(modelKey) && "checklist_manutencao".equals(checklistId)) {
             modelName = "Modelo Manutenção (Exemplo)";
         }
@@ -678,6 +720,10 @@ public class ChecklistActivity extends AppCompatActivity {
                     || "checklist_irbr_liberacao_final".equals(checklistId)
                     || "checklist_edbrse_liberacao_final".equals(checklistId)
                     || "checklist_esbrag_liberacao_final".equals(checklistId)
+                    || "checklist_wall_liberacao_final_wubr_wdbr".equals(checklistId)
+                    || "checklist_esbrla_liberacao_final".equals(checklistId)
+                    || "checklist_edbrag_liberacao_final".equals(checklistId)
+                    || "checklist_dcbr_liberacao_final".equals(checklistId)
                     || "checklist_cabr_liberacao_final".equals(checklistId)) {
                 return;
             }
@@ -691,6 +737,7 @@ public class ChecklistActivity extends AppCompatActivity {
             if ("checklist_ucabr_montagem_frigorifica".equals(checklistId) ||
                     "checklist_irbr_montagem_frigorifica".equals(checklistId) ||
                     "checklist_edbrse_montagem_frigorifica".equals(checklistId) ||
+                    "checklist_wall_montagem_frigorifica_wubr_wdbr".equals(checklistId) ||
                     "checklist_cabr_montagem_frigorifica".equals(checklistId)) {
                 idsRemovidos.clear();
             }
@@ -1474,27 +1521,36 @@ public class ChecklistActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE_PICK_PHOTO && resultCode == RESULT_OK && data != null) {
+
             Uri uri = data.getData();
+
             if (uri != null) {
-                int takeFlags = data.getFlags()
-                        & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                try {
-                    getContentResolver().takePersistableUriPermission(uri, takeFlags);
-                } catch (SecurityException ignored) {
+
+                int takeFlags = data.getFlags() &
+                        (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                // só executa se tiver permissão válida
+                if (takeFlags != 0) {
+                    try {
+                        getContentResolver().takePersistableUriPermission(uri, takeFlags);
+                    } catch (SecurityException ignored) {
+                    }
                 }
 
                 listaFotos.add(uri.toString());
                 salvarFotos();
                 atualizarListaFotos();
             }
+
         } else if (requestCode == REQUEST_CODE_TAKE_PHOTO && resultCode == RESULT_OK && fotoTempUri != null) {
+
             listaFotos.add(fotoTempUri.toString());
             salvarFotos();
             atualizarListaFotos();
         }
     }
-
     private void confirmarRemocaoItem(int position, ChecklistItem item) {
         new AlertDialog.Builder(this)
                 .setTitle("Remover item")
@@ -1690,8 +1746,16 @@ public class ChecklistActivity extends AppCompatActivity {
             modelKey = "edbrse";
         } else if (checklistId.startsWith("checklist_esbrag_")) {
             modelKey = "esbrag";
+        } else if (checklistId.startsWith("checklist_esbrla_")) {
+            modelKey = "esbrla";
+        } else if (checklistId.startsWith("checklist_wall_")) {
+            modelKey = "wall";
+            } else if (checklistId.startsWith("checklist_edbrag_")) {
+            modelKey = "edbrag";
         } else if (checklistId.startsWith("checklist_cabr_")) {
             modelKey = "cabr";
+        } else if (checklistId.startsWith("checklist_dcbr_")) {
+            modelKey = "dcbr";    
         } else if ("checklist_manutencao".equals(checklistId)) {
             modelKey = "manutencao";
         } else {
@@ -1805,6 +1869,8 @@ public class ChecklistActivity extends AppCompatActivity {
             if ("checklist_irbr_pre_montagem".equals(checklistId)
                     || "checklist_ucabr_pre_montagem".equals(checklistId)
                     || "checklist_edbrse_pre_montagem".equals(checklistId)
+                    || "checklist_edbrag_pre_montagem".equals(checklistId)
+                    || "checklist_dcbr_pre_montagem".equals(checklistId)
                     || "checklist_cabr_pre_montagem".equals(checklistId)) {
                 String torqueNum = prefs.getString(gerarChavePre(this, checklistId, "torque_num"), "");
                 String torqueDataCal = prefs.getString(gerarChavePre(this, checklistId, "torque_data_cal"), "");
@@ -1860,6 +1926,8 @@ public class ChecklistActivity extends AppCompatActivity {
             // Seção extra: instrumentos (Montagem elétrica - IRBR/UCABR)
             if ("checklist_irbr_montagem_eletrica".equals(checklistId)
                     || "checklist_ucabr_montagem_eletrica".equals(checklistId)
+                    || "checklist_dcbr_montagem_eletrica".equals(checklistId)
+                    || "checklist_edbrag_montagem_eletrica".equals(checklistId)
                     || "checklist_edbrse_montagem_eletrica".equals(checklistId)) {
                 String instr1Num = prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_num"), "");
                 String instr1Data = prefs.getString(gerarChaveEletrica(this, checklistId, "instr1_data"), "");
@@ -1985,6 +2053,12 @@ public class ChecklistActivity extends AppCompatActivity {
             return "edbrse";
         } else if (checklistId.startsWith("checklist_esbrag_")) {
             return "esbrag";
+        } else if (checklistId.startsWith("checklist_esbrla_")) {
+            return "esbrla";
+        } else if (checklistId.startsWith("checklist_edbrag_")) {
+            return "edbrag";
+        } else if (checklistId.startsWith("checklist_dcbr_")) {
+            return "dcbr";    
         } else if ("checklist_manutencao".equals(checklistId)) {
             return "manutencao";
         }

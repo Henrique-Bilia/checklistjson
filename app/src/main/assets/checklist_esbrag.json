@@ -1,6 +1,88 @@
 {
   "checklists": [
     {
+      "id": "checklist_esbrla_pro006_esbr_esbrh_esla",
+      "nome": "Checklist ESBR-ESBRH-ESLA",
+      "itens": [
+        { "id": "es_pro006_01", "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)" },
+        { "id": "es_pro006_02", "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)" },
+        { "id": "es_pro006_03", "titulo": "Verificar se todas as peças foram fixadas com todos os rebites" },
+        { "id": "es_pro006_04", "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento" },
+        { "id": "es_pro006_05", "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm" },
+
+        { "id": "es_pro006_06", "titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas" },
+        { "id": "es_pro006_07", "titulo": "Verificar estado do adesivo antes de cortar a manta" },
+        { "id": "es_pro006_08", "titulo": "Verificar isolamento e ausência de bolhas" },
+        { "id": "es_pro006_09", "titulo": "Verificar secagem do adesivo por 36 horas" },
+
+        { "id": "es_pro006_10", "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia" },
+        { "id": "es_pro006_11", "titulo": "Conferir componentes conforme lista do projeto" },
+        { "id": "es_pro006_12", "titulo": "Verificar se os materiais estão em boas condições" },
+        { "id": "es_pro006_13", "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições" },
+        { "id": "es_pro006_14", "titulo": "Verificar corte da tubulação conforme medida solicitada" },
+        { "id": "es_pro006_15", "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto" },
+        { "id": "es_pro006_16", "titulo": "Verificar que foi retirada toda a rebarba do tubo" },
+        { "id": "es_pro006_17", "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa" },
+        { "id": "es_pro006_18", "titulo": "Verificar regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos" },
+        { "id": "es_pro006_19", "titulo": "Inspeção visual das válvulas instaladas na tubulação" },
+        { "id": "es_pro006_20", "titulo": "Verificar todas as soldas executadas na tubulação" },
+        { "id": "es_pro006_21", "titulo": "Verificar que a tubulação esteja limpa após montagem" },
+
+        { "id": "es_pro006_22", "titulo": "Verificar teste de pressão hidrostático realizado por 4 horas no Circuito 1" },
+        { "id": "es_pro006_23", "titulo": "Verificar teste de pressão hidrostático realizado por 4 horas no Circuito 2" },
+        { "id": "es_pro006_24", "titulo": "Verificar número e calibração do manômetro utilizados no teste" },
+        { "id": "es_pro006_25", "titulo": "Verificar inspeção visual final após testes hidrostáticos" },
+
+        { "id": "es_pro006_26", "titulo": "Verificar instalação elétrica do ventilador 1" },
+        { "id": "es_pro006_27", "titulo": "Verificar instalação elétrica do ventilador 2" },
+        { "id": "es_pro006_28", "titulo": "Verificar instalação elétrica do ventilador 3" },
+        { "id": "es_pro006_29", "titulo": "Verificar Reaquecimento" },
+        { "id": "es_pro006_30", "titulo": "Verificar Umidificador" },
+        { "id": "es_pro006_31", "titulo": "Verificar Cabo de comunicação" },
+        { "id": "es_pro006_32", "titulo": "Verificar Damper" },
+        { "id": "es_pro006_33", "titulo": "Verificar Bomba" },
+        { "id": "es_pro006_34", "titulo": "Verificar Sensores" },
+        { "id": "es_pro006_35", "titulo": "Verificar instalação EVD" },
+        { "id": "es_pro006_36", "titulo": "Verificar mangueira para fluxo de ar" },
+
+        { "id": "es_pro006_37", "titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca" },
+        { "id": "es_pro006_38", "titulo": "Verificar estado do isolamento antes de cortar" },
+        { "id": "es_pro006_39", "titulo": "Certificar-se de que as colagens não tocam a tubulação" },
+        { "id": "es_pro006_40", "titulo": "Verificar secagem do adesivo por 36 horas" },
+        { "id": "es_pro006_41", "titulo": "Verificar isolamento instalado" },
+
+        { "id": "es_pro006_42", "titulo": "Verificar se todos os parafusos estão fixados" },
+        { "id": "es_pro006_43", "titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas" },
+        { "id": "es_pro006_44", "titulo": "Verificar se todos os rebites estão fixados" },
+        { "id": "es_pro006_45", "titulo": "Verificar se as tubulações estão limpas" },
+        { "id": "es_pro006_46", "titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados" },
+        { "id": "es_pro006_47", "titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas" },
+        { "id": "es_pro006_48", "titulo": "Realizar limpeza do equipamento" },
+        { "id": "es_pro006_49", "titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)" },
+        { "id": "es_pro006_50", "titulo": "Verificar todos os componentes instalados" },
+        { "id": "es_pro006_51", "titulo": "Verificar instalação da mangueira do dreno" },
+        { "id": "es_pro006_52", "titulo": "Quando o equipamento tiver umidificador, verificar se todos os componentes estão fixados" },
+        { "id": "es_pro006_53", "titulo": "Verificar tampa do motor do ventilador e prensa cabos vedados" },
+        { "id": "es_pro006_54", "titulo": "Verificar cabos elétricos dos ventiladores com pingadeira" },
+        { "id": "es_pro006_55", "titulo": "Verificar todas as tampas fixadas" },
+        { "id": "es_pro006_56", "titulo": "Verificar todas as etiquetas fixadas" },
+        { "id": "es_pro006_57", "titulo": "Verificar se todos os campos do checklist estão preenchidos" },
+
+        { "id": "es_pro006_58", "titulo": "Verificar unidade dentro do pallet com etiqueta de identificação e inspeção visual do equipamento" },
+        { "id": "es_pro006_59", "titulo": "Verificar posicionamento das cantoneiras" },
+        { "id": "es_pro006_60", "titulo": "Verificar etiquetas de identificação da unidade" },
+        { "id": "es_pro006_61", "titulo": "Verificar posicionamento do arqueamento" },
+        { "id": "es_pro006_62", "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display" },
+        { "id": "es_pro006_63", "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)" },
+        { "id": "es_pro006_64", "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)" },
+        { "id": "es_pro006_65", "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)" },
+
+        { "id": "es_pro006_66", "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)" },
+        { "id": "es_pro006_67", "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)" },
+        { "id": "es_pro006_68", "titulo": "Preparar o produto para expedição (nacional e exportação)" }
+      ]
+    },
+    {
       "id": "checklist_esbrag_pre_montagem",
       "nome": "Checklist ESBRAG/ESBRHAG - Pré-montagem",
       "itens": [

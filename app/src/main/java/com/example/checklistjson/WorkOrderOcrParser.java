@@ -3,18 +3,10 @@ package com.example.checklistjson;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Parser simples para extrair OP, modelos e quantidades (UN) a partir de OCR do Word.
- * Mantém regras bem conservadoras para evitar criar máquinas erradas.
- */
 public final class WorkOrderOcrParser {
 
     private WorkOrderOcrParser() {}
@@ -40,7 +32,7 @@ public final class WorkOrderOcrParser {
     }
 
     public static final class ModelUnits {
-        @NonNull public final String modelKey; // irbr, ucabr, edbrse, esbrag, cabr
+        @NonNull public final String modelKey;
         public final int units;
 
         ModelUnits(@NonNull String modelKey, int units) {
@@ -51,205 +43,183 @@ public final class WorkOrderOcrParser {
 
     @NonNull
     public static Parsed parse(@Nullable String ocrText) {
+
         String text = ocrText == null ? "" : ocrText;
 
         String op = extractOp(text);
-        List<ModelUnits> models = extractModelUnits(text);
-        String clienteObra = extractClienteObra(text);
+        String cliente = extractClienteObra(text);
         String fluido = extractFluido(text);
         String tensao = extractTensao(text);
-        return new Parsed(op, models, clienteObra, fluido, tensao);
+        List<ModelUnits> models = extractModelUnits(text);
+
+        return new Parsed(op, models, cliente, fluido, tensao);
     }
 
-    @Nullable
-    private static String extractOp(@NonNull String text) {
-        Matcher m = Pattern.compile("(?i)\\bOP\\s*[:\\-]?\\s*(\\d{3,8})\\b").matcher(text);
-        if (m.find()) return m.group(1);
+    // ===============================
+    // EXTRAÇÃO DE OP
+    // ===============================
+
+    private static String extractOp(String text) {
+
+        Matcher m = Pattern.compile("(?i)\\bOP\\b[^0-9]{0,8}([0-9OI]{3,8})").matcher(text);
+
+        if (m.find()) {
+            return normalizeDigits(m.group(1));
+        }
+
         return null;
     }
 
-    @NonNull
-    private static List<ModelUnits> extractModelUnits(@NonNull String text) {
-        // Ignora QCR (quadro remoto) por regra do usuário.
-        // Captura linhas do tipo "UCABR017... - 3 UN - DATA: ..."
-        Pattern pLine = Pattern.compile(
-                "(?im)^\\s*([A-Z]{3,8})[A-Z0-9]*\\s*[–\\-]\\s*(\\d+)\\s*UN\\b"
-        );
+    // ===============================
+    // EXTRAÇÃO DE MODELOS + UNIDADES
+    // ===============================
 
-        Matcher m = pLine.matcher(text);
-        List<ModelUnits> out = new ArrayList<>();
+    private static List<ModelUnits> extractModelUnits(String text) {
 
-        // Se houver repetição do mesmo modelo, soma as unidades (conservador e útil).
-        // Ex.: 1 UN em 3 linhas → total 3
-        java.util.Map<String, Integer> sum = new java.util.HashMap<>();
-        while (m.find()) {
-            String prefix = safeUpper(m.group(1));
-            int units = safeInt(m.group(2));
-            if (units <= 0) continue;
+        Map<String, Integer> map = new HashMap<>();
+
+        String[] linhas = text.split("\\r?\\n");
+
+        Pattern codigoPattern = Pattern.compile("\\b[A-Z]{4}[A-Z0-9]{6,}\\b");
+        Pattern unPattern = Pattern.compile("\\b(\\d{1,2})\\s*UN\\b|\\bUN\\s*(\\d{1,2})\\b", Pattern.CASE_INSENSITIVE);
+
+        for (String linha : linhas) {
+
+            Matcher codigoMatcher = codigoPattern.matcher(linha);
+
+            if (!codigoMatcher.find()) continue;
+
+            String codigo = codigoMatcher.group();
+
+            String prefix = extrairPrefixoModelo(codigo);
 
             String modelKey = mapPrefixToModelKey(prefix);
+
             if (modelKey == null) continue;
 
-            sum.put(modelKey, (sum.containsKey(modelKey) ? sum.get(modelKey) : 0) + units);
-        }
+            Matcher unMatcher = unPattern.matcher(linha);
 
-        // Mantém ordem estável por prioridade de modelo (só para UX previsível no diálogo)
-        String[] order = new String[]{"cabr", "irbr", "ucabr", "edbrse", "esbrag"};
-        Set<String> used = new HashSet<>();
-        for (String k : order) {
-            Integer u = sum.get(k);
-            if (u != null && u > 0) {
-                out.add(new ModelUnits(k, u));
-                used.add(k);
+            int units = 1;
+
+            if (unMatcher.find()) {
+
+                String before = unMatcher.group(1);
+                String after = unMatcher.group(2);
+
+                units = safeInt(before != null ? before : after);
+
+                if (units <= 0) units = 1;
             }
-        }
-        for (java.util.Map.Entry<String, Integer> e : sum.entrySet()) {
-            if (used.contains(e.getKey())) continue;
-            if (e.getValue() != null && e.getValue() > 0) out.add(new ModelUnits(e.getKey(), e.getValue()));
+
+            map.put(modelKey, map.getOrDefault(modelKey, 0) + units);
         }
 
-        return out;
+        List<ModelUnits> result = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> e : map.entrySet()) {
+            result.add(new ModelUnits(e.getKey(), e.getValue()));
+        }
+
+        return result;
     }
 
-    @Nullable
-    private static String extractFluido(@NonNull String text) {
-        // Procura padrões do tipo R410A, R407C, R 407C, etc.
+    // ===============================
+    // FLUIDO
+    // ===============================
+
+    private static String extractFluido(String text) {
+
         Matcher m = Pattern.compile("(?i)\\bR\\s*([0-9]{3})\\s*([A-Z])?\\b").matcher(text);
+
         if (m.find()) {
+
             String num = m.group(1);
-            String sufixo = m.group(2);
-            return "R" + num + (sufixo == null ? "" : sufixo.toUpperCase(Locale.ROOT));
+            String suf = m.group(2);
+
+            return "R" + num + (suf == null ? "" : suf.toUpperCase());
         }
+
         return null;
     }
 
-    @Nullable
-    private static String extractTensao(@NonNull String text) {
-        // Procura tensões comuns em documentos: 110V, 127V, 220V, 380V, 440V, 480V
-        Matcher m = Pattern.compile("(?i)\\b(110|127|208|220|230|240|380|400|415|440|460|480)\\s*V\\b").matcher(text);
+    // ===============================
+    // TENSÃO
+    // ===============================
+
+    private static String extractTensao(String text) {
+
+        Matcher m = Pattern.compile("\\b(110|127|220|380|440|480)\\s*V\\b", Pattern.CASE_INSENSITIVE).matcher(text);
+
         if (m.find()) {
             return m.group(1) + "V";
         }
+
         return null;
     }
 
-    @Nullable
-    private static String extractClienteObra(@NonNull String text) {
-        // Só preenche se houver um rótulo claro (evita pegar descrições longas por engano).
-        // Exemplos aceitos:
-        // "Cliente/Obra: ABC - Planta X"
-        // "Cliente: ABC" (pode haver "Obra: X" em outra linha)
-        // "Obra: X"
-        String cliente = null;
-        String obra = null;
+    // ===============================
+    // CLIENTE / OBRA
+    // ===============================
 
-        Matcher mClienteObra = Pattern.compile("(?im)^[\\t ]*(CLIENTE\\s*/\\s*OBRA)\\s*[:\\-]\\s*([^\\n\\r]+)", Pattern.MULTILINE).matcher(text);
-        if (mClienteObra.find()) {
-            String v = safeLineValue(mClienteObra.group(2));
-            return v.isEmpty() ? null : v;
+    private static String extractClienteObra(String text) {
+
+        Matcher m = Pattern.compile("(?i)CLIENTE\\s*[:\\-]\\s*(.+)").matcher(text);
+
+        if (m.find()) {
+            return m.group(1).trim();
         }
 
-        // Aceita também "CLIENTE MPE ENGENHARIA" (sem ":"), que é comum no OCR.
-        Matcher mCliente = Pattern.compile("(?i)\\bCLIENTE\\b\\s*[:\\-]?\\s*([^\\n\\r]+)").matcher(text);
-        if (mCliente.find()) {
-            cliente = safeLineValue(stripLeadingSeparators(mCliente.group(1)));
-            if (isWordRibbonNoise(cliente)) {
-                cliente = null;
-            }
-        }
-
-        Matcher mObra = Pattern.compile("(?i)\\bOBRA\\b\\s*[:\\-]?\\s*([^\\n\\r]+)").matcher(text);
-        if (mObra.find()) {
-            obra = safeLineValue(stripLeadingSeparators(mObra.group(1)));
-            if (isWordRibbonNoise(obra)) {
-                obra = null;
-            }
-        }
-
-        if (cliente != null && !cliente.isEmpty() && obra != null && !obra.isEmpty()) {
-            return cliente + " - " + obra;
-        }
-        if (cliente != null && !cliente.isEmpty()) return cliente;
-        if (obra != null && !obra.isEmpty()) return obra;
-        // Sem fallback genérico: estava capturando texto da faixa do Word ("Revisão Exibir Ajuda").
         return null;
     }
 
-    @NonNull
-    private static String safeLineValue(@Nullable String s) {
-        if (s == null) return "";
-        String v = s.trim();
-        // corta em caso de OCR juntar muita coisa em uma linha (mantém compacto)
-        if (v.length() > 80) v = v.substring(0, 80).trim();
-        // remove múltiplos espaços
-        v = v.replaceAll("\\s{2,}", " ");
-        return v;
+    // ===============================
+    // UTILIDADES
+    // ===============================
+
+    private static String normalizeDigits(String s) {
+
+        return s.replace('O', '0')
+                .replace('I', '1');
     }
 
-    private static boolean pareceNomeCliente(@Nullable String s) {
-        if (s == null) return false;
-        String v = s.trim();
-        if (v.length() < 4) return false; // descarta coisas muito curtas tipo "F3"
-        if (!v.contains(" ")) return false; // normalmente cliente/obra tem pelo menos um espaço
-        int letras = 0;
-        for (int i = 0; i < v.length(); i++) {
-            char c = v.charAt(i);
-            if (Character.isLetter(c)) letras++;
+    private static String extrairPrefixoModelo(String codigo) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : codigo.toCharArray()) {
+
+            if (Character.isLetter(c)) {
+                sb.append(c);
+            } else {
+                break;
+            }
         }
-        return letras >= 3;
+
+        return sb.toString();
     }
 
-    @NonNull
-    private static String stripLeadingSeparators(@Nullable String s) {
-        if (s == null) return "";
-        return s.replaceFirst("^[\\s:;\\-]+", "").trim();
-    }
+    private static String mapPrefixToModelKey(String prefix) {
 
-    private static boolean isWordRibbonNoise(@Nullable String s) {
-        if (s == null) return false;
-        String v = s.trim().toUpperCase(Locale.ROOT);
-        if (v.isEmpty()) return false;
-        // Palavras comuns do menu do Word em pt-BR
-        return v.contains("REVIS") || v.contains("EXIB") || v.contains("AJUD")
-                || v.contains("ARQUIV") || v.contains("INSER") || v.contains("LAYOUT")
-                || v.contains("REFER") || v.contains("CORRESP")
-                || v.contains("PÁGIN") || v.contains("PAGIN");
-    }
+        prefix = prefix.toUpperCase();
 
-    private static int indexOfRegex(@NonNull String regex, @NonNull String text) {
-        try {
-            Matcher m = Pattern.compile(regex).matcher(text);
-            if (m.find()) return m.start();
-        } catch (Exception ignored) {
-        }
-        return -1;
-    }
-
-    @Nullable
-    private static String mapPrefixToModelKey(@NonNull String prefix) {
-        // Normaliza alguns prefixos possíveis no Word
-        if (prefix.startsWith("QCR")) return null; // ignorar
         if (prefix.startsWith("CABR")) return "cabr";
         if (prefix.startsWith("IRBR")) return "irbr";
-        if (prefix.startsWith("UCABR")) return "ucabr";
-        // EDBRSE / EUBR* (ex.: EUBRO26SEAV01601)
+        if (prefix.startsWith("UCABR") || prefix.startsWith("UCL")) return "ucabr";
         if (prefix.startsWith("EDBR") || prefix.startsWith("EUBR")) return "edbrse";
-        // ESBRAG / ESBRHAG
         if (prefix.startsWith("ESBR")) return "esbrag";
+        if (prefix.startsWith("ESLA")) return "esbrla";
+        if (prefix.startsWith("WALL") || prefix.startsWith("WUBR") || prefix.startsWith("WDBR")) return "wall";
+        if (prefix.startsWith("EDBRAG") || prefix.startsWith("ESBRAG")) return "EDBRAG";
+        if (prefix.startsWith("DCBR")) return "dcbr";
         return null;
     }
 
-    @NonNull
-    private static String safeUpper(@Nullable String s) {
-        return s == null ? "" : s.trim().toUpperCase(Locale.ROOT);
-    }
+    private static int safeInt(String s) {
 
-    private static int safeInt(@Nullable String s) {
         try {
-            return Integer.parseInt(s == null ? "" : s.trim());
+            return Integer.parseInt(s.trim());
         } catch (Exception e) {
             return 0;
         }
     }
 }
-

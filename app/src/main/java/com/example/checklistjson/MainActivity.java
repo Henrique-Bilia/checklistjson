@@ -40,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
             "Modelo UCABR",
             "Modelo EDBRSE/EUBRSE",
             "Modelo ESBRAG/ESBRHAG",
-            "Modelo CABR"
+            "Modelo CABR",
+            "Modelo ESBR-ESBRH-ESLA",
+            "Modelo WALL (WUBR/WDBR)",
+            "Modelo EDBRAG-EUBRAG"
     };
 
     @Override
@@ -114,6 +117,25 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("header_key", "cabr");
                     intent.putExtra("header_titulo", "Modelo CABR");
                     intent.putExtra("destino_tipo", "cabr_menu");
+                    startActivity(intent);
+                } else if (position == 5) {
+                    android.content.Intent intent = new android.content.Intent(MainActivity.this, ChecklistHeaderActivity.class);
+                    intent.putExtra("header_key", "esbrla");
+                    intent.putExtra("header_titulo", "Modelo ESBR-ESBRH-ESLA");
+                    intent.putExtra("destino_tipo", "esbrla_menu");
+                    startActivity(intent);
+                } else if (position == 6) {
+                    android.content.Intent intent = new android.content.Intent(MainActivity.this, ChecklistHeaderActivity.class);
+                    intent.putExtra("header_key", "wall");
+                    intent.putExtra("header_titulo", "Modelo WALL (WUBR/WDBR)");
+                    intent.putExtra("destino_tipo", "wall_menu");
+                    startActivity(intent);
+                }
+                 else if (position == 7) {
+                    android.content.Intent intent = new android.content.Intent(MainActivity.this, ChecklistHeaderActivity.class);
+                    intent.putExtra("header_key", "edbrag");
+                    intent.putExtra("header_titulo", "Modelo EDBRAG/EUBRAG");
+                    intent.putExtra("destino_tipo", "edbrag_menu");
                     startActivity(intent);
                 }
             }
@@ -288,7 +310,15 @@ public class MainActivity extends AppCompatActivity {
         if ("ucabr".equals(modelKey)) return "UCABR";
         if ("edbrse".equals(modelKey)) return "EDBRSE/EUBRSE";
         if ("esbrag".equals(modelKey)) return "ESBRAG/ESBRHAG";
+        if ("esbrla".equals(modelKey)) return "ESBR-ESBRH-ESLA";
+        if ("wall".equals(modelKey)) return "WALL (WUBR/WDBR)";
         if ("cabr".equals(modelKey)) return "CABR";
+        if ("edbrag".equals(modelKey)) return "EDBRAG/ESBRAG";
+        if ("dcbr".equals(modelKey)) return "DCBR"; {
+            
+        } {
+            
+        }
         return modelKey == null ? "" : modelKey.toUpperCase(Locale.ROOT);
     }
 
@@ -313,10 +343,26 @@ public class MainActivity extends AppCompatActivity {
                 destinoTipo = "esbrag_menu";
                 titulo = "Modelo ESBRAG/ESBRHAG";
                 break;
+            case "esbrla":
+                destinoTipo = "esbrla_menu";
+                titulo = "Modelo ESBR-ESBRH-ESLA";
+                break;
+            case "wall":
+                destinoTipo = "wall_menu";
+                titulo = "Modelo WALL (WUBR/WDBR)";
+                break;
             case "cabr":
                 destinoTipo = "cabr_menu";
                 titulo = "Modelo CABR";
                 break;
+            case "edbrag":
+                destinoTipo = "edbrag_menu";
+                titulo = "Modelo EDBRAG";
+                break;  
+            case "dcbr":
+                destinoTipo = "dcbr";
+                titulo = "Modelo DCBR";
+                break; 
             default:
                 Toast.makeText(this, "Modelo não suportado: " + modelKey, Toast.LENGTH_LONG).show();
                 return;

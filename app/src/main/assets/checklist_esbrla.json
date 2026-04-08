@@ -1,0 +1,146 @@
+{
+  "checklists": [
+    {
+      "id": "checklist_esbrla_pre_montagem",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Pré-montagem",
+      "itens": [
+        { "id": "es_pre_1", "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)" },
+        { "id": "es_pre_2", "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)" },
+        { "id": "es_pre_3", "titulo": "Verificar se todas as peças foram fixadas com todos os rebites" },
+        { "id": "es_pre_4", "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento" },
+        { "id": "es_pre_5", "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm" },
+        { "id": "es_pre_6", "titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"}
+      ]
+    },
+    {
+      "id": "checklist_esbrla_isolamento_gabinete",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Isolamento de gabinete",
+      "itens": [
+        { "id": "es_iso_gab_1", "titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas" },
+        { "id": "es_iso_gab_2", "titulo": "Verificar estado do adesivo antes de cortar a manta" },
+        { "id": "es_iso_gab_3", "titulo": "Verificar isolamento e ausência de bolhas" },
+        { "id": "es_iso_gab_4", "titulo": "Verificar secagem do adesivo por 36 horas" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_montagem_frigorifica",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Montagem frigorífica",
+      "itens": [
+        { "id": "es_frig_1", "titulo": "Verificar projeto frigorífico na pasta da obra e sanar dúvidas com a Engenharia" },
+        { "id": "es_frig_2", "titulo": "Conferir componentes conforme lista do projeto" },
+        { "id": "es_frig_3", "titulo": "Verificar se os materiais estão em boas condições" },
+        { "id": "es_frig_4", "titulo": "Verificar se materiais de substituição, se utilizados, estão em boas condições" },
+        { "id": "es_frig_5", "titulo": "Verificar corte da tubulação conforme medida solicitada" },
+        { "id": "es_frig_6", "titulo": "Verificar se a dobra da tubulação está de acordo com o desenho/projeto" },
+        { "id": "es_frig_7", "titulo": "Verificar que foi retirada toda a rebarba do tubo" },
+        { "id": "es_frig_8", "titulo": "Garantir que a tubulação, especialmente a área de brasagem, esteja limpa" },
+        { "id": "es_frig_9", "titulo": "Verificar regulagem dos gases para brasagem utilizando nitrogênio na parte interna dos tubos" },
+        { "id": "es_frig_10", "titulo": "Inspeção visual das válvulas instaladas na tubulação" },
+        { "id": "es_frig_11", "titulo": "Verificar todas as soldas executadas na tubulação" },
+        { "id": "es_frig_12", "titulo": "Verificar que a tubulação esteja limpa após montagem" },
+        { "id": "es_frig_13", "titulo": "Sentido válvula expansão eletrônica/termostática 2 (fluido)" },
+        { "id": "es_frig_14", "titulo": "A regulagem dos gases para brasagem e que seja utilizado nitrogênio na parte interna dos tubos." },
+        { "id": "es_frig_15", "titulo": "Inspeção visual da(s) válvula(s) instalada(s) no equipamento" },
+        { "id": "es_frig_16", "titulo": "Todas as solda executada no equipamento" },
+        { "id": "es_frig_17", "titulo": "A execução da montagem frigorífica/brasagem conforme projeto frigorífico" },
+        { "id": "es_frig_18", "titulo": "A tubulação seja limpa" },
+        { "id": "es_frig_19", "titulo": "Inspeção visual final" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_teste_estanquiedade",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Teste Estanquiedade",
+      "itens": [
+        { "id": "es_es_1", "titulo": "Verificar o teste de Estanqueidade foi realizado por 24 horas no Circuito 1" },
+        { "id": "es_es_2", "titulo": "Verificar o teste de Estanqueidade foi realizado por 24 horas no Circuito 2" },
+        { "id": "es_es_3", "titulo": "Verificar número e calibração do manômetro utilizados no teste" },
+        { "id": "es_es_4", "titulo": "Verificar inspeção visual final após testes hidrostáticos" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_vacuo_quebra",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Vácuo e quebra do vácuo",
+      "itens": [
+        { "id": "es_vac_1", "titulo": "Verificar se o vácuo foi realizado até valor abaixo de 500μHg ±50μHg em cada circuito" },
+        { "id": "es_vac_2", "titulo": "Verificar teste de estanqueidade realizado por 24 horas em cada circuito" },
+        { "id": "es_vac_3", "titulo": "Ao quebrar o vácuo em sistema com válvula de serviço, verificar pressurização com 200±10 g de fluido refrigerante" },
+        { "id": "es_vac_4", "titulo": "Ao quebrar o vácuo em sistema sem válvula de serviço, verificar pressurização com nitrogênio (Exportação: 45–50 psi ±5psi, Nacional: 95–100 psi ±5psi)" },
+        { "id": "es_vac_5", "titulo": "Verificar com detector de vazamento, em especial áreas com uniões de solda" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_montagem_eletrica",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Montagem elétrica",
+      "itens": [
+        { "id": "es_ele_1", "titulo": "Verificar instalação elétrica do ventilador 1" },
+        { "id": "es_ele_2", "titulo": "Verificar instalação elétrica do ventilador 2" },
+        { "id": "es_ele_3", "titulo": "Verificar instalação elétrica do ventilador 3" },
+        { "id": "es_ele_4", "titulo": "Verificar Reaquecimento" },
+        { "id": "es_ele_5", "titulo": "Verificar Umidificador" },
+        { "id": "es_ele_6", "titulo": "Verificar Cabo de comunicação" },
+        { "id": "es_ele_7", "titulo": "Verificar Damper" },
+        { "id": "es_ele_8", "titulo": "Verificar Bomba" },
+        { "id": "es_ele_9", "titulo": "Verificar Sensores" },
+        { "id": "es_ele_10", "titulo": "Verificar instalação EVD" },
+        { "id": "es_ele_11", "titulo": "Verificar mangueira para fluxo de ar" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_isolamento_tubulacao",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Isolamento de tubulação",
+      "itens": [
+        { "id": "es_iso_tub_1", "titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca" },
+        { "id": "es_iso_tub_2", "titulo": "Verificar estado do isolamento antes de cortar" },
+        { "id": "es_iso_tub_3", "titulo": "Certificar-se de que as colagens não tocam a tubulação" },
+        { "id": "es_iso_tub_4", "titulo": "Verificar secagem do adesivo por 36 horas" },
+        { "id": "es_iso_tub_5", "titulo": "Verificar isolamento instalado" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_fechamento_mecanico",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Fechamento mecânico e acabamento",
+      "itens": [
+        { "id": "es_fech_1", "titulo": "Verificar se todos os parafusos estão fixados" },
+        { "id": "es_fech_2", "titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas" },
+        { "id": "es_fech_3", "titulo": "Verificar se todos os rebites estão fixados" },
+        { "id": "es_fech_4", "titulo": "Verificar se as tubulações estão limpas" },
+        { "id": "es_fech_5", "titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados" },
+        { "id": "es_fech_6", "titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas" },
+        { "id": "es_fech_7", "titulo": "Realizar limpeza do equipamento" },
+        { "id": "es_fech_8", "titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)" },
+        { "id": "es_fech_9", "titulo": "Verificar todos os componentes instalados" },
+        { "id": "es_fech_10", "titulo": "Verificar instalação da mangueira do dreno" },
+        { "id": "es_fech_11", "titulo": "Quando o equipamento tiver umidificador, verificar se todos os componentes estão fixados" },
+        { "id": "es_fech_12", "titulo": "Verificar tampa do motor do ventilador e prensa cabos vedados" },
+        { "id": "es_fech_13", "titulo": "Verificar cabos elétricos dos ventiladores com pingadeira" },
+        { "id": "es_fech_14", "titulo": "Verificar todas as tampas fixadas" },
+        { "id": "es_fech_15", "titulo": "Verificar todas as etiquetas fixadas" },
+        { "id": "es_fech_16", "titulo": "Verificar se todos os campos do checklist estão preenchidos" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_embalagem",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Embalagem",
+      "itens": [
+        { "id": "es_emb_1", "titulo": "Verificar unidade dentro do pallet com etiqueta de identificação e inspeção visual do equipamento" },
+        { "id": "es_emb_2", "titulo": "Verificar posicionamento das cantoneiras" },
+        { "id": "es_emb_3", "titulo": "Verificar etiquetas de identificação da unidade" },
+        { "id": "es_emb_4", "titulo": "Verificar posicionamento do arqueamento" },
+        { "id": "es_emb_5", "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display" },
+        { "id": "es_emb_6", "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)" },
+        { "id": "es_emb_7", "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)" },
+        { "id": "es_emb_8", "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)" }
+      ]
+    },
+    {
+      "id": "checklist_esbrla_liberacao_final",
+      "nome": "Checklist ESBR-ESBRH-ESLA - Liberação final do equipamento",
+      "itens": [
+        { "id": "es_lib_1", "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)" },
+        { "id": "es_lib_2", "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)" },
+        { "id": "es_lib_3", "titulo": "Preparar o produto para expedição (nacional e exportação)" }
+      ]
+    }
+  ]
+}
+

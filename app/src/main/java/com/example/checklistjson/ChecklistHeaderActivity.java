@@ -172,12 +172,23 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
                 } else if ("esbrag_menu".equals(destinoTipo)) {
                     Intent intent = new Intent(ChecklistHeaderActivity.this, EsbragMenuActivity.class);
                     startActivity(intent);
+                } else if ("esbrla_menu".equals(destinoTipo)) {
+                    Intent intent = new Intent(ChecklistHeaderActivity.this, EsbrlaMenuActivity.class);
+                    startActivity(intent);
                 } else if ("cabr_menu".equals(destinoTipo)) {
                     Intent intent = new Intent(ChecklistHeaderActivity.this, CabrMenuActivity.class);
                     startActivity(intent);
-                }
+                    } else if ("edbrag_menu".equals(destinoTipo)) {
+                    Intent intent = new Intent(ChecklistHeaderActivity.this, EdbragMenuActivity.class);
+                    startActivity(intent);
+                } else if ("wall_menu".equals(destinoTipo)) {
+                    Intent intent = new Intent(ChecklistHeaderActivity.this, WallMenuActivity.class);
+                    startActivity(intent);
+                } else if ("dcbr_menu".equals(destinoTipo)) {
+                    Intent intent = new Intent(ChecklistHeaderActivity.this, DcbrMenuActivity.class);
+                    startActivity(intent);
             }
-        });
+    }});
     }
 
     @Override
@@ -382,6 +393,9 @@ public class ChecklistHeaderActivity extends AppCompatActivity {
         if ("edbrse".equals(modelKey)) return "EDBRSE/EUBRSE";
         if ("esbrag".equals(modelKey)) return "ESBRAG/ESBRHAG";
         if ("cabr".equals(modelKey)) return "CABR";
+        if ("wall".equals(modelKey)) return "WALL (WUBR/WDBR)";
+        if ("edbrag".equals(modelKey)) return "EDBRAG/EUBRAG";
+        if ("dcbr".equals(modelKey)) return "DCBR";
         return modelKey == null ? "" : modelKey.toUpperCase(Locale.ROOT);
     }
 

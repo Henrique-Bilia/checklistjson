@@ -611,8 +611,16 @@ public class ModelExportActivity extends AppCompatActivity {
             prefix = "checklist_edbrse_";
         } else if ("esbrag".equals(modelKey)) {
             prefix = "checklist_esbrag_";
+        } else if ("esbrla".equals(modelKey)) {
+            prefix = "checklist_esbrla_";
+        } else if ("wall".equals(modelKey)) {
+            prefix = "checklist_wall_";
         } else if ("cabr".equals(modelKey)) {
             prefix = "checklist_cabr_";
+        } else if ("edbrag".equals(modelKey)) {
+            prefix = "checklist_edbrag_";
+        } else if ("dcbr".equals(modelKey)){
+            prefix = "checklist_dcbr";
         } else if ("manutencao".equals(modelKey)) {
             prefix = "checklist_manutencao";
         } else {

@@ -4,428 +4,144 @@
       "id": "checklist_edbrse_pre_montagem",
       "nome": "Checklist EDBRSE/EUBRSE - Pré-montagem",
       "itens": [
-        {
-          "id": "ed_pre_1",
-          "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"
-        },
-        {
-          "id": "ed_pre_2",
-          "titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"
-        },
-        {
-          "id": "ed_pre_3",
-          "titulo": "Verificar se todas as peças foram fixadas com todos os rebites"
-        },
-        {
-          "id": "ed_pre_4",
-          "titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"
-        },
-        {
-          "id": "ed_pre_5",
-          "titulo": "Quando o projeto solicitar compressor, travar todos os parafusos ou porcas com 11Nm ±1Nm"
-        },
-        {
-          "id": "ed_pre_6",
-          "titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"
-        },
-        {
-          "id": "ed_pre_7",
-          "titulo": "Verificar se todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"
-        },
-        {
-          "id": "ed_pre_8",
-          "titulo": "Quando no projeto for solicitado compressor, todos elementos de fixação foram aplicados lacre químico"
-        },
-        {
-          "id": "ed_pre_9",
-          "titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"
-        }
+        
+        {"id": "ed_pre_1", "titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"},
+        {"id": "ed_pre_2","titulo": "O pallet está em boas condições de uso (isento de mofo, madeiras firmes e sem dano estrutural aparente)"},
+        {"id": "ed_pre_3","titulo": "Verificar se todas as peças foram fixadas com todos os rebites"},
+        {"id": "ed_pre_4","titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"},
+        {"id": "ed_pre_5","titulo": "Quando o projeto solicitar compressor, travar todos os parafusos ou porcas com 11Nm ±1Nm"},
+        {"id": "ed_pre_6","titulo": "Pré-montar suportes do(s) ventilador(es) com adesivo trava rosca e torque de 3Nm ±0,5Nm"},
+        {"id": "ed_pre_7","titulo": "Verificar se todas as porcas dos coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"},
+        {"id": "ed_pre_8","titulo": "Quando no projeto for solicitado compressor, todos elementos de fixação foram aplicados lacre químico"},
+        {"id": "ed_pre_9","titulo": "Após pré montagem dos ventiladores, todos os elementos de fixação foram aplicados lacre químico"}
       ]
     },
     {
       "id": "checklist_edbrse_montagem_frigorifica",
       "nome": "Checklist EDBRSE/EUBRSE - Montagem frigorífica",
       "itens": [
-        {
-          "id": "ed_frig_1",
-          "titulo": "O projeto frigorífico na pasta da obra e sanar as dúvidas com a Engenharia."
-        },
-        {
-          "id": "ed_frig_2",
-          "titulo": "Componentes conforme a lista."
-        },
-        {
-          "id": "ed_frig_3",
-          "titulo": "Os materiais sejam em boas condições."
-        },
-        {
-          "id": "ed_frig_4",
-          "titulo": "Os materiais de substituição, se precisar, sejam em boas condições."
-        },
-        {
-          "id": "ed_frig_5",
-          "titulo": "O corte da tubulação e que a tubulação seja cortada conforme a medida solicitada."
-        },
-        {
-          "id": "ed_frig_6",
-          "titulo": "A dobra está sendo executada de acordo com o desenho."
-        },
-        {
-          "id": "ed_frig_7",
-          "titulo": "Verificar que foi retirada toda a rebarba do tubo."
-        },
-        {
-          "id": "ed_frig_8",
-          "titulo": "A tubulação, especialmente a área de brasagem, deve estar limpa."
-        },
-        {
-          "id": "ed_frig_9",
-          "titulo": "Verificar que o trocador não seja obstruído."
-        },
-        {
-          "id": "ed_frig_10",
-          "titulo": "A regulagem dos gases para brasagem e que seja utilizado nitrogênio na parte interna dos tubos."
-        },
-        {
-          "id": "ed_frig_11",
-          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação perto do compressor."
-        },
-        {
-          "id": "ed_frig_12",
-          "titulo": "Todas as soldas executadas no compressor."
-        },
-        {
-          "id": "ed_frig_13",
-          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação."
-        },
-        {
-          "id": "ed_frig_14",
-          "titulo": "Todas as soldas executadas na tubulação."
-        },
-        {
-          "id": "ed_frig_15",
-          "titulo": "Sentido da válvula solenoide 1"
-        },
-        {
-          "id": "ed_frig_16",
-          "titulo": "Sentido da válvula solenoide 2"
-        },
-        {
-          "id": "ed_frig_17",
-          "titulo": "Sentido válvula expansão eletrônica/termostática 1 (fluido)"
-        },
-        {
-          "id": "ed_frig_18",
-          "titulo": "Sentido válvula expansão eletrônica/termostática 2 (fluido)"
-        },
-        {
-          "id": "ed_frig_19",
-          "titulo": "Sentido do filtro secador 1"
-        },
-        {
-          "id": "ed_frig_20",
-          "titulo": "Sentido do filtro secador 2"
-        },
-        {
-          "id": "ed_frig_21",
-          "titulo": "A válvula Digital"
-        },
-        {
-          "id": "ed_frig_22",
-          "titulo": "Inspeção visual da(s) válvula(s) instalada(s) no equipamento"
-        },
-        {
-          "id": "ed_frig_23",
-          "titulo": "Todas as solda executada no equipamento"
-        },
-        {
-          "id": "ed_frig_24",
-          "titulo": "A execução da montagem frigorífica/brasagem conforme projeto frigorífico"
-        },
-        {
-          "id": "ed_frig_25",
-          "titulo": "A tubulação seja limpa"
-        },
-        {
-          "id": "ed_frig_26",
-          "titulo": "Inspeção a tubulação seja fechada com film stretch"
-        },
-        {
-          "id": "ed_frig_27",
-          "titulo": "Separador de óleo"
-        },
-        {
-          "id": "ed_frig_28",
-          "titulo": "Óleo no separador"
-        },
-        {
-          "id": "ed_frig_29",
-          "titulo": "O visor de óleo"
-        },
-        {
-          "id": "ed_frig_30",
-          "titulo": "Pressão válvula alívio 1:"
-        },
-        {
-          "id": "ed_frig_31",
-          "titulo": "Pressão válvula alívio 2:"
-        },
-        {
-          "id": "ed_frig_32",
-          "titulo": "Inspeção visual final"
-        }
+        {"id": "ed_frig_1","titulo":"O projeto frigorífico na pasta da obra e sanar as dúvidas com a Engenharia."},
+        {"id": "ed_frig_2","titulo":"Componentes conforme a lista."},
+        {"id": "ed_frig_3","titulo":"Os materiais sejam em boas condições."},
+        {"id": "ed_frig_4","titulo":"Os materiais de substituição, se precisar, sejam em boas condições."},
+        {"id": "ed_frig_5", "titulo":"O corte da tubulação e que a tubulação seja cortada conforme a medida solicitada."},
+        {"id": "ed_frig_6","titulo":"A dobra está sendo executada de acordo com o desenho." },
+        {"id": "ed_frig_7","titulo":"Verificar que foi retirada toda a rebarba do tubo."},
+        {"id": "ed_frig_8","titulo": "A tubulação, especialmente a área de brasagem, deve estar limpa."},
+        {"id": "ed_frig_9","titulo": "Verificar que o trocador não seja obstruído."},
+        {"id": "ed_frig_10","titulo": "A regulagem dos gases para brasagem e que seja utilizado nitrogênio na parte interna dos tubos."},
+        {"id": "ed_frig_11","titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação perto do compressor."},
+        {"id": "ed_frig_12","titulo": "Todas as soldas executadas no compressor."},
+        {"id": "ed_frig_13","titulo": "Inspeção visual da(s) válvula(s) instalada(s) na tubulação."},
+        {"id": "ed_frig_14","titulo": "Todas as soldas executadas na tubulação."},
+        {"id": "ed_frig_15","titulo": "Sentido da válvula solenoide 1"},
+        {"id": "ed_frig_16","titulo": "Sentido da válvula solenoide 2"},
+        {"id": "ed_frig_17","titulo": "Sentido válvula expansão eletrônica/termostática 1 (fluido)"},
+        {"id": "ed_frig_18","titulo": "Sentido válvula expansão eletrônica/termostática 2 (fluido)"},
+        {"id": "ed_frig_19","titulo": "Sentido do filtro secador 1"},
+        {"id": "ed_frig_20","titulo": "Sentido do filtro secador 2"},
+        {"id": "ed_frig_21","titulo": "A válvula Digital"},
+        {"id": "ed_frig_22","titulo": "Inspeção visual da(s) válvula(s) instalada(s) no equipamento"},
+        {"id": "ed_frig_23","titulo": "Todas as solda executada no equipamento"},
+        {"id": "ed_frig_24","titulo": "A execução da montagem frigorífica/brasagem conforme projeto frigorífico"},
+        {"id": "ed_frig_25","titulo": "A tubulação seja limpa"},
+        {"id": "ed_frig_26","titulo": "Inspeção a tubulação seja fechada com film stretch"},
+        {"id": "ed_frig_27","titulo": "Separador de óleo"},
+        {"id": "ed_frig_28","titulo": "Óleo no separador"},
+        {"id": "ed_frig_29","titulo": "O visor de óleo"},
+        {"id": "ed_frig_30","titulo": "Pressão válvula alívio 1:"},
+        {"id": "ed_frig_31","titulo": "Pressão válvula alívio 2:"},
+        {"id": "ed_frig_32","titulo": "Inspeção visual final"}
       ]
     },
     {
       "id": "checklist_edbrse_compressores",
       "nome": "Checklist EDBRSE/EUBRSE - Compressores",
       "itens": [
-        {
-          "id": "ed_comp_valores",
-          "titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores conforme projeto"
-        }
+        {"id": "ed_comp_valores","titulo": "Registrar valores de tensão, fluido e tipo de óleo para os compressores conforme projeto"}
       ]
     },
     {
       "id": "checklist_edbrse_teste_estanqueidade",
       "nome": "Checklist EDBRSE/EUBRSE - Teste de estanqueidade",
       "itens": [
-        {
-          "id": "ed_estanq_c1",
-          "titulo": "O teste de estanqueidade foi realizado conforme procedimento definido para o circuito principal"
-        },
-        {
-          "id": "ed_estanq_c2",
-          "titulo": "Registrar resultado do teste de estanqueidade no circuito secundário (quando aplicável)"
-        }
+        {"id": "ed_estanq_c1","titulo": "O teste de estanqueidade foi realizado conforme procedimento definido para o circuito principal"},
+        {"id": "ed_estanq_c2","titulo": "Registrar resultado do teste de estanqueidade no circuito secundário (quando aplicável)"}
       ]
     },
     {
       "id": "checklist_edbrse_vacuo_quebra",
       "nome": "Checklist EDBRSE/EUBRSE - Vácuo e quebra do vácuo",
       "itens": [
-        {
-          "id": "ed_vac_1",
-          "titulo": "Verificar se o vácuo foi realizado até valor abaixo de 500μHg ±50μHg em cada circuito"
-        },
-        {
-          "id": "ed_vac_2",
-          "titulo": "Verificar testes de estanqueidade realizados por 24 horas em cada circuito"
-        },
-        {
-          "id": "ed_vac_3",
-          "titulo": "Ao quebrar o vácuo em sistema com válvula de serviço, verificar pressurização com 200±10 g de fluido refrigerante"
-        },
-        {
-          "id": "ed_vac_4",
-          "titulo": "Ao quebrar o vácuo em sistema sem válvula de serviço, verificar pressurização com nitrogênio (45–50 psi exportação, 95–100 psi nacional)"
-        },
-        {
-          "id": "ed_vac_5",
-          "titulo": "Verificar com detector de vazamento, em especial áreas com uniões de solda"
-        }
+        {"id": "ed_vac_1","titulo": "Verificar se o vácuo foi realizado até valor abaixo de 500μHg ±50μHg em cada circuito"},
+        {"id": "ed_vac_2","titulo": "Verificar testes de estanqueidade realizados por 24 horas em cada circuito"},
+        {"id": "ed_vac_3","titulo": "Ao quebrar o vácuo em sistema com válvula de serviço, verificar pressurização com 200±10 g de fluido refrigerante"},
+        {"id": "ed_vac_4","titulo": "Ao quebrar o vácuo em sistema sem válvula de serviço, verificar pressurização com nitrogênio (45–50 psi exportação, 95–100 psi nacional)"},
+        {"id": "ed_vac_5","titulo": "Verificar com detector de vazamento, em especial áreas com uniões de solda"}
       ]
     },
     {
       "id": "checklist_edbrse_montagem_eletrica",
       "nome": "Checklist EDBRSE/EUBRSE - Montagem elétrica",
       "itens": [
-        {
-          "id": "ed_ele_1",
-          "titulo": "Instalação elétrica do compressor C1"
-        },
-        {
-          "id": "ed_ele_2",
-          "titulo": "Instalação elétrica do compressor C2"
-        },
-        {
-          "id": "ed_ele_3",
-          "titulo": "Válvula controle de capacidade"
-        },
-        {
-          "id": "ed_ele_4",
-          "titulo": "Resistência Carter C1"
-        },
-        {
-          "id": "ed_ele_5",
-          "titulo": "Resistência Carter C2"
-        },
-        {
-          "id": "ed_ele_6",
-          "titulo": "Válvula solenoide C1"
-        },
-        {
-          "id": "ed_ele_7",
-          "titulo": "Válvula solenoide C2"
-        },
-        {
-          "id": "ed_ele_8",
-          "titulo": "Instalação driver do compressor"
-        },
-        {
-          "id": "ed_ele_9",
-          "titulo": "Instalação elétrica do ventilador 1"
-        },
-        {
-          "id": "ed_ele_10",
-          "titulo": "Instalação elétrica do ventilador 2"
-        },
-        {
-          "id": "ed_ele_11",
-          "titulo": "Instalação elétrica do ventilador 3"
-        },
-        {
-          "id": "ed_ele_12",
-          "titulo": "Instalação elétrica do ventilador 4"
-        },
-        {
-          "id": "ed_ele_13",
-          "titulo": "Instalação driver do ventilador"
-        },
-        {
-          "id": "ed_ele_14",
-          "titulo": "Double check ventilador 1"
-        },
-        {
-          "id": "ed_ele_15",
-          "titulo": "Double check ventilador 2"
-        },
-        {
-          "id": "ed_ele_16",
-          "titulo": "Double check ventilador 3"
-        },
-        {
-          "id": "ed_ele_17",
-          "titulo": "Double check ventilador 4"
-        },
-        {
-          "id": "ed_ele_18",
-          "titulo": "Ventiladores e cabos vedados"
-        },
-        {
-          "id": "ed_ele_19",
-          "titulo": "Reaquecimento 1"
-        },
-        {
-          "id": "ed_ele_20",
-          "titulo": "Reaquecimento 2"
-        },
-        {
-          "id": "ed_ele_21",
-          "titulo": "Umidificador"
-        },
-        {
-          "id": "ed_ele_22",
-          "titulo": "Damper"
-        },
-        {
-          "id": "ed_ele_23",
-          "titulo": "Bomba"
-        },
-        {
-          "id": "ed_ele_24",
-          "titulo": "Sensores"
-        },
-        {
-          "id": "ed_ele_25",
-          "titulo": "Instalação EVD"
-        },
-        {
-          "id": "ed_ele_26",
-          "titulo": "Cabo de comunicação"
-        },
-        {
-          "id": "ed_ele_27",
-          "titulo": "Mangueira para fluxo de ar"
-        },
-        {
-          "id": "ed_ele_28",
-          "titulo": "Pressostato"
-        },
-        {
-          "id": "ed_ele_29",
-          "titulo": "Fios e emendas bem isolados"
-        },
-        {
-          "id": "ed_ele_30",
-          "titulo": "Válvula de controle de cond. 1"
-        },
-        {
-          "id": "ed_ele_31",
-          "titulo": "Válvula de controle de cond. 2"
-        },
-        {
-          "id": "ed_ele_32",
-          "titulo": "Aterramento entre painel, estrutura e porta"
-        },
-        {
-          "id": "ed_ele_33",
-          "titulo": "Instalação do IHM"
-        },
-        {
-          "id": "ed_ele_34",
-          "titulo": "Passa fio / prensa cabo"
-        },
-        {
-          "id": "ed_ele_35",
-          "titulo": "Canaletas e quadro elétrico"
-        },
-        {
-          "id": "ed_ele_36",
-          "titulo": "Conexões elétricas apertados"
-        },
-        {
-          "id": "ed_ele_37",
-          "titulo": "Etiquetas de identificação"
-        },
-        {
-          "id": "ed_ele_38",
-          "titulo": "Realizar a limpeza"
-        }
+        {"id": "ed_ele_1","titulo": "Instalação elétrica do compressor C1"},
+        {"id": "ed_ele_2","titulo": "Instalação elétrica do compressor C2"},
+        {"id": "ed_ele_3","titulo": "Válvula controle de capacidade"},
+        {"id": "ed_ele_4","titulo": "Resistência Carter C1"},
+        {"id": "ed_ele_5","titulo": "Resistência Carter C2"},
+        {"id": "ed_ele_6","titulo": "Válvula solenoide C1"},
+        {"id": "ed_ele_7","titulo": "Válvula solenoide C2"},
+        {"id": "ed_ele_8","titulo": "Instalação driver do compressor"},
+        {"id": "ed_ele_9","titulo": "Instalação elétrica do ventilador 1"},
+        {"id": "ed_ele_10","titulo": "Instalação elétrica do ventilador 2"},
+        {"id": "ed_ele_11","titulo": "Instalação elétrica do ventilador 3"},
+        {"id": "ed_ele_12","titulo": "Instalação elétrica do ventilador 4"},
+        {"id": "ed_ele_13","titulo": "Instalação driver do ventilador"},
+        {"id": "ed_ele_14","titulo": "Double check ventilador 1"},
+        {"id": "ed_ele_15","titulo": "Double check ventilador 2"},
+        {"id": "ed_ele_16","titulo": "Double check ventilador 3"},
+        {"id": "ed_ele_17","titulo": "Double check ventilador 4"},
+        {"id": "ed_ele_18","titulo": "Ventiladores e cabos vedados"},
+        {"id": "ed_ele_19","titulo": "Reaquecimento 1"},
+        {"id": "ed_ele_20","titulo": "Reaquecimento 2"},
+        {"id": "ed_ele_21","titulo": "Umidificador"},
+        {"id": "ed_ele_22","titulo": "Damper"},
+        {"id": "ed_ele_23","titulo": "Bomba"},
+        {"id": "ed_ele_24","titulo": "Sensores"},
+        {"id": "ed_ele_25","titulo": "Instalação EVD"},
+        {"id": "ed_ele_26","titulo": "Cabo de comunicação"},
+        {"id": "ed_ele_27","titulo": "Mangueira para fluxo de ar"},
+        {"id": "ed_ele_28","titulo": "Pressostato"},
+        {"id": "ed_ele_29","titulo": "Fios e emendas bem isolados"},
+        {"id": "ed_ele_30","titulo": "Válvula de controle de cond. 1"},
+        {"id": "ed_ele_31","titulo": "Válvula de controle de cond. 2"},
+        {"id": "ed_ele_32","titulo": "Aterramento entre painel, estrutura e porta"},
+        {"id": "ed_ele_33","titulo": "Instalação do IHM"},
+        {"id": "ed_ele_34","titulo": "Passa fio / prensa cabo"},
+        {"id": "ed_ele_35","titulo": "Canaletas e quadro elétrico"},
+        {"id": "ed_ele_36","titulo": "Conexões elétricas apertados"},
+        {"id": "ed_ele_37","titulo": "Etiquetas de identificação"},
+        {"id": "ed_ele_38","titulo": "Realizar a limpeza"}
       ]
     },
     {
       "id": "checklist_edbrse_isolamento_gabinete",
       "nome": "Checklist EDBRSE/EUBRSE - Isolamento de gabinete",
       "itens": [
-        {
-          "id": "ed_iso_gab_1",
-          "titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas"
-        },
-        {
-          "id": "ed_iso_gab_2",
-          "titulo": "Verificar estado do adesivo antes de cortar a manta"
-        },
-        {
-          "id": "ed_iso_gab_3",
-          "titulo": "Verificar isolamento e ausência de bolhas"
-        },
-        {
-          "id": "ed_iso_gab_4",
-          "titulo": "Verificar secagem do adesivo por 36 horas"
-        }
+        {"id": "ed_iso_gab_1","titulo": "Inspeção visual do gabinete: superfícies a serem coladas devem estar secas"},
+        {"id": "ed_iso_gab_2","titulo": "Verificar estado do adesivo antes de cortar a manta"},
+        {"id": "ed_iso_gab_3","titulo": "Verificar isolamento e ausência de bolhas"},
+        {"id": "ed_iso_gab_4","titulo": "Verificar secagem do adesivo por 36 horas"}
       ]
     },
     {
       "id": "checklist_edbrse_isolamento_tubulacao",
       "nome": "Checklist EDBRSE/EUBRSE - Isolamento de tubulação",
       "itens": [
-        {
-          "id": "ed_iso_tub_1",
-          "titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca"
-        },
-        {
-          "id": "ed_iso_tub_2",
-          "titulo": "Verificar estado do isolamento antes de cortar"
-        },
-        {
-          "id": "ed_iso_tub_3",
-          "titulo": "Certificar-se de que as colagens não tocam a tubulação"
-        },
-        {
-          "id": "ed_iso_tub_4",
-          "titulo": "Verificar secagem do adesivo por 36 horas"
-        },
+        {"id": "ed_iso_tub_1","titulo": "Inspeção visual da tubulação: toda a tubulação deve estar seca"},
+        {"id": "ed_iso_tub_2","titulo": "Verificar estado do isolamento antes de cortar"},
+        {"id": "ed_iso_tub_3","titulo": "Certificar-se de que as colagens não tocam a tubulação"},
+        {"id": "ed_iso_tub_4","titulo": "Verificar secagem do adesivo por 36 horas"},
         {
           "id": "ed_iso_tub_5",
           "titulo": "Verificar isolamento instalado"
@@ -436,130 +152,46 @@
       "id": "checklist_edbrse_fechamento_mecanico",
       "nome": "Checklist EDBRSE/EUBRSE - Fechamento mecânico e acabamento",
       "itens": [
-        {
-          "id": "ed_fech_1",
-          "titulo": "Verificar se todos os parafusos estão fixados"
-        },
-        {
-          "id": "ed_fech_2",
-          "titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas"
-        },
-        {
-          "id": "ed_fech_3",
-          "titulo": "Verificar se todos os rebites estão fixados"
-        },
-        {
-          "id": "ed_fech_4",
-          "titulo": "Verificar se as tubulações estão limpas"
-        },
-        {
-          "id": "ed_fech_5",
-          "titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados"
-        },
-        {
-          "id": "ed_fech_6",
-          "titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas"
-        },
-        {
-          "id": "ed_fech_7",
-          "titulo": "Verificar defeitos de pintura e realizar retoques se necessário"
-        },
-        {
-          "id": "ed_fech_8",
-          "titulo": "Realizar limpeza do equipamento"
-        },
-        {
-          "id": "ed_fech_9",
-          "titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)"
-        },
-        {
-          "id": "ed_fech_10",
-          "titulo": "Verificar todos os componentes instalados"
-        },
-        {
-          "id": "ed_fech_11",
-          "titulo": "Verificar instalação da mangueira do dreno"
-        },
-        {
-          "id": "ed_fech_12",
-          "titulo": "Quando o equipamento tiver umidificador, verificar se todos os componentes estão fixados"
-        },
-        {
-          "id": "ed_fech_13",
-          "titulo": "Verificar tampa do motor do ventilador e prensa cabos vedados"
-        },
-        {
-          "id": "ed_fech_14",
-          "titulo": "Verificar cabos elétricos dos ventiladores com pingadeira"
-        },
-        {
-          "id": "ed_fech_15",
-          "titulo": "Verificar todas as tampas fixadas"
-        },
-        {
-          "id": "ed_fech_16",
-          "titulo": "Verificar todas as etiquetas fixadas"
-        },
-        {
-          "id": "ed_fech_17",
-          "titulo": "Verificar se todos os campos do checklist estão preenchidos"
-        }
+        {"id": "ed_fech_1","titulo": "Verificar se todos os parafusos estão fixados"},
+        {"id": "ed_fech_2","titulo": "Verificar se todas as válvulas Schrader sem uso estão com tampas"},
+        {"id": "ed_fech_3","titulo": "Verificar se todos os rebites estão fixados"},
+        {"id": "ed_fech_4","titulo": "Verificar se as tubulações estão limpas"},
+        {"id": "ed_fech_5","titulo": "Verificar se todos os prensa cabos e passa fios estão colocados e fixados"},
+        {"id": "ed_fech_6","titulo": "Verificar visualmente se todas as conexões elétricas estão fixadas"},
+        {"id": "ed_fech_7","titulo": "Verificar defeitos de pintura e realizar retoques se necessário"},
+        {"id": "ed_fech_8","titulo": "Realizar limpeza do equipamento"},
+        {"id": "ed_fech_9","titulo": "Verificar aspecto visual geral (isento de arranhões, amassados, sujeira)"},
+        {"id": "ed_fech_10","titulo": "Verificar todos os componentes instalados"},
+        {"id": "ed_fech_11","titulo": "Verificar instalação da mangueira do dreno"},
+        {"id": "ed_fech_12","titulo": "Quando o equipamento tiver umidificador, verificar se todos os componentes estão fixados"},
+        {"id": "ed_fech_13","titulo": "Verificar tampa do motor do ventilador e prensa cabos vedados"},
+        {"id": "ed_fech_14","titulo": "Verificar cabos elétricos dos ventiladores com pingadeira"},
+        {"id": "ed_fech_15","titulo": "Verificar todas as tampas fixadas"},
+        {"id": "ed_fech_16","titulo": "Verificar todas as etiquetas fixadas"},
+        {"id": "ed_fech_17","titulo": "Verificar se todos os campos do checklist estão preenchidos"}
       ]
     },
     {
       "id": "checklist_edbrse_embalagem",
       "nome": "Checklist EDBRSE/EUBRSE - Embalagem",
       "itens": [
-        {
-          "id": "ed_emb_1",
-          "titulo": "Verificar unidade dentro do pallet com etiqueta de identificação e inspeção visual do equipamento"
-        },
-        {
-          "id": "ed_emb_2",
-          "titulo": "Verificar posicionamento das cantoneiras"
-        },
-        {
-          "id": "ed_emb_3",
-          "titulo": "Verificar etiquetas de identificação da unidade"
-        },
-        {
-          "id": "ed_emb_4",
-          "titulo": "Verificar posicionamento do arqueamento"
-        },
-        {
-          "id": "ed_emb_5",
-          "titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display"
-        },
-        {
-          "id": "ed_emb_6",
-          "titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"
-        },
-        {
-          "id": "ed_emb_7",
-          "titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"
-        },
-        {
-          "id": "ed_emb_8",
-          "titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"
-        }
+        {"id": "ed_emb_1","titulo": "Verificar unidade dentro do pallet com etiqueta de identificação e inspeção visual do equipamento"},
+        {"id": "ed_emb_2","titulo": "Verificar posicionamento das cantoneiras"},
+        {"id": "ed_emb_3","titulo": "Verificar etiquetas de identificação da unidade"},
+        {"id": "ed_emb_4","titulo": "Verificar posicionamento do arqueamento"},
+        {"id": "ed_emb_5","titulo": "Verificar se grampos estão no fundo da unidade e se fita não passa sobre o display"},
+        {"id": "ed_emb_6","titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"},
+        {"id": "ed_emb_7","titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"},
+        {"id": "ed_emb_8","titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"}
       ]
     },
     {
       "id": "checklist_edbrse_liberacao_final",
       "nome": "Checklist EDBRSE/EUBRSE - Liberação final do equipamento",
       "itens": [
-        {
-          "id": "ed_lib_1",
-          "titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"
-        },
-        {
-          "id": "ed_lib_2",
-          "titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"
-        },
-        {
-          "id": "ed_lib_3",
-          "titulo": "Preparar o produto para expedição (nacional e exportação)"
-        }
+        {"id": "ed_lib_1","titulo": "Verificar se pallet e tampas foram fumigados (quando exportação)"},
+        {"id": "ed_lib_2","titulo": "Verificar etiqueta de identificação do equipamento e avisos de embalagem na tampa de madeira (quando exportação)"},
+        {"id": "ed_lib_3","titulo": "Preparar o produto para expedição (nacional e exportação)"}
       ]
     }
   ]

@@ -1,0 +1,110 @@
+{
+    "checklists": [
+        {
+            "id": "checlist_dcbr_pre-montagem",
+            "nome": "Checklist DCBR - Pré-montagem",
+            "itens":[
+                {"id": "dcbr_pre_1","titulo": "Verificar aspecto visual (isento de arranhões, amassados, sujeira)"},
+                {"id": "dcbr_pre_2","titulo": "O pallet está em boas condições de uso (isenot de mofo, todas as madeiras estão firmes e sem nenhum dano estrutural aparente."},
+                {"id": "dcbr_pre_3","titulo": "Para trocadores de calor enviados para tratamento superficial e sem pressão do fornecedor, realizar testes de vazamento"},
+                {"id": "dcbr_pre_4","titulo": "Todas as peças foram fixadas com todos rebites"},
+                {"id": "dcbr_pre_5","titulo": "Todas as porcas do coxins dos trocadores foram travadas de 1/8 a 1/6 de volta"},
+                {"id": "dcbr_pre_6","titulo": "Quando no projeto for solicitado bomba de água, todos os parafusos foram travados com 11Nm ±1 Nm"}
+            ]
+        },
+        {
+            "id": "checklist_dcbr_montagem_frigorifica",
+            "nome": "Checklist DCBR - Montagem frigorífica",
+            "itens" : [
+                {"id": "dcbr_frig_1","titulo": "O projeto frigorífico está disponível na pasta da obra e dúvidas foram sanadas com a Engenharia"},
+                {"id": "dcbr_frig_2","titulo": "Componentes conforme lista do projeto"},
+                {"id": "dcbr_frig_3","titulo": "Os materias estejam em boas condições"},
+                {"id": "dcbr_frig_4","titulo": "Os materias de substituição, se utilizados, em boas condições"},
+                {"id": "dcbr_frig_5","titulo": "O corte da tubulação seja cortada conforme medida solicitada"},
+                {"id": "dcbr_frig_6","titulo": "A dobra está sendo executada de acordo com o desenho"},
+                {"id": "dcbr_frig_7","titulo": "Verificar que foi retirada toda a rebarba do tubo"},
+                {"id": "dcbr_frig_8","titulo": "A tubulação, especialmente a área de brasagem, deve estar limpa"},
+                {"id": "dcbr_frig_9","titulo": "Verificar que o trocador não esteja obstruído"},
+                {"id": "dcbr_frig_10","titulo": "A regulagem dos gases para brasagem e que seja utilizado nitrogênio na parte interna dos tubos"},
+                {"id": "dcbr_frig_11","titulo": "Inspeção visual  da(s) válvula(s) instalada(s) na tubulação perto do compressor"},
+                {"id": "dcbr_frig_12","titulo": "Todas as soldas executadas na tubulação"},
+                {"id": "dcbr_frig_13","titulo": "A execução da montagem frigorífica/brasagem conforme projeto frigorífico"},
+                {"id": "dcbr_frig_14","titulo": "A tubulação seja limpa"},
+                {"id": "dcbr_frig_15","titulo": "Inspeção visual final"}
+            ]
+        },
+        {
+            "id":"checklist_dcbr_teste_hidrostatico",
+            "nome":"Checklist DCBR - Teste Hidrostático",
+            "itens": [
+                {"id": "dcbr_teste_hidro_c1","titulo": "O Teste de pressão hidrostático foi realizado por 4 horas no Circuito 1"},
+                {"id": "dcbr_teste_hidro_c2","titulo": "O Teste de pressão hidrostático foi realizado por 4 horas no Circuito 2"}
+            ]
+        },
+        {
+            "id": "checklist_dcbr_montagem_eletrica",
+            "nome": "Checklist DCBR _ Montagem elétrica",
+            "itens": [
+                {"id": "dcbr_ele_1","titulo": "Instalação elétrica do ventilador 1"},
+                {"id": "dcbr_ele_2","titulo": "Instalação elétrica do ventilador 2"},
+                {"id": "dcbr_ele_3","titulo": "Instalação driver do ventilador"},
+                {"id": "dcbr_ele_4","titulo": "Sensores"},
+                {"id": "dcbr_ele_5","titulo": "Fios e emendas bem isolados"},
+                {"id": "dcbr_ele_6","titulo": "Passa fio/prensa cabo"},
+                {"id": "dcbr_ele_7","titulo": "Quadro elétrico"},
+                {"id": "dcbr_ele_8","titulo": "Conexões elétricos apertados"},
+                {"id": "dcbr_ele_9","titulo": "Etiquetas de identificação"},
+                {"id": "dcbr_ele_10","titulo":"Realizar limpeza"}
+            ]
+        },
+        {
+            "id": "checklist_dcbr_fechamento_mecanico",
+            "nome": "Checklist DCBR - Fechamento mecânico e acabamento",
+            "itens":[
+                {"id": "dcbr_fech_1","titulo": "Todas as válvuas Schrader sem uso estão com tampas"},
+                {"id": "dcbr_fech_2","titulo": "Todos os parafusos estão fixados"},
+                {"id": "dcbr_fech_3","titulo": "Todos os rebites estão fixados"},
+                {"id": "dcbr_fech_4","titulo": "As tubulações estão limpas"},
+                {"id": "dcbr_fech_5","titulo": "Todos os prensas cabos e passa fios estão colocados e fixados"},
+                {"id": "dcbr_fech_6","titulo": "Verificação visual se todas conexões elétricas estão fixadas"},
+                {"id": "dcbr_fech_7","titulo": "Verificar se os terminais sem ligações (TCM) estão isolados"},
+                {"id": "dcbr_fech_8","titulo": "O(s) filtro(s) de ar estão instalado(s)"},
+                {"id": "dcbr_fech_9","titulo": "Foi realizado os ajuestes das portas"},
+                {"id": "dcbr_fech_10","titulo": "Verificar visualmente se tem defeitos de pintura (quando pintado) e realizar retoque"},
+                {"id": "dcbr_fech_11","titulo": "Verificar a instalação da mangueira de dreno"},
+                {"id": "dcbr_fech_12","titulo": "Quando o equipamento for com umidificador, verificar se todos os componentes fixados "},
+                {"id": "dcbr_fech_13","titulo": "Realizar limpeza do equipamento"},
+                {"id": "dcbr_fech_14","titulo": "Quando instalada  a bomba do dreno, verificar se a alavanca está na posição manual"},
+                {"id": "dcbr_fech_15","titulo": "Verificar aspecto visual(isento de arranhões, amassados, sujeira)"},
+                {"id": "dcbr_fech_16","titulo": "Todos componentes estão instalados"},
+                {"id": "dcbr_fech_17","titulo": "Tampa do motor do ventilador e prensa cabos estão vedados"},
+                {"id": "dcbr_fech_18","titulo": "Os cabos elétricos dos ventiladores estão com 'pingadeira'"},
+                {"id": "dcbr_fech_19","titulo": "Todas as tampas estão fixadas"},
+                {"id": "dcbr_fech_20","titulo": "Todas as etiquetas estão fixadas"},
+                {"id": "dcbr_fech_21","titulo": "Todos os campos do checklist estão preenchidos"}
+            ]
+        },
+        {
+            "id": "checklist_dcbr_embalagem",
+            "nome": "Checklis DCBR - Embalagem",
+            "itens":[
+                {"id": "dcbr_emb_1","titulo": "Confirmar a unidade no pallet com etiqueta correta, verificar a identificação do pallet (Cliente x Nº da OP) e realizar a inspeção visual do equipamento."},
+                {"id": "dcbr_emb_2","titulo": "Posicionamento das cantoneiras"},
+                {"id": "dcbr_emb_3","titulo": "Etiquetas de identificação da unidade"},
+                {"id": "dcbr_emb_4","titulo": "Posicionamento do arqueamento"},
+                {"id": "dcbr_emb_5","titulo": "Os grampos estejam no fundo da unidade e a fita de arquear não passa sobre o display se presente"},
+                {"id": "dcbr_emb_6","titulo": "O pallet e as tampas devem ser fumigados (aplicável quando exportação)"},
+                {"id": "dcbr_emb_7","titulo": "Etiqueta de identificação do equipamento e os avisos de embalagem na tampa de madeira (aplicável quando exportação)"},
+                {"id": "dcbr_emb_8","titulo": "Preparar o produto para Expedição (aplicável quando expedição nacional e exportação)"}
+
+            ]
+        },
+        {
+            "id": "checklist_dcbr_liberacao_final",
+            "nome": "Checklist DCBR - Liberação final do equipamento",
+            "itens": [
+                
+            ]
+        }
+    ]
+}
